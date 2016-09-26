@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - bpmw@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="bpmw">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="information_schema"/>
+    <schema id="3" name="mysql"/>
+    <schema id="4" name="performance_schema"/>
+    <schema id="5" name="sakila"/>
+    <schema id="6" name="sys"/>
+    <schema id="7" name="world"/>
+    <table id="8" parent="1" name="tasks"/>
+    <column id="9" parent="8" name="idtasks">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="10" parent="8" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="11" parent="8" name="text">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <key id="12" parent="8" name="PRIMARY">
+      <columns>idtasks</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
