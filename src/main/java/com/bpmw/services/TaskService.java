@@ -3,10 +3,12 @@ package com.bpmw.services;
 import com.bpmw.persistence.Task;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.*;
 import java.util.List;
 
+@Named
 @ApplicationScoped
 public class TaskService {
 

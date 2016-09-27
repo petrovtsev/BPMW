@@ -5,6 +5,7 @@ import com.bpmw.services.TaskService;
 import com.bpmw.web.model.TaskModel;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@Named
 public class TaskController extends HttpServlet{
 
     @Inject

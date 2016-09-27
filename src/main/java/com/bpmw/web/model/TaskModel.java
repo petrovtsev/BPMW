@@ -2,10 +2,16 @@ package com.bpmw.web.model;
 
 import com.bpmw.persistence.Task;
 import com.bpmw.services.TaskService;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
+@Named
 public class TaskModel {
 
+
+    @Inject
     private TaskService taskService;
 
     public TaskService getTaskService() {
