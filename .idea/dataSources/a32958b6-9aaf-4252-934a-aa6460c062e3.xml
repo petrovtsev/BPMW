@@ -10,20 +10,53 @@
     <schema id="5" name="sakila"/>
     <schema id="6" name="sys"/>
     <schema id="7" name="world"/>
-    <table id="8" parent="1" name="tasks"/>
-    <column id="9" parent="8" name="idtasks">
+    <schema id="8" name="rzd"/>
+    <table id="9" parent="1" name="tasks"/>
+    <table id="10" parent="1" name="users"/>
+    <table id="11" parent="1" name="views"/>
+    <column id="12" parent="9" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="10" parent="8" name="name">
+    <column id="13" parent="9" name="name">
       <mandatory>1</mandatory>
       <data-type>varchar(45)|0</data-type>
     </column>
-    <column id="11" parent="8" name="text">
+    <column id="14" parent="9" name="text">
       <data-type>varchar(45)|0</data-type>
     </column>
-    <key id="12" parent="8" name="PRIMARY">
-      <columns>idtasks</columns>
+    <key id="15" parent="9" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="16" parent="10" name="iduser">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="17" parent="10" name="first_name">
+      <mandatory>1</mandatory>
+      <data-type>char(30)|0</data-type>
+    </column>
+    <key id="18" parent="10" name="PRIMARY">
+      <columns>iduser</columns>
+      <primary>1</primary>
+    </key>
+    <column id="19" parent="11" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="20" parent="11" name="user">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="21" parent="11" name="view">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <key id="22" parent="11" name="PRIMARY">
+      <columns>id</columns>
       <primary>1</primary>
     </key>
   </database-model>
