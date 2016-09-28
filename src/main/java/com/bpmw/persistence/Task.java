@@ -18,18 +18,6 @@ public class Task {
     @Column(name = "text")
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "id")
-    private User user;
-
-
-    public Task(Integer id, String name, String text, User user) {
-        this.id = id;
-        this.name = name;
-        this.text = text;
-        this.user = user;
-    }
-
     public Task() {
     }
 
@@ -56,15 +44,6 @@ public class Task {
     public void setText(String text) {
         this.text = text;
     }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
 
     @Override
     public String toString() {

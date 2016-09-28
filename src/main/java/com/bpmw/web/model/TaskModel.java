@@ -4,12 +4,13 @@ import com.bpmw.persistence.Task;
 import com.bpmw.services.TaskService;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
-@ApplicationScoped
+@RequestScoped
 public class TaskModel {
     private List<Task> taskList;
 

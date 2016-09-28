@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/")
 public class TaskController extends HttpServlet{
 
     @Inject
@@ -20,8 +19,7 @@ public class TaskController extends HttpServlet{
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        request.setAttribute("task", taskModel.returnAllTasks());
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        request.setAttribute("fdg", taskModel.returnAllTasks());
     }
 
     private List<Task> list;

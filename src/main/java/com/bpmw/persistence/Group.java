@@ -15,12 +15,12 @@ public class Group {
     @Column(name = "name")
     private String name;
 
-    public Group() {
-    }
-
     public Group(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Group() {
     }
 
     public Integer getId() {

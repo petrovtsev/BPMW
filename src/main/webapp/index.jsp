@@ -41,14 +41,14 @@
                     <td width="100">Phone</td>
                     <td width="100">City</td>
                 </tr>
-                <c:forEach var="task" items="${task}">
+                <c:forEach var="task" items="#{taskModel.returnAllTasks()}">
                     <tr>
                         <td>${task.id}</td>
                         <td>${task.name}</td>
                         <td>${task.text}</td>
                         <td>-</td>
-                        <td>${task.user.name}</td>
-                        <td>${task.user.phone}</td>
+                        <td>-</td>
+                        <td>-</td>
                         <td>-</td>
                     </tr>
                 </c:forEach>
