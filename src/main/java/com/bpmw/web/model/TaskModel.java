@@ -3,13 +3,15 @@ package com.bpmw.web.model;
 import com.bpmw.persistence.Task;
 import com.bpmw.services.TaskService;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
+@ApplicationScoped
 public class TaskModel {
-
+    private List<Task> taskList;
 
     @Inject
     private TaskService taskService;
@@ -36,5 +38,13 @@ public class TaskModel {
 
     public void updTask(Task task){
         taskService.updTask(task);
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
     }
 }

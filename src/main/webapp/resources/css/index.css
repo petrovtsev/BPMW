@@ -18,7 +18,7 @@ body {background: white}
     height:30px;
     border:1px solid #000000;
     border-radius: 5px;
-    background:#cccccc;
+    background: #f8f8f8;
 }
 .pages {
     margin-left:auto;
@@ -30,7 +30,7 @@ body {background: white}
     height:700px;
     border:1px solid #000000;
     border-radius: 5px;
-    background: #cccccc;
+    background: #f8f8f8;
     float:left;
 }
 .content {
@@ -52,7 +52,7 @@ body {background: white}
     height:50px;
     border:1px solid #000000;
     border-radius: 5px;
-    background:#cccccc;
+    background:#f8f8f8;
 }
 .button{
     display: inline-block;

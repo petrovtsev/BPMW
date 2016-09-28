@@ -14,48 +14,75 @@
     <table id="9" parent="1" name="tasks"/>
     <table id="10" parent="1" name="users"/>
     <table id="11" parent="1" name="views"/>
-    <column id="12" parent="9" name="id">
+    <table id="12" parent="1" name="groups"/>
+    <column id="13" parent="9" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="13" parent="9" name="name">
+    <column id="14" parent="9" name="name">
       <mandatory>1</mandatory>
       <data-type>varchar(45)|0</data-type>
     </column>
-    <column id="14" parent="9" name="text">
+    <column id="15" parent="9" name="text">
       <data-type>varchar(45)|0</data-type>
     </column>
-    <key id="15" parent="9" name="PRIMARY">
+    <column id="16" parent="9" name="user">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="17" parent="9" name="group">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <key id="18" parent="9" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="16" parent="10" name="iduser">
+    <column id="19" parent="10" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="17" parent="10" name="first_name">
+    <column id="20" parent="10" name="name">
       <mandatory>1</mandatory>
       <data-type>char(30)|0</data-type>
     </column>
-    <key id="18" parent="10" name="PRIMARY">
-      <columns>iduser</columns>
+    <column id="21" parent="10" name="phone">
+      <data-type>char(11)|0</data-type>
+    </column>
+    <key id="22" parent="10" name="PRIMARY">
+      <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="19" parent="11" name="id">
+    <column id="23" parent="11" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="20" parent="11" name="user">
+    <column id="24" parent="11" name="name">
+      <data-type>char(15)|0</data-type>
+    </column>
+    <column id="25" parent="11" name="user">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="21" parent="11" name="view">
+    <column id="26" parent="11" name="request">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <key id="22" parent="11" name="PRIMARY">
+    <key id="27" parent="11" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="28" parent="12" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="29" parent="12" name="name">
+      <mandatory>1</mandatory>
+      <data-type>char(40)|0</data-type>
+    </column>
+    <key id="30" parent="12" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>

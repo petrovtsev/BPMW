@@ -1,5 +1,4 @@
-<%@ page import="com.bpmw.persistence.Task" %>
-<%@ page import="java.util.List" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <!DOCTYPE HTML>
@@ -39,17 +38,17 @@
                     <td width="300">Text</td>
                     <td width="100">Date</td>
                     <td width="100">User</td>
-                    <td width="100">City</td>
                     <td width="100">Phone</td>
+                    <td width="100">City</td>
                 </tr>
-                <c:forEach var="person" items="${task}">
+                <c:forEach var="task" items="${task}">
                     <tr>
-                        <td>${person.id}</td>
-                        <td>${person.name}</td>
-                        <td>${person.text}</td>
+                        <td>${task.id}</td>
+                        <td>${task.name}</td>
+                        <td>${task.text}</td>
                         <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td>${task.user.name}</td>
+                        <td>${task.user.phone}</td>
                         <td>-</td>
                     </tr>
                 </c:forEach>
