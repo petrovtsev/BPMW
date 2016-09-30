@@ -1,6 +1,8 @@
 package com.bpmw.services;
 
+import com.bpmw.persistence.Group;
 import com.bpmw.persistence.Task;
+import com.bpmw.persistence.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -19,6 +21,12 @@ public class TaskService {
     public List<Task> returnAllTasks(){
         List<Task> resultList = em.createNamedQuery("Task.findAll", Task.class)
             .getResultList();
+        return resultList;
+    }
+
+    public List<Task> returnUserTasks(Group group){
+        List<Task> resultList = em.createQuery("select t from Task t where Group = " + group, Task.class)
+                .getResultList();
         return resultList;
     }
 

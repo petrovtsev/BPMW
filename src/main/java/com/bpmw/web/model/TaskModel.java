@@ -17,6 +17,9 @@ public class TaskModel {
     @Inject
     private TaskService taskService;
 
+    @Inject
+    private UserModel userModel;
+
     public TaskService getTaskService() {
         return taskService;
     }
@@ -27,6 +30,10 @@ public class TaskModel {
 
     public List<Task> returnAllTasks(){
         return getTaskService().returnAllTasks();
+    }
+
+    public List<Task> returnUserTasks(){
+        return taskService.returnUserTasks(userModel.getUserGroup());
     }
 
     public void addTask(Task task){

@@ -18,9 +18,6 @@ public class Task {
     @Column(name = "text")
     private String text;
 
-    public Task() {
-    }
-
     public Integer getId() {
         return id;
     }
@@ -49,6 +46,4 @@ public class Task {
     public String toString() {
         return super.toString();
     }
-
-
 }

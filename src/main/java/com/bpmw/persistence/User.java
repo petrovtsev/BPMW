@@ -24,6 +24,10 @@ public class User {
         this.phone = phone;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "group", referencedColumnName = "id")
+    private Group group;
+
     public User() {
     }
 
@@ -49,5 +53,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

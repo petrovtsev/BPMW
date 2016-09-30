@@ -1,4 +1,4 @@
-
+<%@ page import="com.bpmw.web.controllers.TaskListController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <!DOCTYPE HTML>
@@ -6,21 +6,23 @@
 <html>
 <head>
     <title>Tasks list</title>
-    <link href="resources/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="resources/css/inbox.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="header">
-        <h1 style="margin-left: 15px; color: white">BPMW</h1>
+        <img src="resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
     </div>
 
     <div class="menu">
-        <input style="margin-top: 5px; margin-left: 680px" width="100" value="">
-        <input type="password" width="100" value="">
-        <a href="#" class="button">login</a>
+        <form action="${pageContext.request.contextPath}/taskList" method="post">
+            <input style="margin-top: 10px; margin-left: 40%" width="100" value="">
+            <input type="password" width="100">
+            <input href="#" style="height: 20px" type="submit" name="login" value="login" class="button" />
+        </form>
     </div>
     <div class="pages">
         <div class="sidebar">
-            <h3 style="margin-left: 40px; font-size: 15px">Views</h3>
+            <h3 style="margin-left: 40px">Views</h3>
             <hr>
             <ul>
                 <li>view1</li>
@@ -31,7 +33,7 @@
             <hr>
         </div>
         <div class="content">
-            <table border="1">
+            <table border="1" class="table">
                 <tr>
                     <td width="100">id</td>
                     <td width="100">Name</td>
@@ -53,10 +55,13 @@
                     </tr>
                 </c:forEach>
             </table>
-        </div>
-        <div class="foot"></div>
-    </div>
 
-    <div class="footer"></div>
+        </div>
+
+        <div class="footer">
+            <a href="#" class="button" style="margin-top: 7px; margin-left: 34%">Add</a>
+            <a href="#" class="button">Remove</a>
+            <a href="#" class="button">Update</a>
+        </div>
 </body>
 </html>
