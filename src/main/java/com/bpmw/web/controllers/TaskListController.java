@@ -15,12 +15,15 @@ import java.util.List;
 @WebServlet("/taskList")
 public class TaskListController extends HttpServlet{
 
+    private List<Task> selectedTaskList;
+
     @Inject
     private TaskModel taskModel;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
+        request.getRequestDispatcher("/login.jsp").forward(request,response);
     }
 
     @Override
@@ -29,7 +32,7 @@ public class TaskListController extends HttpServlet{
         if (request.getParameter("login") != null){
             taskModel.getTaskService();
         }
-        request.getRequestDispatcher("/inbox.jsp").forward(request,response);
+        request.getRequestDispatcher("/login.jsp").forward(request,response);
     }
 
     private List<Task> list;
@@ -43,5 +46,13 @@ public class TaskListController extends HttpServlet{
 
     public void setList(List<Task> list){
         this.list = list;
+    }
+
+    public List<Task> getSelectedTaskList() {
+        return selectedTaskList;
+    }
+
+    public void setSelectedTaskList(List<Task> selectedTaskList) {
+        this.selectedTaskList = selectedTaskList;
     }
 }

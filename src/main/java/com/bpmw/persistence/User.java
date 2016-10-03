@@ -4,28 +4,24 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 @NamedQuery(name = "User.findAll", query = "select u from User u")
 public class User {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "phone")
-    private String phone;
-
-    public User(Integer id, String name, String phone) {
+    public User(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.phone = phone;
     }
 
     @ManyToOne
-    @JoinColumn(name = "group", referencedColumnName = "id")
+    @JoinColumn(name = "GROUP", referencedColumnName = "ID")
     private Group group;
 
     public User() {
@@ -47,17 +43,6 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
 
     public void setGroup(Group group) {
         this.group = group;

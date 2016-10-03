@@ -23,9 +23,6 @@ public class UserModel {
     @Inject
     private UserService userService;
 
-    public Group getUserGroup(){
-        return userService.getUserGroup(id);
-    }
 
     public Integer getId() {
         return id;

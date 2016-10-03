@@ -21,7 +21,7 @@ public class TaskService {
     public List<Task> returnAllTasks(){
         List<Task> resultList = em.createNamedQuery("Task.findAll", Task.class)
             .getResultList();
-        return resultList;
+        return resultList; 
     }
 
     public List<Task> returnUserTasks(Group group){

@@ -40,9 +40,6 @@ public class UserService {
         return em.find(User.class, id);
     }
 
-    public Group getUserGroup(Integer id){
-        return getUser(id).getGroup();
-    }
 
     public void updUser(User user){
         em.merge(user);

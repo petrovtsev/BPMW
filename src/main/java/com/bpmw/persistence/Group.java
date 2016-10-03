@@ -1,18 +1,19 @@
 package com.bpmw.persistence;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
-@Table(name = "groups")
+@Table(name = "TASKS_GROUPS")
 @NamedQuery(name = "Group.findAll", query = "select g from Group g")
 public class Group {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
     public Group(Integer id, String name) {

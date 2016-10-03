@@ -4,19 +4,26 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "TASKS")
 @NamedQuery(name = "Task.findAll", query = "select t from Task t")
 public class Task {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "text")
+    @Column(name = "TEXT")
     private String text;
+
+    @ManyToOne
+    @JoinColumn(name = "GROUP_ID")
+    private Group group;
+
+    public Task() {
+    }
 
     public Integer getId() {
         return id;
@@ -40,6 +47,14 @@ public class Task {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     @Override
