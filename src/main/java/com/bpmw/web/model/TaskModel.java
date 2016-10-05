@@ -14,30 +14,15 @@ import java.util.List;
 public class TaskModel {
     private List<Task> taskList;
 
-    private Task newTask;
-
-    private String selectedTaskList = "#{taskModel.returnAllTasks()}";
-
     @Inject
     private TaskService taskService;
 
-    @Inject
-    private UserModel userModel;
-
-    public TaskService getTaskService() {
-        return taskService;
-    }
-
-    public void setTaskService(TaskService authorService){
-        this.taskService = authorService;
-        }
-
     public List<Task> returnAllTasks(){
-        return getTaskService().returnAllTasks();
+        return taskService.returnAllTasks();
     }
 
-    public void addTask(){
-        taskService.addTask(newTask);
+    public void addTask(Task task){
+        taskService.addTask(task);
     }
 
     public void delTask(Integer id){
@@ -54,21 +39,5 @@ public class TaskModel {
 
     public void setTaskList(List<Task> taskList) {
         this.taskList = taskList;
-    }
-
-    public String getSelectedTaskList() {
-        return selectedTaskList;
-    }
-
-    public void setSelectedTaskList(String selectedTaskList) {
-        this.selectedTaskList = selectedTaskList;
-    }
-
-    public Task getNewTask() {
-        return newTask;
-    }
-
-    public void setNewTask(Task newTask) {
-        this.newTask = newTask;
     }
 }

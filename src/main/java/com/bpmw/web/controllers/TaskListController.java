@@ -29,9 +29,6 @@ public class TaskListController extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        if (request.getParameter("login") != null){
-            taskModel.getTaskService();
-        }
         request.getRequestDispatcher("/login.jsp").forward(request,response);
     }
 

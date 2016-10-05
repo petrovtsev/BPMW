@@ -14,15 +14,17 @@
     </div>
 
     <div class="pages">
-        <div class="authorization" style="margin-top: 10%; height: 130px">
+        <div class="authorization" style="margin-top: 10%; height: 220px">
             <div class="login">
                 <form action="j_security_check" method="post">
+                    <h3>Login</h3>
+                    <hr>
                     Input for username:<br>
                     <input style="width: 170px; height: 17px" name="j_username" type="text"><br>
                     Input for password:<br>
                     <input style="width: 170px; height: 17px" name="j_password" type="password"><br><br/>
                     <input class="button" style="width: 170px; height: 25px" type="submit" value="Authorization">
-                    <input class="button" style="width: 170px; height: 25px" type="reset" value="Reset"><br>
+                    <a href="register.jsp" class="button" style="width: 170px; margin-top: 5px; height: 17px">Register</a><br>
                 </form>
             </div>
         </div>

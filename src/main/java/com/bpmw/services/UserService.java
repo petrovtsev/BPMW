@@ -31,15 +31,14 @@ public class UserService {
         em.persist(user);
     }
 
-    public void delUser(Integer id){
-        User user = em.find(User.class, id);
+    public void delUser(String login){
+        User user = em.find(User.class, login);
         em.remove(user);
     }
 
-    public User getUser(Integer id){
-        return em.find(User.class, id);
+    public User getUser(String login){
+        return em.find(User.class, login);
     }
-
 
     public void updUser(User user){
         em.merge(user);

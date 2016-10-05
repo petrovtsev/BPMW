@@ -38,11 +38,19 @@ body {background: white}
 .content {
     margin-left:10px;
     width: 80%;
+    color: #5a567f;
+    font-size: 13px;
+    font-weight: bold;
     height:auto;
     border:1px solid #000000;
     background:white;
     float:left;
     box-shadow: 4px 7px 17px 1px #000000;
+}
+.data-table{
+    border: 0px;
+    margin-left: 10%;
+    color: black;
 }
 .footer{
     width: 80%;

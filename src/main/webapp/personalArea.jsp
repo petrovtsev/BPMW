@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>View Task</title>
+    <title>Personal area</title>
     <link href="resources/css/view_task.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -15,7 +15,7 @@
 
 <div class="menu">
     <form action="${pageContext.request.contextPath}/taskList" method="post">
-        <a href="personalArea.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</a>
+        <output style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</output>
         <a href="inbox.jsp" style="height: 15px; width: 7%; margin-left: 25%; margin-top: 10px" class="button">Back to list</a>
         <a href="login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
 </div>
@@ -32,36 +32,46 @@
         <input href="#" style="height: 23px; width: 120px; margin-left: 20px" type="submit" name="addQuery" value="Add new task" class="button"/>
     </div>
     <div class="content">
-        <h3 style="margin-left: 10%">Task ID ${taskService.getTask(1).id}</h3>
-        <hr>
         <form>
+            <h3 style="margin-left: 10%">My Account</h3>
+            <hr>
             <table class="data-table">
                 <tr>
-                    <td style="width: 150px">Name</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).name}"/></td>
-                </tr>
-                <td>Text</td>
-                <td><input value="${taskModel.returnAllTasks().get(0).text}"/></td>
+                    <td width="150">Login</td>
+                    <td><input value="${userModel.returnAllUser().get(0).login}"/></td>
                 </tr>
                 <tr>
-                    <td>Date in</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).dateIn}"/></td>
+                    <td>First name</td>
+                    <td><input value="${userModel.returnAllUser().get(0).firstName}"/></td>
+                </tr>
+                    <td>Last name</td>
+                    <td><input value="${userModel.returnAllUser().get(0).lastName}"/></td>
                 </tr>
                 <tr>
-                    <td>Date complete</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).dateComplet}"/></td>
+                <td>Date birth</td>
+                    <td><input value="${userModel.returnAllUser().get(0).dateBirth}"/></td>
                 </tr>
                 <tr>
-                    <td>User complete</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).userComplet.login}"/></td>
+                <td>City</td>
+                    <td><input value="${userModel.returnAllUser().get(0).city}"/></td>
+                </tr>
+                <tr>
+                    <td>Group</td>
+                    <td><input value="${userModel.returnAllUser().get(0).group.name}"/></td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td><input value="${userModel.returnAllUser().get(0).phone}"/></td>
+                </tr>
+                <tr>
+                    <td>Mail</td>
+                    <td><input value="${userModel.returnAllUser().get(0).mail}"/></td>
                 </tr>
             </table>
         </form>
     </div>
-
     <div class="footer">
         <a href="#" class="button" style="margin-top: 7px; margin-left: 34%">Save</a>
-        <a href="#" class="button">Remove</a>
         <a href="inbox.jsp" class="button">Back</a>
     </div>
 </div>

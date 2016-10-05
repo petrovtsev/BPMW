@@ -19,6 +19,8 @@
                 <output>ERROR</output><br><br>
                 <output>Try again</output><br><br>
                 <a href="login.jsp" class="button" style="width: 170px">Back</a>
+
+                <a href="register.jsp" class="button" style="width: 170px; margin-top: 3px">Register</a><br>
             </div>
         </div>
     </div>

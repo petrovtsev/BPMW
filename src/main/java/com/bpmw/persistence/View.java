@@ -9,13 +9,13 @@ import javax.persistence.*;
 public class View {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "request")
+    @Column(name = "REQUEST")
     private String request;
 
     public View(Integer id, String name, String request) {

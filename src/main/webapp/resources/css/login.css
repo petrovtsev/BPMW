@@ -9,7 +9,11 @@ body {background:white}
 }
 .pages {
 }
-
+.data-table{
+    border: 0px;
+    margin-left: 10%;
+    color: black;
+}
 .sidebar {
     width:19%;
     min-width: 100px;
@@ -70,7 +74,7 @@ button:active {
     color: rgb(68,68,68);
 }
 .authorization {
-    width:400px;
+    width:500px;
     margin: 0 auto;
     padding:10px;
     height: 210px;

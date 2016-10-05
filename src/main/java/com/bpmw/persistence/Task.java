@@ -1,6 +1,8 @@
 package com.bpmw.persistence;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @Entity
@@ -21,6 +23,18 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
     private Group group;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATE_IN")
+    private Date dateIn;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATE_COMPLETION")
+    private Date dateComplet;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_COMPLET")
+    private User userComplet;
 
     public Task() {
     }
@@ -55,6 +69,34 @@ public class Task {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public String getDateIn() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        return dateFormat.format(dateIn);
+    }
+
+    public void setDateIn(Date dateIn) {
+        this.dateIn = dateIn;
+    }
+
+    public String getDateComplet() {
+        if (dateComplet != null){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        return dateFormat.format(dateComplet);
+        }else return " ";
+    }
+
+    public void setDateComplet(Date dateComplet) {
+        this.dateComplet = dateComplet;
+    }
+
+    public User getUserComplet() {
+        return userComplet;
+    }
+
+    public void setUserComplet(User userComplet) {
+        this.userComplet = userComplet;
     }
 
     @Override

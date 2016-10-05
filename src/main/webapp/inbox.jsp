@@ -15,7 +15,7 @@
 
 <div class="menu">
     <form action="${pageContext.request.contextPath}/taskList" method="post">
-        <output style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</output>
+        <a href="personalArea.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</a>
         <input style="margin-top: 10px; margin-left: 20%; width: 15%"  value="">
         <input href="#" style="height: 20px; width: 7%" type="submit" name="Search" value="Search" class="button" />
         <input href="login.jsp" style="height: 20px; margin-left: 10%; width: 7%" type="submit" name="exit" value="Exit" class="button" />
@@ -26,10 +26,9 @@
         <h3 style="margin-left: 40px">Views</h3>
         <hr>
         <ul>
-            <li>view1</li>
-            <li>view2</li>
-            <li>view3</li>
-            <li>view4</li>
+            <c:forEach var="view" items="#{viewService.returnAllViews()}">
+                <a href="#" style="border: rgba(255, 29, 70, 0.76); border: 1px; width: 90px">${view.name}</a><br><br>
+            </c:forEach>
         </ul>
         <input href="#" style="height: 23px; width: 120px; margin-left: 20px" type="submit" name="addQuery" value="Add new query" class="button"/>
         <hr>
@@ -41,8 +40,8 @@
                 <td width="100">Name</td>
                 <td width="300">Text</td>
                 <td width="100">Group</td>
-                <td width="100">User</td>
-                <td width="100">Phone</td>
+                <td width="100">Date in</td>
+                <td width="100">Date complete</td>
                 <td width="100">Edit</td>
             </tr>
             <c:forEach var="task" items="#{taskModel.returnAllTasks()}">
@@ -51,8 +50,8 @@
                     <td>${task.name}</td>
                     <td>${task.text}</td>
                     <td>${task.group.name}</td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td>${task.dateIn}</td>
+                    <td>${task.dateComplet}</td>
                     <td><a href="viewTask.jsp" style="width: 70px">edit</a></td>
                 </tr>
             </c:forEach>

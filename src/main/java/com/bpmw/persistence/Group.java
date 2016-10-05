@@ -22,6 +22,7 @@ public class Group {
     }
 
     public Group() {
+
     }
 
     public Integer getId() {

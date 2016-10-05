@@ -1,9 +1,6 @@
 package com.bpmw.web.model;
 
-import com.bpmw.persistence.Group;
-import com.bpmw.persistence.Task;
 import com.bpmw.persistence.User;
-import com.bpmw.services.TaskService;
 import com.bpmw.services.UserService;
 
 import javax.enterprise.context.RequestScoped;
@@ -11,24 +8,30 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
-/**
- * Created by ppetr on 28.09.2016.
- */
 @Named
 @RequestScoped
-public class UserModel {
-    private List<User> userList;
-    private Integer id = 1;
+public class UserModel{
 
     @Inject
     private UserService userService;
 
-
-    public Integer getId() {
-        return id;
+    public List<User> returnAllUser(){
+        return userService.returnAllUser();
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public User returnGetUser(String login){
+        return userService.getUser(login);
+    }
+
+    public void addUser(User user){
+        userService.addUser(user);
+    }
+
+    public void delUser(String login){
+        userService.delUser(login);
+    }
+
+    public void updUser(User user){
+        userService.updUser(user);
     }
 }
