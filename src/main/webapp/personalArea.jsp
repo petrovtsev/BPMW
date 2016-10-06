@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Personal area</title>
-    <link href="resources/css/view_task.css" rel="stylesheet" type="text/css" />
+    <link href="resources/css/inbox.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="header">

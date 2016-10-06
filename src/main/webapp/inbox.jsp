@@ -1,4 +1,3 @@
-<%@ page import="com.bpmw.web.controllers.TaskListController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <!DOCTYPE HTML>
@@ -17,8 +16,8 @@
     <form action="${pageContext.request.contextPath}/taskList" method="post">
         <a href="personalArea.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</a>
         <input style="margin-top: 10px; margin-left: 20%; width: 15%"  value="">
-        <input href="#" style="height: 20px; width: 7%" type="submit" name="Search" value="Search" class="button" />
-        <input href="login.jsp" style="height: 20px; margin-left: 10%; width: 7%" type="submit" name="exit" value="Exit" class="button" />
+        <input href="#" style="height: 20px; width: 7%" type="submit" name="Search" value="Search" class="button"/>
+        <input href="login.jsp" style="height: 20px; margin-left: 10%; width: 7%" type="submit" name="exit" value="Exit" class="button"/>
     </form>
 </div>
 <div class="pages">
@@ -34,6 +33,9 @@
         <hr>
     </div>
     <div class="content">
+        <h3 style="margin-left: 10%">All tasks</h3>
+        <hr>
+
         <table border="1" class="table">
             <tr>
                 <td width="100">id</td>
@@ -42,7 +44,7 @@
                 <td width="100">Group</td>
                 <td width="100">Date in</td>
                 <td width="100">Date complete</td>
-                <td width="100">Edit</td>
+                <td width="100"> </td>
             </tr>
             <c:forEach var="task" items="#{taskModel.returnAllTasks()}">
                 <tr>
@@ -52,7 +54,12 @@
                     <td>${task.group.name}</td>
                     <td>${task.dateIn}</td>
                     <td>${task.dateComplet}</td>
-                    <td><a href="viewTask.jsp" style="width: 70px">edit</a></td>
+                    <td><a href="taskList?task_id=${task.id}&action=init">edit</a>
+
+                        <%--<form action="/taskList" method="get">--%>
+                        <%--<input type="hidden" name="task_id" value="${task.id}">--%>
+                        <%--<input type="submit" value="edit"></form>--%>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

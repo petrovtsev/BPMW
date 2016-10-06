@@ -38,6 +38,9 @@ body {background: white}
 .content {
     margin-left:10px;
     width: 80%;
+    color: #5a567f;
+    font-size: 13px;
+    font-weight: bold;
     height:auto;
     border:1px solid #000000;
     background:white;
@@ -45,15 +48,14 @@ body {background: white}
     box-shadow: 4px 7px 17px 1px #000000;
 }
 .footer{
-    margin-left:10px;
     width: 80%;
-    margin-left: 20%;
-    margin-top: 1em;
+    margin-left: 10px;
     height:35px;
     border:1px solid #000000;
     background: #f8f8f8;
     float:left;
-    box-shadow: 4px 7px 17px 1px #000000;
+    margin-top: 1em;
+    box-shadow: 1px 2px 3px 1px #000000;
 }
 .table {
     background: #f8f8f8;
@@ -85,8 +87,12 @@ body {background: white}
 .table td {
     border: 1px solid #ffffff;
     padding: 10px 15px;
-    position: relative;
-    transition: all 0.5s ease;
+    }
+
+.data-table {
+    border: 0px;
+    margin-left: 10%;
+    color: black;
 }
 
 .button{
@@ -104,7 +110,6 @@ body {background: white}
     border: 1px solid rgba(0,0,0,.1);
     border-radius: 2px;
     background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
-    transition: all .218s ease 0s;
 }
 
 button:hover {

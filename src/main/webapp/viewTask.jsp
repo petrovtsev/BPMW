@@ -1,4 +1,5 @@
 <%@ page import="com.bpmw.web.controllers.TaskListController" %>
+<%@ page import="com.bpmw.persistence.Task" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <!DOCTYPE HTML>
@@ -6,8 +7,11 @@
 <html>
 <head>
     <title>View Task</title>
-    <link href="resources/css/view_task.css" rel="stylesheet" type="text/css" />
+    <link href="resources/css/inbox.css" rel="stylesheet" type="text/css" />
 </head>
+
+
+
 <body>
 <div class="header">
     <img src="resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
@@ -32,28 +36,29 @@
         <input href="#" style="height: 23px; width: 120px; margin-left: 20px" type="submit" name="addQuery" value="Add new task" class="button"/>
     </div>
     <div class="content">
-        <h3 style="margin-left: 10%">Task ID ${taskService.getTask(1).id}</h3>
+        <h3 style="margin-left: 10%">Task ID</h3>
         <hr>
+
         <form>
             <table class="data-table">
                 <tr>
                     <td style="width: 150px">Name</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).name}"/></td>
+                    <td><input value="${taskModel.selectedTask.name}"/></td>
                 </tr>
-                <td>Text</td>
-                <td><input value="${taskModel.returnAllTasks().get(0).text}"/></td>
+                    <td>Text</td>
+                    <td><input value="${taskModel.selectedTask.text}"/></td>
                 </tr>
                 <tr>
                     <td>Date in</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).dateIn}"/></td>
+                    <td><input value="${taskModel.selectedTask.dateIn}"/></td>
                 </tr>
                 <tr>
                     <td>Date complete</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).dateComplet}"/></td>
+                    <td><input value="${taskModel.selectedTask.dateComplet}"/></td>
                 </tr>
                 <tr>
                     <td>User complete</td>
-                    <td><input value="${taskModel.returnAllTasks().get(0).userComplet.login}"/></td>
+                    <td><input value="${taskModel.selectedTask.userComplet.login}"/></td>
                 </tr>
             </table>
         </form>

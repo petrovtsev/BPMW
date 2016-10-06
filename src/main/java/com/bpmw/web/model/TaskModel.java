@@ -13,12 +13,19 @@ import java.util.List;
 @RequestScoped
 public class TaskModel {
     private List<Task> taskList;
+    private Integer selectedTaskID = 1;
 
     @Inject
     private TaskService taskService;
 
+    private Task selectedTask;
+
     public List<Task> returnAllTasks(){
         return taskService.returnAllTasks();
+    }
+
+    public Task getTask(Integer id){
+        return taskService.getTask(id);
     }
 
     public void addTask(Task task){
@@ -29,8 +36,8 @@ public class TaskModel {
         taskService.delTask(id);
     }
 
-    public void updTask(Task task){
-        taskService.updTask(task);
+    public void updTask(){
+        taskService.updTask(selectedTask);
     }
 
     public List<Task> getTaskList() {
@@ -39,5 +46,21 @@ public class TaskModel {
 
     public void setTaskList(List<Task> taskList) {
         this.taskList = taskList;
+    }
+
+    public Integer getSelectedTaskID() {
+        return selectedTaskID;
+    }
+
+    public void setSelectedTaskID(Integer selectedTaskID) {
+        this.selectedTaskID = selectedTaskID;
+    }
+
+    public Task getSelectedTask() {
+        return selectedTask;
+    }
+
+    public void setSelectedTask(Task selectedTask) {
+        this.selectedTask = selectedTask;
     }
 }

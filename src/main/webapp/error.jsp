@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Login</title>
+    <title>Error</title>
     <link href="resources/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
