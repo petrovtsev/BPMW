@@ -1,7 +1,5 @@
 package com.bpmw.services;
 
-import com.bpmw.persistence.Group;
-import com.bpmw.persistence.Task;
 import com.bpmw.persistence.User;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -36,8 +34,8 @@ public class UserService {
         em.remove(user);
     }
 
-    public User getUser(String login){
-        return em.find(User.class, login);
+    public User getUser(String userId){
+        return em.find(User.class, userId);
     }
 
     public void updUser(User user){

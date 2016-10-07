@@ -1,6 +1,6 @@
 package com.bpmw.services;
 
-import com.bpmw.persistence.Group;
+import com.bpmw.persistence.TaskGroup;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -16,26 +16,26 @@ public class GroupService{
     private EntityManager em;
 
 
-    public List<Group> returnAllGroups(){
-        List<Group> resultList = em.createNamedQuery("Group.findAll", Group.class).getResultList();
+    public List<TaskGroup> returnAllGroups(){
+        List<TaskGroup> resultList = em.createNamedQuery("Group.findAll", TaskGroup.class).getResultList();
         return resultList;
     }
 
-    public void addGroup (Group group){
-        em.persist(group);
+    public void addGroup (TaskGroup taskGroup){
+        em.persist(taskGroup);
     }
 
     public void delGroup(Integer id){
-        Group group = em.find(Group.class, id);
-        em.remove(group);
+        TaskGroup taskGroup = em.find(TaskGroup.class, id);
+        em.remove(taskGroup);
     }
 
-    public Group getGroup(Integer id){
-        return em.find(Group.class, id);
+    public TaskGroup getGroup(Integer id){
+        return em.find(TaskGroup.class, id);
     }
 
-    public void updGriup (Group group){
-        em.merge(group);
+    public void updGriup (TaskGroup taskGroup){
+        em.merge(taskGroup);
     }
 }
 

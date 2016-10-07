@@ -1,13 +1,12 @@
 package com.bpmw.persistence;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Entity
 @Table(name = "TASKS_GROUPS")
-@NamedQuery(name = "Group.findAll", query = "select g from Group g")
-public class Group {
+@NamedQuery(name = "Group.findAll", query = "select g from TaskGroup g")
+public class TaskGroup {
 
     @Id
     @Column(name = "ID")
@@ -16,12 +15,12 @@ public class Group {
     @Column(name = "NAME")
     private String name;
 
-    public Group(Integer id, String name) {
+    public TaskGroup(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Group() {
+    public TaskGroup() {
 
     }
 

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class TaskListController extends HttpServlet{
+public class LoginController extends HttpServlet{
 
     @Inject
     private TaskModel taskModel;
@@ -22,30 +22,23 @@ public class TaskListController extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        Integer taskId = 0;
-        try {
-            taskId = Integer.valueOf(request.getParameter("task_id"));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        // selected task
-        taskModel.setSelectedTask(getTask(taskId));
-
-        request.getRequestDispatcher("pages/task_details.jsp").forward(request,response);
+        request.logout();
+        request.getRequestDispatcher("login.jsp").forward(request,response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        request.getRequestDispatcher("/login.jsp").forward(request,response);
-    }
+            throws ServletException, IOException {
+        try {
+            request.logout();
+            request.login(request.getParameter("username"), request.getParameter("password"));
+            taskModel.returnUserTasks(request.getUserPrincipal().getName());
 
-    public List<Task> returnAllTasks(){
-        return taskModel.returnAllTasks();
-    }
+            request.getRequestDispatcher("pages/inbox.jsp").forward(request, response);
+        } catch (ServletException ex){
+            request.getRequestDispatcher("error.jsp");
+        }
+        request.getRequestDispatcher("error.jsp");
 
-    public Task getTask(Integer id){
-        return taskModel.getTask(id);
     }
 }

@@ -3,12 +3,14 @@
 <glassfish-web-app error-url="">
   <security-role-mapping>
     <role-name>admin</role-name>
-    <group-name>admin</group-name>
+    <taskGroup-name>admin</taskGroup-name>
   </security-role-mapping>
+
   <security-role-mapping>
     <role-name>user</role-name>
-    <group-name>user</group-name>
+    <taskGroup-name>user</taskGroup-name>
   </security-role-mapping>
+
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">

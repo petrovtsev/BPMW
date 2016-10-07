@@ -1,17 +1,16 @@
 package com.bpmw.services;
 
-import com.bpmw.persistence.Group;
+import com.bpmw.persistence.TaskGroup;
 import com.bpmw.persistence.Task;
-import com.bpmw.persistence.User;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.*;
 import java.util.List;
 
 @Named
-@ApplicationScoped
+@RequestScoped
 public class TaskService {
 
     @PersistenceContext(unitName ="persistence")
@@ -24,8 +23,9 @@ public class TaskService {
         return resultList; 
     }
 
-    public List<Task> returnUserTasks(Group group){
-        List<Task> resultList = em.createQuery("select t from Task t where Group = " + group, Task.class)
+    public List<Task> returnUserTasks(TaskGroup taskGroup){
+        String query = "select t from Task t WHERE t.taskGroup.id = " + taskGroup.getId();
+        List<Task> resultList = em.createQuery(query, Task.class)
                 .getResultList();
         return resultList;
     }

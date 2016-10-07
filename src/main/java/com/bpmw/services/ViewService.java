@@ -1,6 +1,5 @@
 package com.bpmw.services;
 
-import com.bpmw.persistence.Group;
 import com.bpmw.persistence.View;
 
 import javax.enterprise.context.ApplicationScoped;

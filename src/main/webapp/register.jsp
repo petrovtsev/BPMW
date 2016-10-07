@@ -17,7 +17,7 @@
     <div class="authorization" style="margin-top: 10%; height: 320px">
         <div class="login">
             <form action="j_security_check" method="post">
-                <h3 style="margin-left: 6%">Register</h3>
+                <h3>Register</h3>
                 <hr>
                 <table class="data-table">
                     <tr>
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <td>Date birth</td>
-                        <td><input value="${userModel.returnAllUser().get(0).dateBirth}"/></td>
+                        <td><input type="date" value="${userModel.returnAllUser().get(0).dateBirth}"/></td>
                     </tr>
                     <tr>
                         <td>City</td>
@@ -41,15 +41,15 @@
                     </tr>
                     <tr>
                         <td>Group</td>
-                        <td><input value="${userModel.returnAllUser().get(0).group.name}"/></td>
+                        <td><input value="${userModel.returnAllUser().get(0).taskGroup.name}"/></td>
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td><input value="${userModel.returnAllUser().get(0).phone}"/></td>
+                        <td><input type="number" value="${userModel.returnAllUser().get(0).phone}"/></td>
                     </tr>
                     <tr>
                         <td>Mail</td>
-                        <td><input value="${userModel.returnAllUser().get(0).mail}"/></td>
+                        <td><input type="email" value="${userModel.returnAllUser().get(0).mail}"/></td>
                     </tr>
                 </table>
                 <br>

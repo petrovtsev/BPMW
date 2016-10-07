@@ -2,26 +2,28 @@
 <%@ page import="com.bpmw.persistence.Task" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
+<c:set var="req" value="${pageContext.request}"/>
+<c:set var="uri" value="${req.contextPath}"/>
 <!DOCTYPE HTML>
 
 <html>
 <head>
     <title>View Task</title>
-    <link href="resources/css/inbox.css" rel="stylesheet" type="text/css" />
+    <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
 </head>
 
 
 
 <body>
 <div class="header">
-    <img src="resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
+    <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
 </div>
 
 <div class="menu">
     <form action="${pageContext.request.contextPath}/taskList" method="post">
-        <a href="personalArea.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</a>
+        <a href="${uri}/pages/personalArea.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
         <a href="inbox.jsp" style="height: 15px; width: 7%; margin-left: 25%; margin-top: 10px" class="button">Back to list</a>
-        <a href="login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
+        <a href="../login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
 </div>
 <div class="pages">
     <div class="sidebar">
@@ -67,7 +69,7 @@
     <div class="footer">
         <a href="#" class="button" style="margin-top: 7px; margin-left: 34%">Save</a>
         <a href="#" class="button">Remove</a>
-        <a href="inbox.jsp" class="button">Back</a>
+        <a href="${uri}/pages/inbox.jsp" class="button">Back</a>
     </div>
 </div>
 </body>

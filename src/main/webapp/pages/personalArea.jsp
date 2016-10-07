@@ -1,30 +1,33 @@
 <%@ page import="com.bpmw.web.controllers.TaskListController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
+<c:set var="req" value="${pageContext.request}"/>
+<c:set var="uri" value="${req.contextPath}"/>
+
 <!DOCTYPE HTML>
 
 <html>
 <head>
     <title>Personal area</title>
-    <link href="resources/css/inbox.css" rel="stylesheet" type="text/css" />
+    <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="header">
-    <img src="resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
+    <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
 </div>
 
 <div class="menu">
-    <form action="${pageContext.request.contextPath}/taskList" method="post">
-        <output style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</output>
+    <form action="taskList" method="post">
+        <a href="#" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
         <a href="inbox.jsp" style="height: 15px; width: 7%; margin-left: 25%; margin-top: 10px" class="button">Back to list</a>
-        <a href="login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
+        <a href="../login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
 </div>
 <div class="pages">
     <div class="sidebar">
         <h3 style="margin-left: 40px">Tasks</h3>
         <hr>
         <ul>
-            <c:forEach var="task" items="#{taskModel.returnAllTasks()}">
+            <c:forEach var="task" items="#{taskModel.userTasks}">
                 <a href="#">${task.name}</a><br>
             </c:forEach>
         </ul>
@@ -57,7 +60,7 @@
                 </tr>
                 <tr>
                     <td>Group</td>
-                    <td><input value="${userModel.returnAllUser().get(0).group.name}"/></td>
+                    <td><input value="${userModel.returnAllUser().get(0).taskGroup.name}"/></td>
                 </tr>
                 <tr>
                     <td>Phone</td>

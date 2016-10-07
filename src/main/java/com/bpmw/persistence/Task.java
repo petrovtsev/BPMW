@@ -22,7 +22,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    private Group group;
+    private TaskGroup taskGroup;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_IN")
@@ -63,12 +63,12 @@ public class Task {
         this.text = text;
     }
 
-    public Group getGroup() {
-        return group;
+    public TaskGroup getTaskGroup() {
+        return taskGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setTaskGroup(TaskGroup taskGroup) {
+        this.taskGroup = taskGroup;
     }
 
     public String getDateIn() {

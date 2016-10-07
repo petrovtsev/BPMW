@@ -11,7 +11,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(name = "LOGIN")
+    @Column(name = "USERID")
     private String login;
 
     @Column(name = "PASSWORD")
@@ -32,7 +32,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    private Group group;
+    private TaskGroup taskGroup;
 
     @Column (name = "PHONE")
     private String phone;
@@ -43,22 +43,22 @@ public class User {
     public User() {
     }
 
-    public User(String login, String password, String firstName, String lastName, Group group) {
+    public User(String login, String password, String firstName, String lastName, TaskGroup taskGroup) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.group = group;
+        this.taskGroup = taskGroup;
     }
 
-    public User(String login, String password, String firstName, String lastName, Date dateBirth, String city, Group group, String phone, String mail) {
+    public User(String login, String password, String firstName, String lastName, Date dateBirth, String city, TaskGroup taskGroup, String phone, String mail) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateBirth = dateBirth;
         this.city = city;
-        this.group = group;
+        this.taskGroup = taskGroup;
         this.phone = phone;
         this.mail = mail;
     }
@@ -79,12 +79,12 @@ public class User {
         this.password = password;
     }
 
-    public Group getGroup() {
-        return group;
+    public TaskGroup getTaskGroup() {
+        return taskGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setTaskGroup(TaskGroup taskGroup) {
+        this.taskGroup = taskGroup;
     }
 
     public String getFirstName() {

@@ -19,8 +19,8 @@ public class UserModel{
         return userService.returnAllUser();
     }
 
-    public User returnGetUser(String login){
-        return userService.getUser(login);
+    public User returnGetUser(String userId){
+        return userService.getUser(userId);
     }
 
     public void addUser(User user){

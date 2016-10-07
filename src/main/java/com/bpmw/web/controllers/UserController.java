@@ -13,18 +13,14 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/login")
 public class UserController extends HttpServlet{
 
     private List<Task> selectedTaskList;
 
-    @Inject
-    private TaskModel taskModel;
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        request.getRequestDispatcher("/login.jsp").forward(request,response);
+        request.getRequestDispatcher("pages/PersonalArea.jsp").forward(request, response);
     }
 
     @Override

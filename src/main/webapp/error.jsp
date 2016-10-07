@@ -14,8 +14,10 @@
     </div>
 
     <div class="pages">
-        <div class="authorization" style="margin-top: 10%; height: 130px">
+        <div class="authorization" style="margin-top: 10%; height: 220px">
             <div class="login">
+                <h3>Error</h3>
+                <hr>
                 <output>ERROR</output><br><br>
                 <output>Try again</output><br><br>
                 <a href="login.jsp" class="button" style="width: 170px">Back</a>
