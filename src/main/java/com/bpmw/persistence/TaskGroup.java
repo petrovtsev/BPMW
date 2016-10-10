@@ -9,19 +9,18 @@ import javax.persistence.*;
 public class TaskGroup {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
 
     @Column(name = "NAME")
     private String name;
 
-    public TaskGroup(Integer id, String name) {
-        this.id = id;
+    public TaskGroup(String name) {
         this.name = name;
     }
 
     public TaskGroup() {
-
     }
 
     public Integer getId() {

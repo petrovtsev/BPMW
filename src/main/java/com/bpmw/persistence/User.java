@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 @Entity
 @Table(name = "USERS")
 @NamedQuery(name = "User.findAll", query = "select u from User u")
@@ -41,14 +40,6 @@ public class User {
     private String mail;
 
     public User() {
-    }
-
-    public User(String login, String password, String firstName, String lastName, TaskGroup taskGroup) {
-        this.login = login;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.taskGroup = taskGroup;
     }
 
     public User(String login, String password, String firstName, String lastName, Date dateBirth, String city, TaskGroup taskGroup, String phone, String mail) {

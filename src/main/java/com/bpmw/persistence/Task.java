@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 @Entity
 @Table(name = "TASKS")
 @NamedQuery(name = "Task.findAll", query = "select t from Task t")
 public class Task {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
 
@@ -18,7 +18,7 @@ public class Task {
     private String name;
 
     @Column(name = "TEXT")
-    private String text;
+    private String textTask;
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
@@ -39,6 +39,13 @@ public class Task {
     public Task() {
     }
 
+    public Task(String name, String textTask, TaskGroup taskGroup, Date dateIn) {
+        this.name = name;
+        this.textTask = textTask;
+        this.taskGroup = taskGroup;
+        this.dateIn = dateIn;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -55,12 +62,12 @@ public class Task {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getTextTask() {
+        return textTask;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTextTask(String textTask) {
+        this.textTask = textTask;
     }
 
     public TaskGroup getTaskGroup() {

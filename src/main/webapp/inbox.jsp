@@ -27,7 +27,7 @@
         <h3 style="margin-left: 40px">Views</h3>
         <hr>
         <ul>
-            <c:forEach var="view" items="#{viewService.returnAllViews()}">
+            <c:forEach var="view" items="#{userModel.viewsActiveUser}">
                 <a href="#" style="border: rgba(255, 29, 70, 0.76); border: 1px; width: 90px">${view.name}</a><br><br>
             </c:forEach>
         </ul>
@@ -53,7 +53,7 @@
                 <tr>
                     <td>${task.id}</td>
                     <td>${task.name}</td>
-                    <td>${task.text}</td>
+                    <td>${task.textTask}</td>
                     <td>${task.taskGroup.name}</td>
                     <td>${task.dateIn}</td>
                     <td>${task.dateComplet}</td>

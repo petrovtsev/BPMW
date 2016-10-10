@@ -10,10 +10,9 @@ import java.util.List;
 
 @Named
 @ApplicationScoped
-public class GroupService{
+public class TaskGroupService {
 
-    @PersistenceContext(unitName ="persistence")
-    private EntityManager em;
+    private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
 
     public List<TaskGroup> returnAllGroups(){

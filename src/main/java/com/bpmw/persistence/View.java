@@ -2,13 +2,13 @@ package com.bpmw.persistence;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "views")
 @NamedQuery(name = "View.findAll", query = "select v from View v")
 public class View {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
 
@@ -18,10 +18,14 @@ public class View {
     @Column(name = "REQUEST")
     private String request;
 
-    public View(Integer id, String name, String request) {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "USER")
+    private User user;
+
+    public View(String name, String request, User user) {
         this.name = name;
         this.request = request;
+        this.user = user;
     }
 
     public View() {
@@ -49,5 +53,13 @@ public class View {
 
     public void setRequest(String request) {
         this.request = request;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

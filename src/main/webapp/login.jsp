@@ -17,7 +17,7 @@
     </div>
 
     <div class="pages">
-        <div class="authorization" style="margin-top: 10%; height: 220px">
+        <div class="authorization" style="margin-top: 10%; height: 240px">
             <div class="login">
                 <form action="loginController" method="post">
                     <h3>Login</h3>
@@ -26,8 +26,9 @@
                     <input style="width: 170px; height: 17px" name="username" type="text"><br>
                     Input for password:<br>
                     <input style="width: 170px; height: 17px" name="password" type="password"><br><br/>
-                    <input class="button" style="width: 170px; height: 25px" type="submit" value="Authorization">
-                    <a href="register.jsp" class="button" style="width: 170px; margin-top: 5px; height: 17px">Register</a><br>
+                    <input class="button" style="width: 200px; height: 25px" type="submit" value="Authorization"><br>
+                    <a href="register.jsp" class="button" style="width: 100px; margin-top: 9px; height: 17px">Register</a>
+                    <a href="addTask.jsp" class="button" style="width: 100px; margin-top: 9px ; height: 17px">Add task</a>
                 </form>
             </div>
         </div>

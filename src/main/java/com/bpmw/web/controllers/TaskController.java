@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class LoginController extends HttpServlet{
+public class TaskController extends HttpServlet{
 
     @Inject
     private TaskModel taskModel;
@@ -19,29 +22,34 @@ public class LoginController extends HttpServlet{
     @Inject
     private UserModel userModel;
 
-
     @Inject
     private ViewModel viewModel;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        request.logout();
-        request.getRequestDispatcher("login.jsp").forward(request,response);
+        if (request.getParameter("idTask")!= null){
+            taskModel.delTask(Integer.valueOf(request.getParameter("idTask")));
+            userModel.returnViewsActiveUser(request.getUserPrincipal().getName());
+            taskModel.returnUserTasks(request.getUserPrincipal().getName());
+            request.getRequestDispatcher("inbox.jsp").forward(request, response);
+        }
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            request.logout();
-            request.login(request.getParameter("username"), request.getParameter("password"));
-            userModel.returnViewsActiveUser(request.getParameter("username"));
-            taskModel.returnUserTasks(request.getUserPrincipal().getName());
-
-            request.getRequestDispatcher("inbox.jsp").forward(request, response);
+            String name = request.getParameter("name");
+            String text = request.getParameter("text");
+            String groupId = request.getParameter("groupId");
+            taskModel.addTask(name, text, groupId);
+            taskModel.setMessage("Задача добавленна");
+            request.getRequestDispatcher("addTask.jsp").forward(request, response);
         } catch (ServletException ex){
             request.getRequestDispatcher("error.jsp");
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         request.getRequestDispatcher("error.jsp");
     }

@@ -21,17 +21,17 @@
 
 <div class="menu">
     <form action="${pageContext.request.contextPath}/taskList" method="post">
-        <a href="${uri}/pages/personalArea.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
-        <a href="inbox.jsp" style="height: 15px; width: 7%; margin-left: 25%; margin-top: 10px" class="button">Back to list</a>
-        <a href="../login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
+        <a href="userController?name=${req.userPrincipal.name}" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
+        <button type="button" class="button" style="margin-left: 42%; width: 15%; height: 17px" name="back" onclick="history.back()">back</button>
+        <a href="loginController?action=logout" style="height: 20px; margin-left: 10%; width: 7%" class="button">Exit</a>
 </div>
 <div class="pages">
     <div class="sidebar">
         <h3 style="margin-left: 40px">Tasks</h3>
         <hr>
         <ul>
-            <c:forEach var="task" items="#{taskModel.returnAllTasks()}">
-                <a href="#">${task.name}</a><br>
+            <c:forEach var="task" items="#{taskModel.userTasks}">
+                <a style="color: grey" href="taskList?task_id=${task.id}">${task.name}<br></a>
             </c:forEach>
         </ul>
         <hr>
@@ -48,7 +48,7 @@
                     <td><input value="${taskModel.selectedTask.name}"/></td>
                 </tr>
                     <td>Text</td>
-                    <td><input value="${taskModel.selectedTask.text}"/></td>
+                    <td><input value="${taskModel.selectedTask.textTask}"/></td>
                 </tr>
                 <tr>
                     <td>Date in</td>
@@ -67,9 +67,10 @@
     </div>
 
     <div class="footer">
-        <a href="#" class="button" style="margin-top: 7px; margin-left: 34%">Save</a>
-        <a href="#" class="button">Remove</a>
-        <a href="${uri}/pages/inbox.jsp" class="button">Back</a>
+        <button type="button" class="button" style="margin-left: 42%; width: 15%; height: 17px" name="back" onclick="history.back()">back</button>
+        <a class="button
+" href="taskController?idTask=${taskModel.selectedTask.id}" style="margin-top: 10px; margin-left: 5px; width: 15%">Remove Task</a>
+
     </div>
 </div>
 </body>

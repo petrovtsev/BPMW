@@ -14,42 +14,46 @@
 </div>
 
 <div class="pages">
-    <div class="authorization" style="margin-top: 10%; height: 320px">
+    <div class="authorization" style="margin-top: 10%; height: 370px">
         <div class="login">
-            <form action="j_security_check" method="post">
+            <form action="userController" method="post">
                 <h3>Register</h3>
                 <hr>
                 <table class="data-table">
                     <tr>
                         <td width="120">Login</td>
-                        <td><input value="${userModel.returnAllUser().get(0).login}"/></td>
+                        <td><input name="login"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password"/></td>
                     </tr>
                     <tr>
                         <td>First name</td>
-                        <td><input value="${userModel.returnAllUser().get(0).firstName}"/></td>
+                        <td><input name="firstName"/></td>
                     </tr>
                     <td>Last name</td>
-                    <td><input value="${userModel.returnAllUser().get(0).lastName}"/></td>
+                    <td><input name="lastName"/></td>
                     </tr>
                     <tr>
                         <td>Date birth</td>
-                        <td><input type="date" value="${userModel.returnAllUser().get(0).dateBirth}"/></td>
+                        <td><input name="dateBirth"/></td>
                     </tr>
                     <tr>
                         <td>City</td>
-                        <td><input value="${userModel.returnAllUser().get(0).city}"/></td>
+                        <td><input name="city"/></td>
                     </tr>
                     <tr>
                         <td>Group</td>
-                        <td><input value="${userModel.returnAllUser().get(0).taskGroup.name}"/></td>
+                        <td><input name="taskGroupId"/></td>
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td><input type="number" value="${userModel.returnAllUser().get(0).phone}"/></td>
+                        <td><input name="phone"/></td>
                     </tr>
                     <tr>
                         <td>Mail</td>
-                        <td><input type="email" value="${userModel.returnAllUser().get(0).mail}"/></td>
+                        <td><input name="mail"/></td>
                     </tr>
                 </table>
                 <br>

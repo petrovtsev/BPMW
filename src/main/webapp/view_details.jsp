@@ -1,24 +1,25 @@
-<%@ page import="com.bpmw.web.controllers.TaskListController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <c:set var="req" value="${pageContext.request}"/>
 <c:set var="uri" value="${req.contextPath}"/>
-
 <!DOCTYPE HTML>
 
 <html>
 <head>
-    <title>Personal area</title>
+    <title>Search</title>
     <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
 </head>
+
+
+
 <body>
 <div class="header">
     <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
 </div>
 
 <div class="menu">
-    <form action="taskList" method="post">
-        <a href="#" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
+    <form action="${pageContext.request.contextPath}/taskList" method="post">
+        <a href="personal_area.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</a>
         <a href="inbox.jsp" style="height: 15px; width: 7%; margin-left: 25%; margin-top: 10px" class="button">Back to list</a>
         <a href="../login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
 </div>
@@ -27,7 +28,7 @@
         <h3 style="margin-left: 40px">Tasks</h3>
         <hr>
         <ul>
-            <c:forEach var="task" items="#{taskModel.userTasks}">
+            <c:forEach var="task" items="#{taskModel.returnAllTasks()}">
                 <a href="#">${task.name}</a><br>
             </c:forEach>
         </ul>
@@ -35,46 +36,46 @@
         <input href="#" style="height: 23px; width: 120px; margin-left: 20px" type="submit" name="addQuery" value="Add new task" class="button"/>
     </div>
     <div class="content">
-        <form>
-            <h3 style="margin-left: 10%">My Account</h3>
-            <hr>
+        <h3 style="margin-left: 10%">Search</h3>
+        <hr>
+
+        <form action="viewController" method="post">
             <table class="data-table">
                 <tr>
-                    <td width="150">Login</td>
-                    <td><input value="${userModel.returnAllUser().get(0).login}"/></td>
+                    <td style="width: 150px">Name task</td>
+                    <td><input name="name"/></td>
+                </tr>
+
+                <tr>
+                    <td style="width: 150px">Request</td>
+                    <td><input name="request"/></td>
+                </tr>
+                </tr>
+                    <td>Show</td>
+                    <td><input type="radio" name="browser" value="all"> all<br>
+                        <input type="radio" name="browser" value="completed"> completed<br>
+                        <input type="radio" name="browser" value="notCompleted"> not completed</td>
                 </tr>
                 <tr>
-                    <td>First name</td>
-                    <td><input value="${userModel.returnAllUser().get(0).firstName}"/></td>
-                </tr>
-                    <td>Last name</td>
-                    <td><input value="${userModel.returnAllUser().get(0).lastName}"/></td>
+                    <td>Date</td>
+                    <td><input name="dateStart" type="date" value=""/> - <input name="dateEnd" type="date" value=""/></td>
                 </tr>
                 <tr>
-                <td>Date birth</td>
-                    <td><input value="${userModel.returnAllUser().get(0).dateBirth}"/></td>
+                    <td>Date complete</td>
+                    <td><input value=""/></td>
                 </tr>
                 <tr>
-                <td>City</td>
-                    <td><input value="${userModel.returnAllUser().get(0).city}"/></td>
-                </tr>
-                <tr>
-                    <td>Group</td>
-                    <td><input value="${userModel.returnAllUser().get(0).taskGroup.name}"/></td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td><input value="${userModel.returnAllUser().get(0).phone}"/></td>
-                </tr>
-                <tr>
-                    <td>Mail</td>
-                    <td><input value="${userModel.returnAllUser().get(0).mail}"/></td>
+                    <td>User complete</td>
+                    <td><input value=""/></td>
                 </tr>
             </table>
+            <input class="button" style="width: 170px; height: 25px" type="submit" value="Next">
         </form>
     </div>
+
     <div class="footer">
         <a href="#" class="button" style="margin-top: 7px; margin-left: 34%">Save</a>
+        <a href="#" class="button">Remove</a>
         <a href="inbox.jsp" class="button">Back</a>
     </div>
 </div>

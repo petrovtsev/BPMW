@@ -13,8 +13,8 @@ import java.util.List;
 @RequestScoped
 public class TaskService {
 
-    @PersistenceContext(unitName ="persistence")
-    private EntityManager em;
+
+    private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
 
     public List<Task> returnAllTasks(){
@@ -30,13 +30,18 @@ public class TaskService {
         return resultList;
     }
 
+
     public void addTask(Task task){
+        em.getTransaction().begin();
         em.persist(task);
+        em.getTransaction().commit();
     }
 
     public void delTask(Integer id){
+        em.getTransaction().begin();
         Task task = em.find(Task.class, id);
         em.remove(task);
+        em.getTransaction().commit();
     }
 
     public Task getTask(Integer id){
@@ -44,7 +49,9 @@ public class TaskService {
     }
 
     public void updTask(Task task){
+        em.getTransaction().begin();
         em.merge(task);
+        em.getTransaction().commit();
     }
 
 }

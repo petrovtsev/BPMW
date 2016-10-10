@@ -7,19 +7,26 @@ import com.bpmw.services.TaskService;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.security.acl.Group;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Named
 @RequestScoped
 public class TaskModel {
     private List<Task> taskList;
+    private String message = "Введите данные";
 
     @Inject
     private UserModel userModel;
 
     @Inject
     private TaskService taskService;
+
+    @Inject
+    private TaskGroupModel groupModel;
 
     private Task selectedTask;
     private List<Task> userTasks;
@@ -30,7 +37,7 @@ public class TaskModel {
     }
 
     public void returnUserTasks(String userId){
-        TaskGroup userGroup = userModel.returnGetUser(userId).getTaskGroup();
+        TaskGroup userGroup = userModel.getUser(userId).getTaskGroup();
         nameUserGroup = userGroup.getName();
         userTasks = taskService.returnUserTasks(userGroup);
     }
@@ -39,8 +46,11 @@ public class TaskModel {
         return taskService.getTask(id);
     }
 
-    public void addTask(Task task){
-        taskService.addTask(task);
+    public void addTask(String name, String textTask, String groupId) throws ParseException {
+        TaskGroup taskGroup = groupModel.getTaskGroup(Integer.valueOf(groupId));
+        Date date = new Date();
+        Task newTask = new Task(name, textTask, taskGroup, date);
+        taskService.addTask(newTask);
     }
 
     public void delTask(Integer id){
@@ -81,5 +91,13 @@ public class TaskModel {
 
     public void setNameUserGroup(String nameUserGroup) {
         this.nameUserGroup = nameUserGroup;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

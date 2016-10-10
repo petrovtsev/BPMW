@@ -5,6 +5,7 @@ import com.bpmw.persistence.User;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -15,8 +16,8 @@ import java.util.List;
 @ApplicationScoped
 public class UserService {
 
-    @PersistenceContext(unitName ="persistence")
-    private EntityManager em;
+
+    private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
 
     public List<User> returnAllUser(){
@@ -26,7 +27,9 @@ public class UserService {
     }
 
     public void addUser(User user){
+        em.getTransaction().begin();
         em.persist(user);
+        em.getTransaction().commit();
     }
 
     public void delUser(String login){

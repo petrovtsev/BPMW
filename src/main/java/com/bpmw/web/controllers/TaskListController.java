@@ -4,10 +4,7 @@ import com.bpmw.persistence.Task;
 import com.bpmw.web.model.TaskModel;
 
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,16 +26,15 @@ public class TaskListController extends HttpServlet{
             ex.printStackTrace();
         }
 
-        // selected task
         taskModel.setSelectedTask(getTask(taskId));
-
-        request.getRequestDispatcher("pages/task_details.jsp").forward(request,response);
+        taskModel.returnUserTasks(request.getUserPrincipal().getName());
+        request.getRequestDispatcher("task_details.jsp").forward(request,response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        request.getRequestDispatcher("/login.jsp").forward(request,response);
+        request.getRequestDispatcher("login.jsp").forward(request,response);
     }
 
     public List<Task> returnAllTasks(){
