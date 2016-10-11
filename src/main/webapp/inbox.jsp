@@ -47,17 +47,15 @@
                 <td width="100">Group</td>
                 <td width="100">Date in</td>
                 <td width="100">Date complete</td>
-                <td width="100"> </td>
             </tr>
             <c:forEach var="task" items="#{taskModel.userTasks}">
                 <tr>
                     <td>${task.id}</td>
-                    <td>${task.name}</td>
+                    <td><a class="list_ref" href="taskList?task_id=${task.id}">${task.name}</a></td>
                     <td>${task.textTask}</td>
                     <td>${task.taskGroup.name}</td>
                     <td>${task.dateIn}</td>
                     <td>${task.dateComplet}</td>
-                    <td><a class="list_ref" href="taskList?task_id=${task.id}">edit</a></td>
                 </tr>
             </c:forEach>
         </table>

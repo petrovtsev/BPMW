@@ -7,6 +7,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.*;
+import javax.transaction.cdi.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -14,7 +16,8 @@ import java.util.List;
 public class TaskService {
 
 
-    private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
+    @PersistenceContext(unitName ="persistence")
+    private EntityManager em;
 
     public List<Task> returnAllTasks(){
         List<Task> resultList = em.createNamedQuery("Task.findAll", Task.class)
@@ -22,6 +25,7 @@ public class TaskService {
         return resultList; 
     }
 
+    @Transactional
     public List<Task> returnUserTasks(TaskGroup taskGroup){
         String query = "select t from Task t WHERE t.taskGroup.id = " + taskGroup.getId();
         List<Task> resultList = em.createQuery(query, Task.class)
@@ -29,6 +33,11 @@ public class TaskService {
         return resultList;
     }
 
+    public List<Task> returTasksQuery(String query){
+        List<Task> resultList = em.createQuery(query, Task.class)
+                .getResultList();
+        return resultList;
+    }
 
     public void addTask(Task task){
         em.getTransaction().begin();

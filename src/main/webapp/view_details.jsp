@@ -46,16 +46,11 @@
                     <td style="width: 150px">Name task</td>
                     <td><input name="name"/></td>
                 </tr>
-
-                <tr>
-                    <td style="width: 150px">Request</td>
-                    <td><input name="request"/></td>
-                </tr>
                 </tr>
                     <td>Show</td>
-                    <td><input type="radio" name="browser" value="all"> all<br>
-                        <input type="radio" name="browser" value="completed"> completed<br>
-                        <input type="radio" name="browser" value="notCompleted"> not completed</td>
+                    <td><input type="radio" name="statusComplete" value="all"> all<br>
+                        <input type="radio" name="statusComplete" value="completed"> completed<br>
+                        <input type="radio" name="statusComplete" value="notCompleted"> not completed</td>
                 </tr>
                 <tr>
                     <td>Date</td>
@@ -70,10 +65,11 @@
                     <td><input value=""/></td>
                 </tr>
             </table>
+            <br>
+            <button type="submit" class="button" style="width: 15%; height: 26px; margin-top: 5px; align-content: center">Save</button>
 
-        <div class="footer" style="width: 100%">
+            <div class="footer" style="width: 100%">
             <button type="button" class="button" style="width: 15%; height: 26px; margin-top: 5px" name="back" onclick="history.back()">Back</button>
-            <button type="submit" class="button" style="width: 15%; height: 26px; margin-top: 5px" name="back" onclick="history.back()">Save</button>
             </div>
         </form>
     </div>

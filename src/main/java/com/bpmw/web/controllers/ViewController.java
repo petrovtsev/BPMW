@@ -37,13 +37,18 @@ public class ViewController extends HttpServlet{
             throws ServletException, IOException {
         try {
             String name = request.getParameter("name");
-            String newRequest = request.getParameter("request");
-            viewModel.addView(name, newRequest, request.getUserPrincipal().getName());
-            userModel.returnViewsActiveUser(request.getParameter("username"));
-            taskModel.returnUserTasks(request.getUserPrincipal().getName());
+            String statusComplete = request.getParameter("statusComplete");
+            String dateStart = request.getParameter("dateStart");
+            String dateEnd = request.getParameter("dateEnd");
+            String login = request.getUserPrincipal().getName();
+            viewModel.addView(login, name, dateStart, dateEnd, statusComplete);
+            userModel.returnViewsActiveUser(login);
+            taskModel.returnUserTasks(login);
             request.getRequestDispatcher("inbox.jsp").forward(request, response);
         } catch (ServletException ex){
             request.getRequestDispatcher("error.jsp");
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         request.getRequestDispatcher("error.jsp");
     }

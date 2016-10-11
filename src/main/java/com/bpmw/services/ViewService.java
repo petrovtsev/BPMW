@@ -8,12 +8,16 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.*;
+import javax.transaction.cdi.Transactional;
 import java.util.List;
 
+@Transactional
 @RequestScoped
 public class ViewService{
 
-    private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
+
+    @PersistenceContext(unitName ="persistence")
+    private EntityManager em;
 
     public List<View> returnAllViews(){
         List<View> resultList = em.createNamedQuery("View.findAll", View.class).getResultList();
@@ -27,9 +31,7 @@ public class ViewService{
     }
 
     public void addView (View view){
-        em.getTransaction().begin();
         em.persist(view);
-        em.getTransaction().commit();
     }
 
     public void delView (Integer id){
