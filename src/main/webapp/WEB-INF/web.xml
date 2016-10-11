@@ -58,6 +58,16 @@
         <url-pattern>/loginController</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>testController</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.TestController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>testController</servlet-name>
+        <url-pattern>/testController</url-pattern>
+    </servlet-mapping>
+
     <security-constraint>
         <display-name>pages</display-name>
         <web-resource-collection>

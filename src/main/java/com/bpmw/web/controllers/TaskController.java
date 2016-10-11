@@ -29,7 +29,9 @@ public class TaskController extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         if (request.getParameter("idTask")!= null){
-            taskModel.delTask(Integer.valueOf(request.getParameter("idTask")));
+            Integer idTask = Integer.valueOf(request.getParameter("idTask"));
+//            taskModel.delTask(Integer.valueOf(request.getParameter("idTask")));
+            taskModel.updTask(idTask, request.getUserPrincipal().getName());
             userModel.returnViewsActiveUser(request.getUserPrincipal().getName());
             taskModel.returnUserTasks(request.getUserPrincipal().getName());
             request.getRequestDispatcher("inbox.jsp").forward(request, response);
@@ -44,12 +46,15 @@ public class TaskController extends HttpServlet{
             String text = request.getParameter("text");
             String groupId = request.getParameter("groupId");
             taskModel.addTask(name, text, groupId);
-            taskModel.setMessage("Задача добавленна");
+            taskModel.setMessage("Task successfully added");
             request.getRequestDispatcher("addTask.jsp").forward(request, response);
         } catch (ServletException ex){
-            request.getRequestDispatcher("error.jsp");
+            request.getRequestDispatcher("addTask.jsp");
+            taskModel.setMessage("Error. Try again.");
         } catch (ParseException e) {
             e.printStackTrace();
+            request.getRequestDispatcher("addTask.jsp");
+            taskModel.setMessage("Error. Try again.");
         }
         request.getRequestDispatcher("error.jsp");
     }

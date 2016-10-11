@@ -16,12 +16,13 @@
 <div class="header">
     <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
 </div>
-
 <div class="menu">
-    <form action="${pageContext.request.contextPath}/taskList" method="post">
-        <a href="personal_area.jsp" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: Admin</a>
-        <a href="inbox.jsp" style="height: 15px; width: 7%; margin-left: 25%; margin-top: 10px" class="button">Back to list</a>
-        <a href="../login.jsp" style="height: 15px; width: 7%; margin-left: 16%; margin-top: 10px" class="button">Exit</a></form>
+    <form action="taskList" method="post">
+        <a href="userController?name=${req.userPrincipal.name}" class="list_ref" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
+        <input class="input_text" placeholder="input name task" style="margin-top: 10px; margin-left: 17%; width: 17%"  value="">
+        <a style="height: 12px; width: 7%" class="button">Search</a>
+        <a href="loginController?action=logout" style="margin-left: 8.3%; width: 7%; height: 12px" class="button">Exit</a>
+    </form>
 </div>
 <div class="pages">
     <div class="sidebar">
@@ -29,7 +30,7 @@
         <hr>
         <ul>
             <c:forEach var="task" items="#{taskModel.returnAllTasks()}">
-                <a href="#">${task.name}</a><br>
+                <a class="list_ref" href="taskList?task_id=${task.id}">${task.name}</a><br>
             </c:forEach>
         </ul>
         <hr>
@@ -69,15 +70,14 @@
                     <td><input value=""/></td>
                 </tr>
             </table>
-            <input class="button" style="width: 170px; height: 25px" type="submit" value="Next">
+
+        <div class="footer" style="width: 100%">
+            <button type="button" class="button" style="width: 15%; height: 26px; margin-top: 5px" name="back" onclick="history.back()">Back</button>
+            <button type="submit" class="button" style="width: 15%; height: 26px; margin-top: 5px" name="back" onclick="history.back()">Save</button>
+            </div>
         </form>
     </div>
 
-    <div class="footer">
-        <a href="#" class="button" style="margin-top: 7px; margin-left: 34%">Save</a>
-        <a href="#" class="button">Remove</a>
-        <a href="inbox.jsp" class="button">Back</a>
-    </div>
 </div>
 </body>
 </html>

@@ -1,11 +1,10 @@
-body {background:white}
+body {background:lightgray}
 
 .header {
     width: 100%;
     height: 80px;
-    background: rgba(161, 161, 161, 0.53) radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.65), rgba(255, 29, 70, 0.76));
+    background: rgb(70, 64, 72);
     box-shadow: 4px 7px 17px 1px #000000;
-    border-radius: 3px;
 }
 .pages {
 }
@@ -14,18 +13,6 @@ body {background:white}
     text-align: right;
     margin-left: 10%;
     color: black;
-}
-.sidebar {
-    width:19%;
-    min-width: 100px;
-    max-width: 180px;
-    height:700px;
-    background: #f8f8f8;
-    font-family: arial,sans-serif;
-    font-size: 13px;
-    font-weight: bold;
-    float:left;
-    box-shadow: 4px 7px 17px 1px #000000;
 }
 .content {
     margin-left:10px;
@@ -36,34 +23,21 @@ body {background:white}
     float:left;
     box-shadow: 4px 7px 17px 1px #000000;
 }
-.button{
-    display: inline-block;
-    font-family: arial,sans-serif;
-    font-size: 13px;
+.button {
+    background-color: #555555;
+    border: none;
+    color: white;
     font-weight: bold;
-    height: 15px;
-    width: 70px;
-    color: rgb(68,68,68);
+    padding: 7px 15px;
+    text-align: center;
     text-decoration: none;
-    user-select: none;
-    padding: .2em 1.2em;
-    outline: none;
-    border: 1px solid rgba(0,0,0,.1);
-    border-radius: 2px;
-    background: rgba(161, 161, 161, 0.53) radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65));
-    transition: all .218s ease 0s;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
 }
-button:hover {
-    color: rgb(24,24,24);
-    border: 1px solid rgb(198,198,198);
-    background: rgba(161, 161, 161, 0.53) radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65));
-    box-shadow: 0 1px 2px rgba(0,0,0,.1);
-}
-button:active {
-    color: rgb(51,51,51);
-    border: 1px solid rgb(204,204,204);
-    background: rgba(161, 161, 161, 0.53) radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65));
-    box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+
+.button:hover {
+    background-color: deeppink;
 }
 .login {
     text-align: center;
@@ -79,8 +53,19 @@ button:active {
     padding:10px;
     height: 210px;
     font-size: 12px;
-    border:1px solid #000000;
-    background: rgba(161, 161, 161, 0.53) radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65));
-    box-shadow: 4px 7px 17px 1px #000000;
+    background: white;
+    box-shadow: 4px 7px 17px 1px #999999;
     border-radius: 3px;
+}
+
+.input_text {
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #555555;
+}
+
+.input_text:hover {
+    border-bottom: 2px solid deeppink;
 }

@@ -16,9 +16,7 @@ import java.util.List;
 @ApplicationScoped
 public class UserService {
 
-
     private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
-
 
     public List<User> returnAllUser(){
         List<User> resultList = em.createNamedQuery("User.findAll", User.class)
@@ -44,5 +42,4 @@ public class UserService {
     public void updUser(User user){
         em.merge(user);
     }
-
 }

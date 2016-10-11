@@ -16,10 +16,10 @@
 
 <div class="menu">
     <form action="taskList" method="post">
-        <a href="userController?name=${req.userPrincipal.name}" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
-        <input placeholder="input name task" style="margin-top: 10px; margin-left: 20%; width: 15%"  value="">
-        <input href="#" style="height: 20px; width: 7%" type="submit" name="Search" value="Search" class="button"/>
-        <a href="loginController?action=logout" style="height: 20px; margin-left: 10%; width: 7%" class="button">Exit</a>
+        <a href="userController?name=${req.userPrincipal.name}" class="list_ref" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
+        <input class="input_text" placeholder="input name task" style="margin-top: 10px; margin-left: 17%; width: 17%"  value="">
+        <a style="height: 12px; width: 7%" class="button">Search</a>
+        <a href="loginController?action=logout" style="margin-left: 8.3%; width: 7%; height: 12px" class="button">Exit</a>
     </form>
 </div>
 <div class="pages">
@@ -28,11 +28,11 @@
         <hr>
         <ul>
             <c:forEach var="view" items="#{userModel.viewsActiveUser}">
-                <a href="#" style="border: rgba(255, 29, 70, 0.76); border: 1px; width: 90px">${view.name}</a><br><br>
+                <a href="#" class="list_ref">${view.name}</a><br><br>
             </c:forEach>
         </ul>
         <hr>
-        <a href="view_details.jsp" style="height: 23px; width: 120px; margin-left: 20px" class="button">Add new query</a>
+        <a href="view_details.jsp" style="height: 12px; width: 100px; margin-left: 20px" class="button">Add new query</a>
     </div>
 
     <div class="content">
@@ -57,7 +57,7 @@
                     <td>${task.taskGroup.name}</td>
                     <td>${task.dateIn}</td>
                     <td>${task.dateComplet}</td>
-                    <td><a href="taskList?task_id=${task.id}">edit</a></td>
+                    <td><a class="list_ref" href="taskList?task_id=${task.id}">edit</a></td>
                 </tr>
             </c:forEach>
         </table>

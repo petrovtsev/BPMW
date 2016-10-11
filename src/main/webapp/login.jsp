@@ -17,18 +17,18 @@
     </div>
 
     <div class="pages">
-        <div class="authorization" style="margin-top: 10%; height: 240px">
+        <div class="authorization" style="margin-top: 10%; height: 250px">
             <div class="login">
                 <form action="loginController" method="post">
                     <h3>Login</h3>
                     <hr>
                     Input for username:<br>
-                    <input style="width: 170px; height: 17px" name="username" type="text"><br>
-                    Input for password:<br>
-                    <input style="width: 170px; height: 17px" name="password" type="password"><br><br/>
-                    <input class="button" style="width: 200px; height: 25px" type="submit" value="Authorization"><br>
-                    <a href="register.jsp" class="button" style="width: 100px; margin-top: 9px; height: 17px">Register</a>
-                    <a href="addTask.jsp" class="button" style="width: 100px; margin-top: 9px ; height: 17px">Add task</a>
+                    <input class="input_text" style="width: 260px; padding: 6px 14px; text-align:center" name="username" type="text"><br>
+                    <br>Input for password:<br>
+                    <input class="input_text" style="width: 260px; padding: 6px 14px; text-align:center" name="password" type="password"><br><br/>
+                    <input class="button" style="width: 260px; height: 26px" type="submit" value="Authorization"><br>
+                    <a href="register.jsp" class="button" style="width: 98px; margin-top: 6px; height: 12px">Register</a>
+                    <a href="addTask.jsp" class="button" style="width: 98px; margin-top: 6px ; height: 12px">Add task</a>
                 </form>
             </div>
         </div>

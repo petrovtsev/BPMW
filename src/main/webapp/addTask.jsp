@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Register</title>
+    <title>Add task</title>
     <link href="resources/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -14,7 +14,7 @@
 </div>
 
 <div class="pages">
-    <div class="authorization" style="margin-top: 10%; height: 270px">
+    <div class="authorization" style="margin-top: 10%; height: 250px">
         <div class="login">
             <form action="taskController" method="post">
                 <h3>${taskModel.message}</h3>
@@ -22,20 +22,20 @@
                 <table class="data-table">
                     <tr>
                         <td width="120">Name</td>
-                        <td><input name="name"/></td>
+                        <td><input class="input_text" name="name"/></td>
                     </tr>
                     <tr>
                         <td>Text</td>
-                        <td><input name="text"/></td>
+                        <td><input class="input_text" name="text"/></td>
                     </tr>
                     <td>Group id</td>
-                    <td><input name="groupId"/></td>
+                    <td><input class="input_text" name="groupId"/></td>
                     </tr>
                 </table>
                 <br>
-                <input class="button" style="width: 170px; height: 25px" type="submit" value="Next">
-                <input class="button" style="width: 170px; height: 25px" type="reset" value="Reset"><br>
-                <a href="login.jsp" class="button" style="width: 40%; margin-top: 9px; height: 17px">Login</a>
+                <input class="button" style="width: 128px; height: 26px" type="submit" value="Next">
+                <input class="button" style="width: 128px; height: 26px" type="reset" value="Reset"><br>
+                <a href="login.jsp" class="button" style="width: 230px; margin-top: 5px; height: 12px">Login</a>
             </form>
         </div>
     </div>

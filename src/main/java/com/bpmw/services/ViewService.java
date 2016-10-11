@@ -15,7 +15,6 @@ public class ViewService{
 
     private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
-
     public List<View> returnAllViews(){
         List<View> resultList = em.createNamedQuery("View.findAll", View.class).getResultList();
         return resultList;

@@ -14,7 +14,6 @@ public class TaskGroupService {
 
     private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
-
     public List<TaskGroup> returnAllGroups(){
         List<TaskGroup> resultList = em.createNamedQuery("Group.findAll", TaskGroup.class).getResultList();
         return resultList;

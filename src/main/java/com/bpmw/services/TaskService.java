@@ -16,7 +16,6 @@ public class TaskService {
 
     private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
-
     public List<Task> returnAllTasks(){
         List<Task> resultList = em.createNamedQuery("Task.findAll", Task.class)
             .getResultList();

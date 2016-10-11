@@ -18,9 +18,10 @@
 
 <div class="menu">
     <form action="taskList" method="post">
-        <a href="#" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
-        <button type="button" class="button" style="margin-left: 42%; width: 15%; height: 17px" name="back" onclick="history.back()">back</button>
-        <a href="loginController?action=logout" style="height: 20px; margin-left: 10%; width: 7%" class="button">Exit</a>
+        <a href="userController?name=${req.userPrincipal.name}" class="list_ref" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
+        <input class="input_text" placeholder="input name task" style="margin-top: 10px; margin-left: 17%; width: 17%"  value="">
+        <a style="height: 12px; width: 7%" class="button">Search</a>
+        <a href="loginController?action=logout" style="margin-left: 8.3%; width: 7%; height: 12px" class="button">Exit</a>
     </form>
 </div>
 <div class="pages">
@@ -29,7 +30,7 @@
         <hr>
         <ul>
             <c:forEach var="task" items="#{taskModel.userTasks}">
-                <a href="#">${task.name}</a><br>
+                <a href="taskList?task_id=${task.id}" class="list_ref">${task.name}</a><br>
             </c:forEach>
         </ul>
         <hr>
@@ -75,7 +76,8 @@
         </form>
     </div>
     <div class="footer">
-        <button type="button" class="button" style="margin-left: 42%; width: 15%; height: 17px" name="back" onclick="history.back()">back</button>
+        <button type="button" class="button" style="width: 15%; height: 26px; margin-top: 5px" name="back" onclick="history.back()">Back</button>
+        <a class="button" href="#" style="height: 12px ;margin-top: 6px; width: 15%">Save</a>
     </div>
 </div>
 </body>

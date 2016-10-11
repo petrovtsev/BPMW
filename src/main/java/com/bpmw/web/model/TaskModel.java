@@ -2,6 +2,7 @@ package com.bpmw.web.model;
 
 import com.bpmw.persistence.Task;
 import com.bpmw.persistence.TaskGroup;
+import com.bpmw.persistence.User;
 import com.bpmw.services.TaskService;
 
 import javax.enterprise.context.RequestScoped;
@@ -17,7 +18,7 @@ import java.util.List;
 @RequestScoped
 public class TaskModel {
     private List<Task> taskList;
-    private String message = "Введите данные";
+    private String message = "Describe the problem";
 
     @Inject
     private UserModel userModel;
@@ -57,7 +58,12 @@ public class TaskModel {
         taskService.delTask(id);
     }
 
-    public void updTask(){
+    public void updTask(Integer idTask, String login){
+        Date date = new Date();
+        selectedTask = getTask(Integer.valueOf(idTask));
+        selectedTask.setDateComplet(date);
+        User user = userModel.getUser(login);
+        selectedTask.setUserComplet(user);
         taskService.updTask(selectedTask);
     }
 
