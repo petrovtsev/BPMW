@@ -1,4 +1,4 @@
-package com.bpmw.web.controllers;
+package com.bpmw.web.controllers.task;
 
 import com.bpmw.persistence.Task;
 import com.bpmw.web.model.TaskModel;
@@ -28,7 +28,7 @@ public class TaskListController extends HttpServlet{
 
         taskModel.setSelectedTask(getTask(taskId));
         taskModel.returnUserTasks(request.getUserPrincipal().getName());
-        request.getRequestDispatcher("task_details.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/pages/task_details.jsp").forward(request,response);
     }
 
     @Override
@@ -36,11 +36,6 @@ public class TaskListController extends HttpServlet{
             throws ServletException, IOException{
         request.getRequestDispatcher("login.jsp").forward(request,response);
     }
-
-    public List<Task> returnAllTasks(){
-        return taskModel.returnAllTasks();
-    }
-
     public Task getTask(Integer id){
         return taskModel.getTask(id);
     }

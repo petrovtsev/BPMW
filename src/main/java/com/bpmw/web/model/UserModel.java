@@ -30,9 +30,20 @@ public class UserModel{
     @Inject
     private UserService userService;
 
-    public List<User> returnAllUser(){
-        return userService.returnAllUser();
+    public List<User> returnAllUsers(){
+        return userService.returnAllUsers();
     }
+
+    public String checkingLogin(String login){
+        String message = " ";
+        for (User user : returnAllUsers()){
+            if (user.getLogin().hashCode() == login.hashCode()) {
+                message = "false";
+            }
+        }
+        return message;
+    }
+
 
     public User getUser(String login){
         activeUser = userService.getUser(login);

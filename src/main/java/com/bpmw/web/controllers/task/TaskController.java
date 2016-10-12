@@ -1,4 +1,4 @@
-package com.bpmw.web.controllers;
+package com.bpmw.web.controllers.task;
 
 import com.bpmw.web.model.TaskModel;
 import com.bpmw.web.model.UserModel;
@@ -30,11 +30,10 @@ public class TaskController extends HttpServlet{
             throws ServletException, IOException{
         if (request.getParameter("idTask")!= null){
             Integer idTask = Integer.valueOf(request.getParameter("idTask"));
-//            taskModel.delTask(Integer.valueOf(request.getParameter("idTask")));
             taskModel.updTask(idTask, request.getUserPrincipal().getName());
             userModel.returnViewsActiveUser(request.getUserPrincipal().getName());
             taskModel.returnUserTasks(request.getUserPrincipal().getName());
-            request.getRequestDispatcher("inbox.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
         }
     }
 
@@ -47,13 +46,13 @@ public class TaskController extends HttpServlet{
             String groupId = request.getParameter("groupId");
             taskModel.addTask(name, text, groupId);
             taskModel.setMessage("Task successfully added");
-            request.getRequestDispatcher("addTask.jsp").forward(request, response);
+            request.getRequestDispatcher("add_task.jsp").forward(request, response);
         } catch (ServletException ex){
-            request.getRequestDispatcher("addTask.jsp");
+            request.getRequestDispatcher("add_task.jsp");
             taskModel.setMessage("Error. Try again.");
         } catch (ParseException e) {
             e.printStackTrace();
-            request.getRequestDispatcher("addTask.jsp");
+            request.getRequestDispatcher("add_task.jsp");
             taskModel.setMessage("Error. Try again.");
         }
         request.getRequestDispatcher("error.jsp");

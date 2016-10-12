@@ -1,4 +1,4 @@
-<%@ page import="com.bpmw.web.controllers.TaskListController" %>
+<%@ page import="com.bpmw.web.controllers.task.TaskListController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <c:set var="req" value="${pageContext.request}"/>
@@ -10,6 +10,7 @@
 <head>
     <title>Login</title>
     <link href="${uri}/resources/css/login.css" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <div class="header">
@@ -28,10 +29,13 @@
                     <input class="input_text" style="width: 260px; padding: 6px 14px; text-align:center" name="password" type="password"><br><br/>
                     <input class="button" style="width: 260px; height: 26px" type="submit" value="Authorization"><br>
                     <a href="register.jsp" class="button" style="width: 98px; margin-top: 6px; height: 12px">Register</a>
-                    <a href="addTask.jsp" class="button" style="width: 98px; margin-top: 6px ; height: 12px">Add task</a>
+                    <a href="add_task.jsp" class="button" style="width: 98px; margin-top: 6px ; height: 12px">Add task</a>
                 </form>
             </div>
         </div>
     </div>
+<script>
+
+</script>
 </body>
 </html>

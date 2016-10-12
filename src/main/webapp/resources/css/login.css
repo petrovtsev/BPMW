@@ -3,8 +3,8 @@ body {background:lightgray}
 .header {
     width: 100%;
     height: 80px;
-    background: rgb(70, 64, 72);
-    box-shadow: 4px 7px 17px 1px #000000;
+    background: black;
+    box-shadow: 4px 7px 17px 1px #999999;
 }
 .pages {
 }
@@ -35,7 +35,13 @@ body {background:lightgray}
     font-size: 13px;
     cursor: pointer;
 }
+.button:disabled{
+    background: grey;
+}
+.button:disabled:hover{
+    background: grey;
 
+}
 .button:hover {
     background-color: deeppink;
 }
@@ -57,7 +63,6 @@ body {background:lightgray}
     box-shadow: 4px 7px 17px 1px #999999;
     border-radius: 3px;
 }
-
 .input_text {
     width: 100%;
     padding: 5px 10px;
@@ -65,7 +70,55 @@ body {background:lightgray}
     border: none;
     border-bottom: 2px solid #555555;
 }
-
 .input_text:hover {
     border-bottom: 2px solid deeppink;
+}
+.inputRed{
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid red;
+}
+.inputGreen{
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid green;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+.select-box {
+    background-color: white;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #555555;
+    color: black;
+    height: 26px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+}
+.select-box:hover{
+    border-bottom: 2px solid deeppink;
+}
+label {
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+span {
+    display: inline-block;
+    width: 130px;
+    text-align: left;
+    margin-bottom: 10px;
 }

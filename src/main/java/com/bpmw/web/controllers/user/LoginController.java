@@ -1,4 +1,4 @@
-package com.bpmw.web.controllers;
+package com.bpmw.web.controllers.user;
 
 import com.bpmw.web.model.TaskModel;
 import com.bpmw.web.model.UserModel;
@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet{
             userModel.returnViewsActiveUser(request.getParameter("username"));
             taskModel.returnUserTasks(request.getUserPrincipal().getName());
 
-            request.getRequestDispatcher("inbox.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
         } catch (ServletException ex){
             request.getRequestDispatcher("error.jsp");
         }

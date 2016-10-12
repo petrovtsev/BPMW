@@ -1,4 +1,4 @@
-package com.bpmw.web.controllers;
+package com.bpmw.web.controllers.view;
 
 import com.bpmw.web.model.TaskModel;
 import com.bpmw.web.model.UserModel;

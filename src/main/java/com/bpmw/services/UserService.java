@@ -18,7 +18,7 @@ public class UserService {
 
     private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
-    public List<User> returnAllUser(){
+    public List<User> returnAllUsers(){
         List<User> resultList = em.createNamedQuery("User.findAll", User.class)
                 .getResultList();
         return resultList;

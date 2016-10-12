@@ -1,4 +1,4 @@
-package com.bpmw.web.controllers;
+package com.bpmw.web.controllers.user;
 
 import com.bpmw.persistence.TaskGroup;
 import com.bpmw.web.model.TaskModel;
@@ -14,7 +14,7 @@ import java.security.MessageDigest;
 import java.text.ParseException;
 import java.util.Date;
 
-public class UserController extends HttpServlet{
+public class RegisterController extends HttpServlet{
 
 
     @Inject
@@ -26,8 +26,11 @@ public class UserController extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        userModel.getUser(request.getParameter("name"));
-        request.getRequestDispatcher("personalArea.jsp").forward(request, response);
+        if (request.getParameter("login") != null) {
+            String login = request.getParameter("login");
+            String message = userModel.checkingLogin(login);
+            response.getWriter().write(message);
+        }
     }
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +44,7 @@ public class UserController extends HttpServlet{
             String city = request.getParameter("city");
             String taskGroupId = request.getParameter("taskGroupId");
             String phone = request.getParameter("phone");
-            String mail = request.getParameter("mail");
+            String mail = request.getParameter("email");
             userModel.addUser(login, passwordHash(password), firstName, lastName, dateBirth, city, taskGroupId, phone, mail);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } catch (ServletException ex){

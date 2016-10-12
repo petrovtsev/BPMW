@@ -44,33 +44,25 @@
             <table class="data-table">
                 <tr>
                     <td style="width: 150px">Name task</td>
-                    <td><input name="name"/></td>
+                    <td><input class="input_text" name="name"/><br><br></td>
                 </tr>
                 </tr>
                     <td>Show</td>
-                    <td><input type="radio" name="statusComplete" value="all"> all<br>
-                        <input type="radio" name="statusComplete" value="completed"> completed<br>
-                        <input type="radio" name="statusComplete" value="notCompleted"> not completed</td>
+                    <td><input type="radio" name="statusComplete" class="radio" value="all"> all<br>
+                        <input type="radio" name="statusComplete" class="radio" value="completed"> completed<br>
+                        <input type="radio" name="statusComplete" class="radio" value="notCompleted"> not completed</td>
                 </tr>
                 <tr>
                     <td>Date</td>
-                    <td><input name="dateStart" type="date" value=""/> - <input name="dateEnd" type="date" value=""/></td>
-                </tr>
-                <tr>
-                    <td>Date complete</td>
-                    <td><input value=""/></td>
-                </tr>
-                <tr>
-                    <td>User complete</td>
-                    <td><input value=""/></td>
+                    <td>
+                        <input name="dateStart" class="input_text" style="width: 40%" type="date" value="2015-01-01"/> -
+                        <input name="dateEnd"  class="input_text" style="width: 40%" type="date" value="2016-10-10"/>
+                    </td>
                 </tr>
             </table>
             <br>
-            <button type="submit" class="button" style="width: 15%; height: 26px; margin-top: 5px; align-content: center">Save</button>
-
-            <div class="footer" style="width: 100%">
-            <button type="button" class="button" style="width: 15%; height: 26px; margin-top: 5px" name="back" onclick="history.back()">Back</button>
-            </div>
+            <button type="submit" class="button" style="width: 15%; height: 26px; margin-top: 5px; margin-left: 34%">Save</button>
+            <button type="button" class="button" style="width: 15%; height: 26px; margin-top: 5px; margin-left: 2%" name="back" onclick="history.back()">Back</button>
         </form>
     </div>
 

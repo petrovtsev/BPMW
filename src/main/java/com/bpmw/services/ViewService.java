@@ -11,8 +11,8 @@ import javax.persistence.*;
 import javax.transaction.cdi.Transactional;
 import java.util.List;
 
-@Transactional
 @RequestScoped
+@Transactional(value = Transactional.TxType.REQUIRED)
 public class ViewService{
 
 

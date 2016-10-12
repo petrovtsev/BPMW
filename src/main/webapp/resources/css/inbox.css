@@ -3,8 +3,8 @@ body {background:lightgray}
 .header {
     width: 100%;
     height: 80px;
-    background: rgb(70, 64, 72);
-    box-shadow: 4px 7px 17px 1px #000000;
+    background: black;
+    box-shadow: 4px 7px 17px 1px #999999;
 }
 .menu {
     margin-left:auto;
@@ -25,7 +25,7 @@ body {background:lightgray}
     width:19%;
     min-width: 100px;
     max-width: 180px;
-    height:750px;
+    height:600px;
     background: white;
     font-family: arial;
     color: black;
@@ -51,12 +51,6 @@ body {background:lightgray}
     height:35px;
     background: white;
     float:left;
-    box-shadow: 4px 7px 17px 1px #999999;;
-}
-.table {
-    background: #f8f8f8;
-    border-collapse: collapse;
-    text-align: left;
 }
 .table th {
     border-top: 1px solid #777777;
@@ -69,6 +63,7 @@ body {background:lightgray}
 }
 .table tr:nth-child(odd) {
     background: #ebf3f9;
+    border: 1px #ebf3f9;
 }
 .table th:first-child {
     border-left: 1px solid #777777;
@@ -84,6 +79,7 @@ body {background:lightgray}
     border: 1px solid #ffffff;
     padding: 10px 15px;
 }
+
 .data-table {
     border: 0px;
     margin-left: 10%;
@@ -101,7 +97,6 @@ body {background:lightgray}
     font-size: 13px;
     cursor: pointer;
 }
-
 .button:hover {
     background-color: deeppink;
 }
@@ -124,12 +119,14 @@ dialog::backdrop {
 .input_text:hover {
     border-bottom: 2px solid deeppink;
 }
-
+textarea:focus, input:focus{
+    outline: none;
+}
 .list_ref{
     color: black;
     text-decoration: none;
 }
-.list_ref:hover{
+.list_ref:hover {
     text-decoration: underline;
     color: deeppink;
 }

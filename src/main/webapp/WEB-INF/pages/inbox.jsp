@@ -17,20 +17,22 @@
 <div class="menu">
     <form action="taskList" method="post">
         <a href="userController?name=${req.userPrincipal.name}" class="list_ref" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
-        <input class="input_text" placeholder="input name task" style="margin-top: 10px; margin-left: 17%; width: 17%"  value="">
-        <a style="height: 12px; width: 7%" class="button">Search</a>
-        <a href="loginController?action=logout" style="margin-left: 8.3%; width: 7%; height: 12px" class="button">Exit</a>
+        <input class="input_text" placeholder="input name task" style="margin-top: 8px; margin-left: 17%; width: 17%"  value="">
+        <a style="height: 12px; width: 7%; margin-top: 8px" class="button">Search</a>
+        <a href="loginController?action=logout" style="margin-left: 8.3%; width: 7%; height: 12px; margin-top: 8px" class="button">Exit</a>
     </form>
 </div>
 <div class="pages">
     <div class="sidebar">
-        <h3 style="margin-left: 40px">Views</h3>
+        <h3 style="margin-left: 20px">Views</h3>
         <hr>
+        <div>
         <ul>
             <c:forEach var="view" items="#{userModel.viewsActiveUser}">
-                <a href="#" class="list_ref">${view.name}</a><br><br>
+                <li><a href="#" class="list_ref">${view.name}</a><br><br></li>
             </c:forEach>
         </ul>
+        </div>
         <hr>
         <a href="view_details.jsp" style="height: 12px; width: 100px; margin-left: 20px" class="button">Add new query</a>
     </div>
@@ -39,7 +41,7 @@
         <h3 style="margin-left: 10%">All tasks group - ${taskModel.nameUserGroup}</h3>
         <hr>
 
-        <table border="1" class="table">
+        <table border="1" class="table" cellspacing="0">
             <tr>
                 <td width="100">id</td>
                 <td width="100">Name</td>
