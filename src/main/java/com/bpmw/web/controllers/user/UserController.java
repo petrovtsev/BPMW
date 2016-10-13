@@ -22,7 +22,8 @@ public class UserController extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        taskModel.returnUserTasks(request.getUserPrincipal().getName());
         userModel.getUser(request.getUserPrincipal().getName());
-        request.getRequestDispatcher("WEB-INF/pages/personalArea.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/pages/personal_area.jsp").forward(request, response);
     }
 }

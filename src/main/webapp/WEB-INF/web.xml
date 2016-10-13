@@ -26,6 +26,7 @@
         <servlet-name>userController</servlet-name>
         <url-pattern>/userController</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>taskListController</servlet-name>
         <servlet-class>com.bpmw.web.controllers.task.TaskListController</servlet-class>
@@ -34,6 +35,16 @@
     <servlet-mapping>
         <servlet-name>taskListController</servlet-name>
         <url-pattern>/taskList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>taskListRequest</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.task.TaskListRequest</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>taskListRequest</servlet-name>
+        <url-pattern>/taskListRequest</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -89,7 +100,7 @@
         <realm-name>jdbc-realm</realm-name>
         <form-login-config>
             <form-login-page>/login.jsp</form-login-page>
-            <form-error-page>/error.jsp</form-error-page>
+            <form-error-page>/error_login.jsp</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>

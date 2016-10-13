@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-public class TaskListController extends HttpServlet{
+public class TaskListRequest extends HttpServlet{
 
     @Inject
     private TaskModel taskModel;
@@ -23,18 +22,15 @@ public class TaskListController extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        Integer taskId = 0;
+        Integer viewId = 0;
         try {
-            taskId = Integer.valueOf(request.getParameter("task_id"));
+            viewId = Integer.valueOf(request.getParameter("view_id"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        if (taskId != 0){
-            taskModel.setSelectedTask(getTask(taskId));
-            taskModel.returnUserTasks(request.getUserPrincipal().getName());
-            request.getRequestDispatcher("WEB-INF/pages/task_details.jsp").forward(request,response);
-        }
+        taskModel.returTasksQuery(request.getUserPrincipal().getName(), viewId);
+        userModel.returnViewsActiveUser(request.getParameter("username"));
+        request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request,response);
     }
 
     @Override

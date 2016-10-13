@@ -15,7 +15,6 @@ import java.util.List;
 @Transactional(value = Transactional.TxType.REQUIRED)
 public class ViewService{
 
-
     @PersistenceContext(unitName ="persistence")
     private EntityManager em;
 
@@ -24,9 +23,9 @@ public class ViewService{
         return resultList;
     }
 
-    public List<View> returnViewUser(User user){
+    public List<View> returnViewUser(String login){
         Query query = em.createQuery("select v from View v WHERE v.user.login = :login");
-        query.setParameter("login", user.getLogin());
+        query.setParameter("login", login);
         return query.getResultList();
     }
 
@@ -47,4 +46,3 @@ public class ViewService{
         em.merge(view);
     }
 }
-

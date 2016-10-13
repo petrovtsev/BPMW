@@ -12,7 +12,8 @@ import java.util.List;
 @ApplicationScoped
 public class TaskGroupService {
 
-    private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
+    @PersistenceContext(unitName ="persistence")
+    private EntityManager em;
 
     public List<TaskGroup> returnAllGroups(){
         List<TaskGroup> resultList = em.createNamedQuery("Group.findAll", TaskGroup.class).getResultList();
@@ -36,4 +37,3 @@ public class TaskGroupService {
         em.merge(taskGroup);
     }
 }
-

@@ -28,8 +28,8 @@ public class ViewController extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        request.logout();
-        request.getRequestDispatcher("login.jsp").forward(request,response);
+        taskModel.returnUserTasks(request.getUserPrincipal().getName());
+        request.getRequestDispatcher("WEB-INF/pages/view_details.jsp").forward(request,response);
     }
 
     @Override
@@ -44,12 +44,12 @@ public class ViewController extends HttpServlet{
             viewModel.addView(login, name, dateStart, dateEnd, statusComplete);
             userModel.returnViewsActiveUser(login);
             taskModel.returnUserTasks(login);
-            request.getRequestDispatcher("inbox.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
         } catch (ServletException ex){
-            request.getRequestDispatcher("error.jsp");
+            request.getRequestDispatcher("error_login.jsp");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        request.getRequestDispatcher("error.jsp");
+        request.getRequestDispatcher("error_login.jsp");
     }
 }

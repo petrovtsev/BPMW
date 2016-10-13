@@ -10,18 +10,8 @@
     <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="header">
-    <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
-</div>
-
-<div class="menu">
-    <form action="taskList" method="post">
-        <a href="userController?name=${req.userPrincipal.name}" class="list_ref" style="margin-top: 10px; margin-left: 15%; width: 15%">User name: ${req.userPrincipal.name}</a>
-        <input class="input_text" placeholder="input name task" style="margin-top: 8px; margin-left: 17%; width: 17%"  value="">
-        <a style="height: 12px; width: 7%; margin-top: 8px" class="button">Search</a>
-        <a href="loginController?action=logout" style="margin-left: 8.3%; width: 7%; height: 12px; margin-top: 8px" class="button">Exit</a>
-    </form>
-</div>
+<jsp:include page="templates/header.jsp"/>
+<jsp:include page="templates/menu.jsp"/>
 <div class="pages">
     <div class="sidebar">
         <h3 style="margin-left: 20px">Views</h3>
@@ -29,26 +19,25 @@
         <div>
         <ul>
             <c:forEach var="view" items="#{userModel.viewsActiveUser}">
-                <li><a href="#" class="list_ref">${view.name}</a><br><br></li>
+                <li><a href="taskListRequest?view_id=${view.id}" class="list_ref">${view.name}</a><br><br></li>
             </c:forEach>
         </ul>
         </div>
         <hr>
-        <a href="view_details.jsp" style="height: 12px; width: 100px; margin-left: 20px" class="button">Add new query</a>
+        <a href="viewController" style="height: 12px; width: 100px; margin-left: 25px" class="button">Add new query</a>
     </div>
 
     <div class="content">
-        <h3 style="margin-left: 10%">All tasks group - ${taskModel.nameUserGroup}</h3>
+        <h3 style="margin-left: 10%">Tasks group №-${taskModel.taskGroup.id} (${taskModel.taskGroup.name})</h3>
         <hr>
-
-        <table border="1" class="table" cellspacing="0">
+        <table class="table">
             <tr>
-                <td width="100">id</td>
-                <td width="100">Name</td>
-                <td width="300">Text</td>
-                <td width="100">Group</td>
-                <td width="100">Date in</td>
-                <td width="100">Date complete</td>
+                <th width="100">id</th>
+                <th width="100">Name</th>
+                <th width="300">Text</th>
+                <th width="100">Group</th>
+                <th width="100">Date in</th>
+                <th width="100">Date complete</th>
             </tr>
             <c:forEach var="task" items="#{taskModel.userTasks}">
                 <tr>

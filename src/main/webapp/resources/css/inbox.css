@@ -19,14 +19,16 @@ body {background:lightgray}
     margin-left: auto;
     margin-right: auto;
     width: 70%;
-    margin: 1em auto;
+    margin-bottom: 1em;
 }
 .sidebar {
     width:19%;
     min-width: 100px;
     max-width: 180px;
-    height:600px;
+    min-height:400px;
+    height: 100%;
     background: white;
+    margin-bottom: 1em;
     font-family: arial;
     color: black;
     font-size: 13px;
@@ -35,10 +37,10 @@ body {background:lightgray}
 }
 .content {
     margin-left:10px;
+    margin-bottom: 1em;
     width: 80%;
     color: black;
     font-size: 13px;
-    font-weight: bold;
     height:auto;
     background:white;
     float:left;
@@ -52,38 +54,30 @@ body {background:lightgray}
     background: white;
     float:left;
 }
-.table th {
-    border-top: 1px solid #777777;
-    border-bottom: 1px solid #777777;
-    box-shadow: inset 0 1px 0 #999999, inset 0 -1px 0 #999999;
-    background: white;
-    color: white;
-    padding: 10px 15px;
-    position: relative;
+.table {
+    border-collapse: collapse;
+    width: 100%;
+ }
+.table th, td {
+    text-align: left;
+    padding: 8px;
 }
-.table tr:nth-child(odd) {
-    background: #ebf3f9;
-    border: 1px #ebf3f9;
+.table tr:hover {
+    border-bottom: 2px solid deeppink;
 }
-.table th:first-child {
-    border-left: 1px solid #777777;
-    border-bottom:  1px solid #777777;
-    box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
-}
-.table th:last-child {
-    border-right: 1px solid #777777;
-    border-bottom:  1px solid #777777;
-    box-shadow: inset -1px 1px 0 #999999, inset 0 -1px 0 #999999;
-}
-.table td {
-    border: 1px solid #ffffff;
-    padding: 10px 15px;
+.table tr:nth-child(even){background-color: #e3e3e3
 }
 
+.table th {font-weight: bold;
+    color: black;
+}
 .data-table {
     border: 0px;
     margin-left: 10%;
-    color: black;
+    color: dimgray;
+}
+.data-table td:first-line{
+    text-align: right;
 }
 .button {
     background-color: #555555;
@@ -129,4 +123,29 @@ textarea:focus, input:focus{
 .list_ref:hover {
     text-decoration: underline;
     color: deeppink;
+}
+.selector {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    width: 70%;
+    height:40px;
+    margin-left:15%;
+}
+
+.selector li {
+    float: right;
+}
+.selector li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.selector li a:hover {
+    background-color: deeppink;
 }

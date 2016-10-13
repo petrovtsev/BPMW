@@ -41,8 +41,8 @@ public class LoginController extends HttpServlet{
 
             request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
         } catch (ServletException ex){
-            request.getRequestDispatcher("error.jsp");
+            request.getRequestDispatcher("error_login.jsp");
         }
-        request.getRequestDispatcher("error.jsp");
+        request.getRequestDispatcher("error_login.jsp");
     }
 }

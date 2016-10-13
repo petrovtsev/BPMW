@@ -3,6 +3,7 @@ package com.bpmw.services;
 import com.bpmw.persistence.User;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -13,10 +14,11 @@ import java.util.List;
  * Created by ppetr on 28.09.2016.
  */
 @Named
-@ApplicationScoped
+@RequestScoped
 public class UserService {
 
-    private EntityManager em = Persistence.createEntityManagerFactory("persistence").createEntityManager();
+    @PersistenceContext(unitName ="persistence")
+    private EntityManager em;
 
     public List<User> returnAllUsers(){
         List<User> resultList = em.createNamedQuery("User.findAll", User.class)

@@ -48,11 +48,11 @@ public class RegisterController extends HttpServlet{
             userModel.addUser(login, passwordHash(password), firstName, lastName, dateBirth, city, taskGroupId, phone, mail);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } catch (ServletException ex){
-            request.getRequestDispatcher("error.jsp");
+            request.getRequestDispatcher("error_login.jsp");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        request.getRequestDispatcher("error.jsp");
+        request.getRequestDispatcher("error_login.jsp");
     }
 
     private String passwordHash (String base) {

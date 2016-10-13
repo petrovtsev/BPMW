@@ -15,17 +15,18 @@ public class View {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "REQUEST")
-    private String request;
-
     @ManyToOne
     @JoinColumn(name = "USER")
     private User user;
 
-    public View(String name, String request, User user) {
+    @OneToOne
+    @JoinColumn(name = "ID_REQUEST")
+    private UserRequest userRequest;
+
+    public View(String name, User user, UserRequest userRequest) {
         this.name = name;
-        this.request = request;
         this.user = user;
+        this.userRequest = userRequest;
     }
 
     public View() {
@@ -47,19 +48,19 @@ public class View {
         this.name = name;
     }
 
-    public String getRequest() {
-        return request;
-    }
-
-    public void setRequest(String request) {
-        this.request = request;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public UserRequest getUserRequest() {
+        return userRequest;
+    }
+
+    public void setUserRequest(UserRequest userRequest) {
+        this.userRequest = userRequest;
     }
 }

@@ -28,11 +28,13 @@ public class TaskController extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        if (request.getParameter("idTask")!= null){
-            Integer idTask = Integer.valueOf(request.getParameter("idTask"));
-            taskModel.updTask(idTask, request.getUserPrincipal().getName());
-            userModel.returnViewsActiveUser(request.getUserPrincipal().getName());
-            taskModel.returnUserTasks(request.getUserPrincipal().getName());
+        Integer idTask = Integer.valueOf(request.getParameter("idTask"));
+        String login = request.getUserPrincipal().getName();
+        if (idTask != null){
+            request.getParameter("comment");
+            taskModel.updTask(idTask, login);
+            userModel.returnViewsActiveUser(login);
+            taskModel.returnUserTasks(login);
             request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
         }
     }
@@ -55,6 +57,6 @@ public class TaskController extends HttpServlet{
             request.getRequestDispatcher("add_task.jsp");
             taskModel.setMessage("Error. Try again.");
         }
-        request.getRequestDispatcher("error.jsp");
+        request.getRequestDispatcher("error_login.jsp");
     }
 }

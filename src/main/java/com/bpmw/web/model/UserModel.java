@@ -51,7 +51,7 @@ public class UserModel{
     }
 
     public void returnViewsActiveUser(String login){
-        viewsActiveUser = viewModel.returnViewUser(getUser(login));
+        viewsActiveUser = viewModel.returnViewUser(login);
     }
 
     public void addUser(String login, String password, String firstName, String lastName,

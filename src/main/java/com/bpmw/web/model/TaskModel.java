@@ -3,44 +3,44 @@ package com.bpmw.web.model;
 import com.bpmw.persistence.Task;
 import com.bpmw.persistence.TaskGroup;
 import com.bpmw.persistence.User;
+import com.bpmw.persistence.UserRequest;
 import com.bpmw.services.TaskService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 @Named
 @RequestScoped
 public class TaskModel {
-    private List<Task> taskList;
-    private String message = "Describe the problem";
-
-    @Inject
-    private UserModel userModel;
 
     @Inject
     private TaskService taskService;
 
     @Inject
+    private UserModel userModel;
+
+    @Inject
     private TaskGroupModel groupModel;
+
+    @Inject
+    private ViewModel viewModel;
 
     private Task selectedTask;
     private List<Task> userTasks;
-    private String nameUserGroup;
+    private TaskGroup taskGroup;
+    private String message;
 
     public List<Task> returnAllTasks(){
         return taskService.returnAllTasks();
     }
 
-    public void returnUserTasks(String userId){
-        TaskGroup userGroup = userModel.getUser(userId).getTaskGroup();
-        nameUserGroup = userGroup.getName();
-        userTasks = taskService.returnUserTasks(userGroup);
+    public void returnUserTasks(String login){
+        taskGroup = userModel.getUser(login).getTaskGroup();
+        userTasks = taskService.returnUserTasks(taskGroup);
     }
 
     public Task getTask(Integer id){
@@ -67,12 +67,10 @@ public class TaskModel {
         taskService.updTask(selectedTask);
     }
 
-    public List<Task> getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(List<Task> taskList) {
-        this.taskList = taskList;
+    public void returTasksQuery(String login, Integer viewId){
+        User user = userModel.getUser(login);
+        UserRequest userRequest = viewModel.getView(viewId).getUserRequest();
+        userTasks = taskService.returTasksQuery(user, userRequest);
     }
 
     public Task getSelectedTask() {
@@ -91,12 +89,12 @@ public class TaskModel {
         this.userTasks = userTasks;
     }
 
-    public String getNameUserGroup() {
-        return nameUserGroup;
+    public TaskGroup getTaskGroup() {
+        return taskGroup;
     }
 
-    public void setNameUserGroup(String nameUserGroup) {
-        this.nameUserGroup = nameUserGroup;
+    public void setTaskGroup(TaskGroup taskGroup) {
+        this.taskGroup = taskGroup;
     }
 
     public String getMessage() {
