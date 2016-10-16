@@ -1,23 +1,35 @@
 package com.bpmw.persistence;
 
 import javax.persistence.*;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "TASKS")
-@NamedQuery(name = "Task.findAll", query = "select t from Task t")
+@NamedQueries(value = {
+        @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t"),
+        @NamedQuery(name = "Task.findTaskUser", query = "SELECT t FROM Task t WHERE t.taskGroup.id = :idGroup"),
+        @NamedQuery(name = "Task.findTaskUserQuery", query = "SELECT t FROM Task t WHERE t.taskGroup.id = :idGroup AND t.dateIn > :dateStart"),
+        @NamedQuery(name = "Task.findStatisticData", query = "SELECT t.dateComplet, COUNT(t.userComplet), t.id FROM Task t " +
+                "WHERE t.userComplet.login = :login GROUP BY t.dateComplet ORDER BY t.dateComplet")
+})
 public class Task {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
 
     @Column(name = "NAME")
+    @NotNull(message = "Field can bot be empty. Enter a name for the problem.")
     private String name;
 
     @Column(name = "TEXT")
+    @NotNull(message = "Field can bot be empty. Enter a description of the problem.")
     private String textTask;
 
     @ManyToOne
@@ -31,6 +43,9 @@ public class Task {
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_COMPLETION")
     private Date dateComplet;
+
+    @Column(name = "COMMENT")
+    private String comment;
 
     @ManyToOne
     @JoinColumn(name = "USER_COMPLET")
@@ -79,7 +94,7 @@ public class Task {
     }
 
     public String getDateIn() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         return dateFormat.format(dateIn);
     }
 
@@ -89,7 +104,7 @@ public class Task {
 
     public String getDateComplet() {
         if (dateComplet != null){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         return dateFormat.format(dateComplet);
         }else return " ";
     }
@@ -106,8 +121,11 @@ public class Task {
         this.userComplet = userComplet;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

@@ -1,47 +1,34 @@
-package com.bpmw.web.model;
+package com.bpmw.web.model.user;
 
-import com.bpmw.persistence.TaskGroup;
 import com.bpmw.persistence.User;
 import com.bpmw.persistence.View;
 import com.bpmw.services.UserService;
+import com.bpmw.web.model.group.TaskGroupModel;
+import com.bpmw.web.model.view.ViewModel;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.inject.Named;
-import java.security.acl.Group;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Named
-@RequestScoped
+@Stateless
 public class UserModel{
 
     private User activeUser;
     private List<View> viewsActiveUser;
 
-    @Inject
+    @EJB
     private TaskGroupModel taskGroupModel;
 
-    @Inject
+    @EJB
     private ViewModel viewModel;
 
-    @Inject
+    @EJB
     private UserService userService;
 
     public List<User> returnAllUsers(){
         return userService.returnAllUsers();
-    }
-
-    public String checkingLogin(String login){
-        String message = " ";
-        for (User user : returnAllUsers()){
-            if (user.getLogin().hashCode() == login.hashCode()) {
-                message = "false";
-            }
-        }
-        return message;
     }
 
 
@@ -52,16 +39,6 @@ public class UserModel{
 
     public void returnViewsActiveUser(String login){
         viewsActiveUser = viewModel.returnViewUser(login);
-    }
-
-    public void addUser(String login, String password, String firstName, String lastName,
-                        String dateBirthString, String city, String taskGroupId, String phone, String mail)
-            throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        Date dateBirth = dateFormat.parse(dateBirthString);
-        TaskGroup taskGroup = taskGroupModel.getTaskGroup(Integer.valueOf(taskGroupId));
-        User user = new User(login, password, firstName, lastName, dateBirth, city, taskGroup, phone, mail);
-        userService.addUser(user);
     }
 
     public void delUser(String login){

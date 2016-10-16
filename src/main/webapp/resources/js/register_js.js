@@ -25,7 +25,7 @@ $(function() {
         data: { login : login},
         success: function(response){
           if(response == "false"){
-            $("#login").next().hide().text("Login busy").css("color","red").fadeIn(400);
+            $("#login").next().hide().text("Username is not available.").css("color","red").fadeIn(400);
             $("#login").removeClass().addClass("inputRed");
           }else{
             $("#login").removeClass().addClass("inputGreen");

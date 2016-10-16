@@ -1,8 +1,10 @@
-package com.bpmw.web.model;
+package com.bpmw.web.model.group;
 
 import com.bpmw.persistence.TaskGroup;
 import com.bpmw.services.TaskGroupService;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,11 +14,11 @@ import java.util.List;
  * Created by ppetr on 28.09.2016.
  */
 
-@RequestScoped
 @Named
+@Stateless
 public class TaskGroupModel {
 
-    @Inject
+    @EJB
     private TaskGroupService taskGroupService;
 
     public TaskGroup getTaskGroup(Integer id){

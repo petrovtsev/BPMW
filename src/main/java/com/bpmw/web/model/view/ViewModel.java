@@ -1,10 +1,13 @@
-package com.bpmw.web.model;
+package com.bpmw.web.model.view;
 
 import com.bpmw.persistence.User;
 import com.bpmw.persistence.UserRequest;
 import com.bpmw.persistence.View;
 import com.bpmw.services.ViewService;
+import com.bpmw.web.model.user.UserModel;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,15 +22,16 @@ import java.util.List;
  */
 
 @Named
-@Transactional
-@RequestScoped
+@Stateless
 public class ViewModel {
 
-    @Inject
+    @EJB
     private ViewService viewService;
 
-    @Inject
+    @EJB
     private UserModel userModel;
+
+    View selectedView = new View();
 
     /**
      * Метод принмает значения переданные сервлетом и создает новый запрос для пользователя
@@ -68,6 +72,15 @@ public class ViewModel {
     }
 
     public View getView(Integer id){
-        return viewService.getView(id);
+        selectedView = viewService.getView(id);
+        return selectedView;
+    }
+
+    public View getSelectedView() {
+        return selectedView;
+    }
+
+    public void setSelectedView(View selectedView) {
+        this.selectedView = selectedView;
     }
 }

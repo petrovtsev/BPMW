@@ -12,9 +12,8 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-    <div class="header">
-        <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
-    </div>
+<jsp:include page="resources/templates/preloader.jsp"/>
+<jsp:include page="resources/templates/header.jsp"/>
 
     <div class="pages">
         <div class="authorization" style="margin-top: 10%; height: 250px">

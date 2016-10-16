@@ -8,7 +8,7 @@
     <h3 class="headLable" style="margin-left: 40px">Tasks</h3>
     <hr>
     <ul>
-        <c:forEach var="task" items="#{taskModel.userTasks}">
+        <c:forEach var="task" items="#{taskListModel.userTasks}">
             <li><a href="taskList?task_id=${task.id}" class="list_ref">${task.name}</a></li><br>
         </c:forEach>
     </ul>

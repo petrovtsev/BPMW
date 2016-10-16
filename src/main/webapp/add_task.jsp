@@ -1,4 +1,3 @@
-<%@ page import="com.bpmw.web.controllers.task.TaskListController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <c:set var="req" value="${pageContext.request}"/>
@@ -8,19 +7,17 @@
 
 <html>
 <head>
-    <title>Error</title>
+    <title>Add task</title>
     <link href="resources/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="header">
-    <img src="resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; height: 50px"/>
-</div>
-
+<jsp:include page="resources/templates/preloader.jsp"/>
+<jsp:include page="/resources/templates/header.jsp"/>
 <div class="pages">
     <div class="authorization" style="margin-top: 10%; height: 250px">
         <div class="login">
-            <form action="taskController" method="post">
-                <h3>${taskModel.message}</h3>
+            <form action="addTask" method="post">
+                <h3>${addTaskModel.message}</h3>
                 <hr>
                 <table class="data-table">
                     <tr>
@@ -32,7 +29,13 @@
                         <td><input class="input_text" name="text"/></td>
                     </tr>
                     <td>Group id</td>
-                    <td><input class="input_text" name="groupId"/></td>
+                    <td>
+                        <select class="select-box" name="groupId" id="taskGroupId">
+                            <c:forEach var="group" items="#{taskGroupModel.returnAllGroups()}">
+                                <option placeholder="Selected task group" value="${group.id}">${group.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                     </tr>
                 </table>
                 <br>

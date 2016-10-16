@@ -28,18 +28,28 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>taskListController</servlet-name>
-        <servlet-class>com.bpmw.web.controllers.task.TaskListController</servlet-class>
+        <servlet-name>taskDetails</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.task.TaskDetailsController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>taskListController</servlet-name>
-        <url-pattern>/taskList</url-pattern>
+        <servlet-name>taskDetails</servlet-name>
+        <url-pattern>/taskDetails</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>tasksList</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.task.TasksListController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>tasksList</servlet-name>
+        <url-pattern>/tasksList</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>taskListRequest</servlet-name>
-        <servlet-class>com.bpmw.web.controllers.task.TaskListRequest</servlet-class>
+        <servlet-class>com.bpmw.web.controllers.task.TaskListRequestContriller</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -48,15 +58,25 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>taskController</servlet-name>
-        <servlet-class>com.bpmw.web.controllers.task.TaskController</servlet-class>
+        <servlet-name>addTask</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.task.AddTaskController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>taskController</servlet-name>
-        <url-pattern>/taskController</url-pattern>
+        <servlet-name>addTask</servlet-name>
+        <url-pattern>/addTask</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>statisticTask</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.task.StaticticTaskController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>statisticTask</servlet-name>
+        <url-pattern>/statisticTask</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>viewController</servlet-name>

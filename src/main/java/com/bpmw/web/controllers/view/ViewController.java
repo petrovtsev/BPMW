@@ -1,8 +1,8 @@
 package com.bpmw.web.controllers.view;
 
-import com.bpmw.web.model.TaskModel;
-import com.bpmw.web.model.UserModel;
-import com.bpmw.web.model.ViewModel;
+import com.bpmw.web.model.task.TaskListModel;
+import com.bpmw.web.model.user.UserModel;
+import com.bpmw.web.model.view.ViewModel;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ViewController extends HttpServlet{
 
     @Inject
-    private TaskModel taskModel;
+    private TaskListModel taskModel;
 
     @Inject
     private UserModel userModel;
@@ -28,6 +26,8 @@ public class ViewController extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
+        Integer id = Integer.valueOf(request.getParameter("view_id"));
+        viewModel.getView(id);
         taskModel.returnUserTasks(request.getUserPrincipal().getName());
         request.getRequestDispatcher("WEB-INF/pages/view_details.jsp").forward(request,response);
     }

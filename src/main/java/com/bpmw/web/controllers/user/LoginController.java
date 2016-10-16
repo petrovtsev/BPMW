@@ -1,10 +1,10 @@
 package com.bpmw.web.controllers.user;
 
-import com.bpmw.web.model.TaskModel;
-import com.bpmw.web.model.UserModel;
-import com.bpmw.web.model.ViewModel;
+import com.bpmw.web.model.task.TaskListModel;
+import com.bpmw.web.model.user.UserModel;
+import com.bpmw.web.model.view.ViewModel;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +13,13 @@ import java.io.IOException;
 
 public class LoginController extends HttpServlet{
 
-    @Inject
-    private TaskModel taskModel;
+    @EJB
+    private TaskListModel taskModel;
 
-    @Inject
+    @EJB
     private UserModel userModel;
 
-
-    @Inject
+    @EJB
     private ViewModel viewModel;
 
     @Override

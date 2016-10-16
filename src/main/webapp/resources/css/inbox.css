@@ -1,4 +1,14 @@
-body {background:lightgray}
+body {
+    background:lightgray
+}
+
+h3{
+    text-align: center;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
 
 .header {
     width: 100%;
@@ -6,6 +16,7 @@ body {background:lightgray}
     background: black;
     box-shadow: 4px 7px 17px 1px #999999;
 }
+
 .menu {
     margin-left:auto;
     margin-right:auto;
@@ -15,26 +26,62 @@ body {background:lightgray}
     background: white;
     box-shadow: 4px 7px 17px 1px #999999;
 }
+
 .pages {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
     margin-bottom: 1em;
 }
+
 .sidebar {
-    width:19%;
-    min-width: 100px;
-    max-width: 180px;
-    min-height:400px;
-    height: 100%;
+    width:15%;
+    height: auto;
     background: white;
     margin-bottom: 1em;
-    font-family: arial;
     color: black;
     font-size: 13px;
     float:left;
     box-shadow: 4px 7px 17px 1px #999999;
 }
+
+.sidebar-nav {
+    width:15%;
+    min-height:465px;
+    height: 485px;
+    background: white;
+    margin-bottom: 1em;
+    color: black;
+    font-size: 13px;
+    float:left;
+    box-shadow: 4px 7px 17px 1px #999999;
+}
+
+.sidebar-nav label {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav ul {
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.sidebar-nav li a {
+    display: block;
+    color: #000;
+    border-bottom: 1px grey;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+    border-bottom: 2px solid deeppink;
+    color: black;
+}
+
 .content {
     margin-left:10px;
     margin-bottom: 1em;
@@ -46,41 +93,74 @@ body {background:lightgray}
     float:left;
     box-shadow: 4px 7px 17px 1px #999999;;
 }
-.footer{
+
+.content-account{
+    margin-left:10px;
     text-align: center;
+    margin-bottom: 1em;
     width: 80%;
-    margin-left: 10px;
-    height:35px;
-    background: white;
+    color: black;
+    font-size: 13px;
+    height:485px;
+    background:white;
     float:left;
+    box-shadow: 4px 7px 17px 1px #999999;;
 }
+
 .table {
     border-collapse: collapse;
     width: 100%;
  }
+
 .table th, td {
     text-align: left;
+    margin-bottom: 5px;
     padding: 8px;
 }
+
 .table tr:hover {
     border-bottom: 2px solid deeppink;
 }
-.table tr:nth-child(even){background-color: #e3e3e3
+
+.table tr:nth-child(even){
+    background-color: #e3e3e3
 }
 
 .table th {font-weight: bold;
     color: black;
 }
+
+.data-table-account {
+    border: 0px;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 20%;
+    color: black;
+    vertical-align: bottom;
+}
+
 .data-table {
     border: 0px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-family: arial;
     margin-left: 10%;
-    color: dimgray;
+    color: black;
+    vertical-align: top;
 }
-.data-table td:first-line{
+
+.col-right {
     text-align: right;
 }
+
+.col-center{
+    text-align: center;
+}
+
 .button {
     background-color: #555555;
+    width: 15%;
+    height: 26px;
     border: none;
     color: white;
     font-weight: bold;
@@ -91,17 +171,35 @@ body {background:lightgray}
     font-size: 13px;
     cursor: pointer;
 }
+
 .button:hover {
     background-color: deeppink;
 }
-dialog::backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+
+.button-fix {
+    background-color: #555555;
+    width: 100px;
+    height: 12px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
 }
+
+.button-fix:hover {
+    background-color: deeppink;
+}
+
+.side-button{
+    margin-bottom: 10px;
+    text-align: center
+}
+
 .input_text {
     width: 100%;
     padding: 5px 10px;
@@ -113,17 +211,17 @@ dialog::backdrop {
 .input_text:hover {
     border-bottom: 2px solid deeppink;
 }
-textarea:focus, input:focus{
-    outline: none;
-}
+
 .list_ref{
     color: black;
     text-decoration: none;
 }
+
 .list_ref:hover {
     text-decoration: underline;
     color: deeppink;
 }
+
 .selector {
     list-style-type: none;
     margin: 0;
@@ -148,4 +246,14 @@ textarea:focus, input:focus{
 
 .selector li a:hover {
     background-color: deeppink;
+}
+
+.small_icon{
+    margin-left: 2%;
+    margin-right: 5%;
+    width: 18px;
+}
+.litel_icon{
+    margin-right: 5%;
+    width: 13px;
 }

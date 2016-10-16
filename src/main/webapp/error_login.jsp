@@ -1,4 +1,4 @@
-<%@ page import="com.bpmw.web.controllers.task.TaskListController" %>
+<%@ page import="com.bpmw.web.controllers.task.TaskDetailsController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <!DOCTYPE HTML>
@@ -18,10 +18,10 @@
             <div class="login">
                 <h3>Error</h3>
                 <hr>
-                <output>ERROR</output><br><br>
-                <output>Try again</output><br><br>
-                <a href="login.jsp" class="button" style="width: 170px">Back</a>
-
+                <output>ERROR</output><br>
+                <output>Try again</output><br>
+                <c:out value="${messageError}"/><br>
+                <a href="login.jsp" class="button" style="width: 170px">Back</a>                
                 <a href="register.jsp" class="button" style="width: 170px; margin-top: 3px">Register</a><br>
             </div>
         </div>

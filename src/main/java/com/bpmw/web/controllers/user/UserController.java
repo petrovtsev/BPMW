@@ -1,7 +1,7 @@
 package com.bpmw.web.controllers.user;
 
-import com.bpmw.web.model.TaskModel;
-import com.bpmw.web.model.UserModel;
+import com.bpmw.web.model.task.TaskListModel;
+import com.bpmw.web.model.user.UserModel;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ public class UserController extends HttpServlet {
     private UserModel userModel;
 
     @Inject
-    private TaskModel taskModel;
+    private TaskListModel taskModel;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)

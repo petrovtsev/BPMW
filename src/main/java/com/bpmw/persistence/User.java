@@ -1,7 +1,10 @@
 package com.bpmw.persistence;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -11,32 +14,50 @@ public class User {
 
     @Id
     @Column(name = "USERID")
+    @NotNull(message = "Field can bot be empty. Enter your login.")
+    @Size(min = 3, message = "Login length can not be less than three characters.")
     private String login;
 
     @Column(name = "PASSWORD")
+    @NotNull(message = "Field can bot be empty. Enter password.")
+    @Size(min = 3, message = "The length of the password can not be less than three characters.")
     private String password;
 
     @Column(name = "FIRST_NAME")
+    @NotNull(message = "Field can bot be empty. Enter your first name.")
+    @Size(min = 2, message = "The length of the first name can not be less than two characters.")
     private String firstName;
 
     @Column(name = "LAST_NAME")
+    @Size(min = 2, message = "The length of the last name can not be less than two characters.")
+    @NotNull(message = "Field can bot be empty. Enter your last name.")
     private String lastName;
 
     @Temporal(TemporalType.DATE)
+    @NotNull(message = "Field can bot be empty. Enter your date of birth.")
+    @Past(message = "Not true the said date of birth.")
     @Column(name = "DATE_BIRTH")
     private Date dateBirth;
 
     @Column(name = "CITY")
+    @NotNull(message = "Field can bot be empty. Enter your city.")
     private String city;
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
     private TaskGroup taskGroup;
 
+    @Size(max = 11, message = "Invalid phone number format")
     @Column (name = "PHONE")
     private String phone;
 
     @Column (name = "MAIL")
+    @NotNull(message = "Field can bot be empty. Enter your email.")
+    @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
+            "*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.)" +
+            "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
+            "+(?:[a-zA-Z]){2,}\\.?)$",
+            message = "Invalid email format")
     private String mail;
 
     public User() {
@@ -94,10 +115,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getDateBirth() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        return dateFormat.format(dateBirth);
-
+    public Date getDateBirth() {
+        return dateBirth;
     }
 
     public void setDateBirth(Date dateBirth) {

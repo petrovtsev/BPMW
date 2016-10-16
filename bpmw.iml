@@ -48,5 +48,8 @@
     <orderEntry type="library" name="Maven: javax:javaee-web-api:6.0" level="project" />
     <orderEntry type="library" name="Maven: javax.transaction:jta:1.1" level="project" />
     <orderEntry type="library" name="Maven: javax.transaction.cdi:javax.transaction.cdi-api:1.2-b03" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="loader" level="application" />
   </component>
 </module>

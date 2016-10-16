@@ -1,6 +1,8 @@
 package com.bpmw.persistence;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "views")
@@ -13,6 +15,8 @@ public class View {
     private Integer id;
 
     @Column(name = "NAME")
+    @NotNull(message = "Field can bot be empty. Enter the name of the view")
+    @Size(min = 3, message = "Name view length can not be less than three characters.")
     private String name;
 
     @ManyToOne

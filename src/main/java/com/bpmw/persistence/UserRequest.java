@@ -1,10 +1,12 @@
 package com.bpmw.persistence;
 
 import javax.persistence.*;
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 @Entity
 @Table(name = "requests")
+@NamedQuery(name = "UserRequest.findAll", query = "SELECT u FROM UserRequest u")
 public class UserRequest {
 
     @Id
@@ -14,9 +16,11 @@ public class UserRequest {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_START")
+    @Past(message = "Date of commencement of the search, said wrong.")
     private Date dateStart;
 
     @Temporal(TemporalType.DATE)
+    @Past(message = "Date of the end of the search, said wrong.")
     @Column(name = "DATE_END")
     private Date dateEnd;
 

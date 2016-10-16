@@ -1,23 +1,25 @@
 package com.bpmw.web.controllers.task;
 
-import com.bpmw.persistence.Task;
-import com.bpmw.web.model.TaskModel;
-import com.bpmw.web.model.UserModel;
+import com.bpmw.web.model.task.TaskDetailsModel;
+import com.bpmw.web.model.task.TaskListModel;
+import com.bpmw.web.model.user.UserModel;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-public class TaskListController extends HttpServlet{
+public class TaskDetailsController extends HttpServlet{
 
-    @Inject
-    private TaskModel taskModel;
+    @EJB
+    private TaskListModel taskModel;
 
-    @Inject
+    @EJB
+    private TaskDetailsModel taskDetailsModel;
+
+    @EJB
     private UserModel userModel;
 
     @Override
@@ -31,7 +33,7 @@ public class TaskListController extends HttpServlet{
         }
 
         if (taskId != 0){
-            taskModel.setSelectedTask(getTask(taskId));
+            taskDetailsModel.setSelectedTask(taskModel.getTask(taskId));
             taskModel.returnUserTasks(request.getUserPrincipal().getName());
             request.getRequestDispatcher("WEB-INF/pages/task_details.jsp").forward(request,response);
         }
@@ -39,10 +41,12 @@ public class TaskListController extends HttpServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        request.getRequestDispatcher("login.jsp").forward(request,response);
-    }
-    public Task getTask(Integer id){
-        return taskModel.getTask(id);
+            throws ServletException, IOException {
+        Integer idTask = Integer.valueOf(request.getParameter("taskId"));
+        String login = request.getUserPrincipal().getName();
+        taskDetailsModel.closeTask(idTask, login, request.getParameter("comment"));
+        userModel.returnViewsActiveUser(login);
+        taskModel.returnUserTasks(login);
+        request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
     }
 }
