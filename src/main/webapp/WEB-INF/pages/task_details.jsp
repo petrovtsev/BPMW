@@ -6,8 +6,9 @@
 
 <html>
 <head>
-    <title>View Task</title>
+    <title>Task details</title>
     <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
+    <link href="${uri}/resources/css/components.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <jsp:include page="templates/header.jsp"/>
@@ -21,7 +22,7 @@
         <form action="taskDetails" method="post">
             <table class="data-table">
                 <tr>
-                    <td class="col-right" style="width:140px">Text:</td>
+                    <td class="col-right">Text:</td>
                     <td>${taskDetailsModel.selectedTask.textTask}</td>
                 </tr>
                 <tr>

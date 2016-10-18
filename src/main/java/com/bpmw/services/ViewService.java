@@ -1,15 +1,10 @@
 package com.bpmw.services;
 
-import com.bpmw.persistence.User;
 import com.bpmw.persistence.View;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.*;
-import javax.transaction.cdi.Transactional;
 import java.util.List;
 
 

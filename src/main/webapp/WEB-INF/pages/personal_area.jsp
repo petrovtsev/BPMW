@@ -8,7 +8,9 @@
 <html>
 <head>
     <title>Personal area</title>
+    <link href="${uri}/resources/css/dialog.css" rel="stylesheet" type="text/css" />
     <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
+    <link href="${uri}/resources/css/components.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <jsp:include page="templates/header.jsp"/>
@@ -64,9 +66,59 @@
         <br><br>
         <div class="side-button">
             <button type="button" class="button" name="back" onclick="history.back()">Back</button>
-            <button class="button" type="submit">Save</button>
-        </div>
+            <button id="myBtn" class="button">Delete</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">x</span>
+                        <h2>Authorization</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form action="userController" method="post">
+                        <p>Input password</p><br>
+                        <input style="text-align: center" class="input_text" type="password" id="password" name="password"><br><br>
+                        <div class="side-button">
+                            <button class="button" type="submit">Delete</button>
+                            <button type="button" class="button" name="back" onclick="history.back()">Back</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
     </div>
 </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
 </body>
 </html>

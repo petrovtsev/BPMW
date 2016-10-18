@@ -7,6 +7,7 @@
 <head>
     <title>Error</title>
     <link href="resources/css/login.css" rel="stylesheet" type="text/css" />
+    <link href="resources/css/components.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="header">

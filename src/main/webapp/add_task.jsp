@@ -9,24 +9,26 @@
 <head>
     <title>Add task</title>
     <link href="resources/css/login.css" rel="stylesheet" type="text/css" />
+    <link href="resources/css/components.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <jsp:include page="resources/templates/preloader.jsp"/>
 <jsp:include page="/resources/templates/header.jsp"/>
+<jsp:include page="/resources/templates/message.jsp"/>
 <div class="pages">
     <div class="authorization" style="margin-top: 10%; height: 250px">
         <div class="login">
             <form action="addTask" method="post">
-                <h3>${addTaskModel.message}</h3>
+                <h3>Describe the problem</h3>
                 <hr>
                 <table class="data-table">
                     <tr>
                         <td width="120">Name</td>
-                        <td><input class="input_text" name="name"/></td>
+                        <td><input class="input_text" value="${addTaskModel.task.name}" name="name"/></td>
                     </tr>
                     <tr>
                         <td>Text</td>
-                        <td><input class="input_text" name="text"/></td>
+                        <td><input class="input_text" value="${addTaskModel.task.textTask}"  name="text"/></td>
                     </tr>
                     <td>Group id</td>
                     <td>
@@ -45,6 +47,18 @@
             </form>
         </div>
     </div>
+
+    <c:if test="${validateService.errorStatus}">
+        <div class="errorMessage" style="margin-top: 1%; height: auto; height-min: 140px">
+            <div class="login">
+                <h3>Error</h3>
+                <hr>
+                <c:forEach var="error" items="#{validateService.errorList}">
+                    <li>${error}<br><br></li>
+                </c:forEach>
+            </div>
+        </div>
+    </c:if>
 </div>
 </body>
 </html>

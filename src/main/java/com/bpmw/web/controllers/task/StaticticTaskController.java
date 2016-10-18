@@ -1,8 +1,11 @@
 package com.bpmw.web.controllers.task;
 
+import com.bpmw.web.controllers.user.LoginController;
 import com.bpmw.web.model.task.StaticticTaskModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +18,22 @@ import java.io.IOException;
 
 public class StaticticTaskController extends HttpServlet{
 
-    @EJB
+    private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    @Inject
     private StaticticTaskModel staticticTaskModel;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        staticticTaskModel.getDataGraph(request.getUserPrincipal().getName());
-        request.getRequestDispatcher("WEB-INF/pages/statistic.jsp").forward(request, response);
+        try {
+            Integer day = Integer.valueOf(request.getParameter("day"));
+            staticticTaskModel.getDataGraph(request.getUserPrincipal().getName(), day);
+            request.getRequestDispatcher("WEB-INF/pages/statistic.jsp").forward(request, response);
+        } catch (ServletException ex){
+            logger.error("Servlet error", ex);
+        } catch (IOException ex){
+            logger.error("Input text error", ex);
+        }
     }
 }

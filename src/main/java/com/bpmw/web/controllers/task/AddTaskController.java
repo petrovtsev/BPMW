@@ -1,27 +1,33 @@
 package com.bpmw.web.controllers.task;
 
+import com.bpmw.persistence.TaskGroup;
+import com.bpmw.services.MessageService;
+import com.bpmw.web.controllers.user.LoginController;
+import com.bpmw.web.model.group.TaskGroupModel;
 import com.bpmw.web.model.task.AddTaskModel;
-import com.bpmw.web.model.user.UserModel;
-import com.bpmw.web.model.view.ViewModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
 
 public class AddTaskController extends HttpServlet{
 
-    @EJB
+    private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    @Inject
     private AddTaskModel addTaskModel;
 
-    @EJB
-    private UserModel userModel;
+    @Inject
+    private TaskGroupModel groupModel;
 
-    @EJB
-    private ViewModel viewModel;
+    @Inject
+    MessageService messageService;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,19 +38,28 @@ public class AddTaskController extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String name = request.getParameter("name");
-            String text = request.getParameter("text");
+            addTaskModel.init();
+
+            addTaskModel.getTask().setName(request.getParameter("name"));
+            addTaskModel.getTask().setTextTask(request.getParameter("text"));
             Integer groupId = Integer.valueOf(request.getParameter("groupId"));
-            addTaskModel.addTask(name, text, groupId);
-            addTaskModel.setMessage("Task successfully added");
+            TaskGroup taskGroup = groupModel.getTaskGroup(groupId);
+            addTaskModel.getTask().setTaskGroup(taskGroup);
+
+            if (addTaskModel.validate()){
+                RequestDispatcher Dispatcher = getServletContext().getRequestDispatcher("/add_task.jsp");
+                Dispatcher.forward(request, response);
+            } else {
+                addTaskModel.addTask();
+                messageService.addMessage("The task of adding successfully.");
+                RequestDispatcher Dispatcher = getServletContext().getRequestDispatcher("/add_task.jsp");
+                Dispatcher.forward(request, response);
+            }
             request.getRequestDispatcher("add_task.jsp").forward(request, response);
         } catch (ServletException ex){
-            request.getRequestDispatcher("add_task.jsp");
-            addTaskModel.setMessage("Error. Try again.");
-        } catch (ParseException e) {
-            e.printStackTrace();
-            request.getRequestDispatcher("add_task.jsp");
-            addTaskModel.setMessage("Error. Try again.");
+            logger.error("Servlet error", ex);
+        } catch (IOException ex){
+            logger.error("Input text error", ex);
         }
     }
 }

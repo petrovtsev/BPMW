@@ -1,45 +1,34 @@
 package com.bpmw.web.model.task;
 
 import com.bpmw.persistence.Task;
-import com.bpmw.persistence.TaskGroup;
-import com.bpmw.persistence.User;
-import com.bpmw.persistence.UserRequest;
 import com.bpmw.services.TaskService;
-import com.bpmw.web.model.group.TaskGroupModel;
 import com.bpmw.web.model.user.UserModel;
-import com.bpmw.web.model.view.ViewModel;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 @Named
-@Stateless
+@RequestScoped
 public class TaskDetailsModel {
 
-    @EJB
+    @Inject
     private TaskService taskService;
 
-    @EJB
+    @Inject
     private UserModel userModel;
 
     private Task selectedTask;
 
     public Task getTask(Integer id){
-        return taskService.getTask(id);
+        selectedTask = taskService.getTask(id);
+        return selectedTask;
     }
 
-    public void closeTask(Integer idTask, String login, String comment){
+    public void closeTask(){
         Date date = new Date();
-        selectedTask = getTask(Integer.valueOf(idTask));
         selectedTask.setDateComplet(date);
-        selectedTask.setComment(comment);
-        User user = userModel.getUser(login);
-        selectedTask.setUserComplet(user);
         taskService.updTask(selectedTask);
     }
 

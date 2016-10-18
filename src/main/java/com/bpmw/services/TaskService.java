@@ -2,18 +2,14 @@ package com.bpmw.services;
 
 import com.bpmw.persistence.TaskGroup;
 import com.bpmw.persistence.Task;
-import com.bpmw.persistence.User;
-import com.bpmw.persistence.UserRequest;
+import com.bpmw.persistence.View;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.*;
-import javax.transaction.cdi.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@Named
 @Stateless
 public class TaskService {
 
@@ -33,10 +29,11 @@ public class TaskService {
         return resultList;
     }
 
-    public List<Task> returTasksQuery(TaskGroup taskGroup, UserRequest userRequest){
+    public List<Task> returTasksQuery(TaskGroup taskGroup, View view){
         Query query = em.createNamedQuery("Task.findTaskUserQuery", Task.class);
         query.setParameter("idGroup", taskGroup.getId());
-        query.setParameter("dateStart", userRequest.getDateStart());
+        query.setParameter("dateStart", view.getDateStart());
+        query.setParameter("dateEnd", view.getDateEnd());
         List<Task> resultList = query.getResultList();
         return resultList;
     }
@@ -50,9 +47,10 @@ public class TaskService {
         em.remove(task);
     }
 
-    public Map graphs(String login, Map graph){
+    public Map graphs(String login, Date dateStart, Map graph){
         Query query = em.createNamedQuery("Task.findStatisticData", Task.class);
         query.setParameter("login", login);
+        query.setParameter("dateComplete", dateStart);
         List<Object[]> result = query.getResultList();
         for (Iterator i = result.iterator(); i.hasNext();){
             Object[] values = (Object[])i.next();

@@ -15,7 +15,7 @@ public class User {
     @Id
     @Column(name = "USERID")
     @NotNull(message = "Field can bot be empty. Enter your login.")
-    @Size(min = 3, message = "Login length can not be less than three characters.")
+    @Size(min = 3, max = 40, message = "Login length can not be less than three characters.")
     private String login;
 
     @Column(name = "PASSWORD")
@@ -25,11 +25,11 @@ public class User {
 
     @Column(name = "FIRST_NAME")
     @NotNull(message = "Field can bot be empty. Enter your first name.")
-    @Size(min = 2, message = "The length of the first name can not be less than two characters.")
+    @Size(min = 2, max = 45, message = "The length of the first name can not be less than two characters.")
     private String firstName;
 
     @Column(name = "LAST_NAME")
-    @Size(min = 2, message = "The length of the last name can not be less than two characters.")
+    @Size(min = 2, max = 45, message = "The length of the last name can not be less than two characters.")
     @NotNull(message = "Field can bot be empty. Enter your last name.")
     private String lastName;
 
@@ -40,6 +40,7 @@ public class User {
     private Date dateBirth;
 
     @Column(name = "CITY")
+    @Size(min = 2, max = 45, message = "The length of the name city can not be less than two characters.")
     @NotNull(message = "Field can bot be empty. Enter your city.")
     private String city;
 

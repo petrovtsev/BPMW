@@ -1,31 +1,29 @@
 package com.bpmw.web.model.user;
 
 import com.bpmw.persistence.User;
-import com.bpmw.persistence.View;
 import com.bpmw.services.UserService;
 import com.bpmw.web.model.group.TaskGroupModel;
-import com.bpmw.web.model.view.ViewModel;
+import com.bpmw.web.model.view.ViewDetailsModel;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
-@Stateless
+@RequestScoped
 public class UserModel{
 
-    private User activeUser;
-    private List<View> viewsActiveUser;
-
-    @EJB
+    @Inject
     private TaskGroupModel taskGroupModel;
 
-    @EJB
-    private ViewModel viewModel;
+    @Inject
+    private ViewDetailsModel viewModel;
 
-    @EJB
+    @Inject
     private UserService userService;
+
+    private User activeUser;
 
     public List<User> returnAllUsers(){
         return userService.returnAllUsers();
@@ -35,10 +33,6 @@ public class UserModel{
     public User getUser(String login){
         activeUser = userService.getUser(login);
         return activeUser;
-    }
-
-    public void returnViewsActiveUser(String login){
-        viewsActiveUser = viewModel.returnViewUser(login);
     }
 
     public void delUser(String login){
@@ -55,13 +49,5 @@ public class UserModel{
 
     public void setActiveUser(User activeUser) {
         this.activeUser = activeUser;
-    }
-
-    public List<View> getViewsActiveUser() {
-        return viewsActiveUser;
-    }
-
-    public void setViewsActiveUser(List<View> viewsActiveUser) {
-        this.viewsActiveUser = viewsActiveUser;
     }
 }

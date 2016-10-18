@@ -5,11 +5,11 @@
 <!DOCTYPE HTML>
 
 <div class="sidebar">
-    <h3 class="headLable" style="margin-left: 40px">Tasks</h3>
+    <a href="tasksList" class="list_ref"><h3 class="headLable">Tasks list</h3></a>
     <hr>
     <ul>
         <c:forEach var="task" items="#{taskListModel.userTasks}">
-            <li><a href="taskList?task_id=${task.id}" class="list_ref">${task.name}</a></li><br>
+            <li><a href="taskDetails?task_id=${task.id}" class="list_ref">${task.name}</a></li><br>
         </c:forEach>
     </ul>
 </div>

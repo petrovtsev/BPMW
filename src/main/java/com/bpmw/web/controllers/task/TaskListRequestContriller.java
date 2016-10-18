@@ -1,9 +1,9 @@
 package com.bpmw.web.controllers.task;
 
 import com.bpmw.web.model.task.TaskListModel;
-import com.bpmw.web.model.user.UserModel;
+import com.bpmw.web.model.view.ListViewsModel;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,23 +12,24 @@ import java.io.IOException;
 
 public class TaskListRequestContriller extends HttpServlet {
 
-    @EJB
-    private TaskListModel taskModel;
+    @Inject
+    private TaskListModel taskListModel;
 
-    @EJB
-    private UserModel userModel;
+    @Inject
+    private ListViewsModel listViewModel;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String login = request.getUserPrincipal().getName();
         Integer viewId = 0;
         try {
             viewId = Integer.valueOf(request.getParameter("view_id"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        taskModel.returTasksQuery(request.getUserPrincipal().getName(), viewId);
-        userModel.returnViewsActiveUser(request.getUserPrincipal().getName());
+        taskListModel.returTasksQuery(login, viewId);
+        listViewModel.returnViewsActiveUser(request.getUserPrincipal().getName());
         request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
     }
 }

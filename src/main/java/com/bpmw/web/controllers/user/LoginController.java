@@ -1,10 +1,14 @@
 package com.bpmw.web.controllers.user;
 
+import com.bpmw.services.MessageService;
+import com.bpmw.services.PasswordService;
 import com.bpmw.web.model.task.TaskListModel;
-import com.bpmw.web.model.user.UserModel;
-import com.bpmw.web.model.view.ViewModel;
+import com.bpmw.web.model.user.LoginModel;
+import com.bpmw.web.model.view.ListViewsModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,19 +17,28 @@ import java.io.IOException;
 
 public class LoginController extends HttpServlet{
 
-    @EJB
+    private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    @Inject
     private TaskListModel taskModel;
 
-    @EJB
-    private UserModel userModel;
+    @Inject
+    private PasswordService passwordService;
 
-    @EJB
-    private ViewModel viewModel;
+    @Inject
+    private LoginModel loginModel;
+
+    @Inject
+    private ListViewsModel listViewsModel;
+
+    @Inject
+    private MessageService messageService;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         request.logout();
+        messageService.addMessage("Session successfully closed");
         request.getRequestDispatcher("login.jsp").forward(request,response);
     }
 
@@ -34,14 +47,22 @@ public class LoginController extends HttpServlet{
             throws ServletException, IOException {
         try {
             request.logout();
-            request.login(request.getParameter("username"), request.getParameter("password"));
-            userModel.returnViewsActiveUser(request.getParameter("username"));
-            taskModel.returnUserTasks(request.getUserPrincipal().getName());
 
-            request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
+            String login = request.getParameter("login");
+            String password = request.getParameter("password");
+            String hashPassword = passwordService.passwordHash(password);
+
+            if (loginModel.validateLogin(login, hashPassword)){
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }else {
+                request.login(login, password);
+                listViewsModel.returnViewsActiveUser(login);
+                taskModel.returnUserTasks(login);
+                messageService.addMessage("Welcome " + login + "!");
+                request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
+            }
         } catch (ServletException ex){
-            request.getRequestDispatcher("error_login.jsp");
+            logger.error("Servlet error", ex);
         }
-        request.getRequestDispatcher("error_login.jsp");
     }
 }

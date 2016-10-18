@@ -1,40 +1,58 @@
 package com.bpmw.web.model.task;
 
 import com.bpmw.persistence.Task;
-import com.bpmw.persistence.TaskGroup;
 import com.bpmw.services.TaskService;
-import com.bpmw.web.model.group.TaskGroupModel;
+import com.bpmw.services.ValidateService;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import java.text.ParseException;
 import java.util.*;
 
 @Named
-@Stateless
+@RequestScoped
 public class AddTaskModel {
 
-    @EJB
+    @Inject
     private TaskService taskService;
 
-    @EJB
-    private TaskGroupModel groupModel;
+    @Inject
+    private ValidateService validateService;
 
-    private String message = "Describe the problem";
+    private Task task;
 
-    public void addTask(String name, String textTask, Integer groupId) throws ParseException {
-        TaskGroup taskGroup = groupModel.getTaskGroup(groupId);
+    private Boolean messageStatus = false;
+
+    public void init(){
+        task = new Task();
+    }
+
+    public Boolean validate(){
+        return validateService.validate(task);
+    }
+
+
+    public void addTask(){
         Date date = new Date();
-        Task newTask = new Task(name, textTask, taskGroup, date);
-        taskService.addTask(newTask);
+        task.setDateIn(date);
+        taskService.addTask(task);
+        messageStatus = true;
+        init();
     }
 
-    public String getMessage() {
-        return message;
+    public Task getTask() {
+        return task;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+    public Boolean getMessageStatus() {
+        return messageStatus;
+    }
+
+    public void setMessageStatus(Boolean messageStatus) {
+        this.messageStatus = messageStatus;
     }
 }

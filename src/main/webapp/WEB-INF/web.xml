@@ -79,13 +79,23 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>viewController</servlet-name>
-        <servlet-class>com.bpmw.web.controllers.view.ViewController</servlet-class>
+        <servlet-name>listViews</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.view.ListViewsController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>viewController</servlet-name>
-        <url-pattern>/viewController</url-pattern>
+        <servlet-name>listViews</servlet-name>
+        <url-pattern>/listViews</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewDetails</servlet-name>
+        <servlet-class>com.bpmw.web.controllers.view.ViewDetailsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewDetails</servlet-name>
+        <url-pattern>/viewDetails</url-pattern>
     </servlet-mapping>
 
     <servlet>

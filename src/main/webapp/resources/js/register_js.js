@@ -1,3 +1,4 @@
+$(function() {
 var login,
     email,
     password,
@@ -113,4 +114,5 @@ $(function() {
       $("#submit").attr("disabled","disabled");
     }
   }
+});
 });

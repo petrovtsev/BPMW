@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -14,9 +15,10 @@ import java.util.Set;
 @NamedQueries(value = {
         @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t"),
         @NamedQuery(name = "Task.findTaskUser", query = "SELECT t FROM Task t WHERE t.taskGroup.id = :idGroup"),
-        @NamedQuery(name = "Task.findTaskUserQuery", query = "SELECT t FROM Task t WHERE t.taskGroup.id = :idGroup AND t.dateIn > :dateStart"),
+        @NamedQuery(name = "Task.findTaskUserQuery", query = "SELECT t FROM Task t WHERE t.taskGroup.id = :idGroup AND " +
+                "(t.dateIn > :dateStart AND t.dateIn < :dateEnd)"),
         @NamedQuery(name = "Task.findStatisticData", query = "SELECT t.dateComplet, COUNT(t.userComplet), t.id FROM Task t " +
-                "WHERE t.userComplet.login = :login GROUP BY t.dateComplet ORDER BY t.dateComplet")
+                "WHERE t.userComplet.login = :login AND t.dateComplet > :dateComplete GROUP BY t.dateComplet ORDER BY t.dateComplet")
 })
 public class Task {
 
@@ -26,10 +28,12 @@ public class Task {
 
     @Column(name = "NAME")
     @NotNull(message = "Field can bot be empty. Enter a name for the problem.")
+    @Size(min = 3, message = "Name task length can not be less than three characters.")
     private String name;
 
     @Column(name = "TEXT")
     @NotNull(message = "Field can bot be empty. Enter a description of the problem.")
+    @Size(min = 3, message = "Text task length can not be less than three characters.")
     private String textTask;
 
     @ManyToOne

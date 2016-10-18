@@ -1,10 +1,15 @@
 package com.bpmw.web.controllers.task;
 
+import com.bpmw.persistence.User;
+import com.bpmw.web.controllers.user.LoginController;
 import com.bpmw.web.model.task.TaskDetailsModel;
 import com.bpmw.web.model.task.TaskListModel;
 import com.bpmw.web.model.user.UserModel;
+import com.bpmw.web.model.view.ListViewsModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,40 +18,59 @@ import java.io.IOException;
 
 public class TaskDetailsController extends HttpServlet{
 
-    @EJB
+    private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    @Inject
     private TaskListModel taskModel;
 
-    @EJB
+    @Inject
     private TaskDetailsModel taskDetailsModel;
 
-    @EJB
+    @Inject
+    private ListViewsModel listViewModel;
+
+    @Inject
     private UserModel userModel;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        Integer taskId = 0;
+            throws ServletException, IOException {
         try {
+            Integer taskId;
             taskId = Integer.valueOf(request.getParameter("task_id"));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        if (taskId != 0){
-            taskDetailsModel.setSelectedTask(taskModel.getTask(taskId));
-            taskModel.returnUserTasks(request.getUserPrincipal().getName());
-            request.getRequestDispatcher("WEB-INF/pages/task_details.jsp").forward(request,response);
+            if (taskId != 0) {
+                taskDetailsModel.setSelectedTask(taskModel.getTask(taskId));
+                taskModel.returnUserTasks(request.getUserPrincipal().getName());
+                request.getRequestDispatcher("WEB-INF/pages/task_details.jsp").forward(request, response);
+            }
+        } catch (ServletException ex) {
+            logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
         }
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer idTask = Integer.valueOf(request.getParameter("taskId"));
-        String login = request.getUserPrincipal().getName();
-        taskDetailsModel.closeTask(idTask, login, request.getParameter("comment"));
-        userModel.returnViewsActiveUser(login);
-        taskModel.returnUserTasks(login);
-        request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
+        try {
+            Integer taskId = Integer.valueOf(request.getParameter("taskId"));
+            String login = request.getUserPrincipal().getName();
+            User user = userModel.getUser(login);
+            taskDetailsModel.getTask(taskId);
+
+            taskDetailsModel.getSelectedTask().setComment(request.getParameter("comment"));
+            taskDetailsModel.getSelectedTask().setUserComplet(user);
+
+            taskDetailsModel.closeTask();
+
+            listViewModel.returnViewsActiveUser(login);
+            taskModel.returnUserTasks(login);
+            request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
+        } catch (ServletException ex) {
+            logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
+        }
     }
 }

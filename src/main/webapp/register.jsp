@@ -6,7 +6,10 @@
 <head>
     <title>Register</title>
     <link href="resources/css/login.css" rel="stylesheet" type="text/css" />
+    <link href="resources/css/components.css" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="resources/js/register_js.js"></script>
 </head>
 <body>

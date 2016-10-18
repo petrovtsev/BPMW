@@ -21,13 +21,13 @@
             </a>
         </li>
         <li>
-            <a href="statisticTask">
+            <a href="statisticTask?day=15">
                 <img src="${uri}/resources/icons/ic_show_chart_black.png" class="small_icon">
                 <label>Statistic</label>
             </a>
         </li>
         <li>
-            <a href="viewController">
+            <a href="listViews?action=allViews">
                 <img src="${uri}/resources/icons/ic_search_black.png" class="small_icon">
                 <label>Views</label>
             </a>

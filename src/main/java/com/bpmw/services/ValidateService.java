@@ -1,7 +1,6 @@
 package com.bpmw.services;
 
-import javax.ejb.Remove;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -15,14 +14,13 @@ import java.util.Set;
  * Created by ppetr on 16.10.2016.
  */
 
-@Stateless
+@RequestScoped
 @Named
 public class ValidateService {
 
     private List<String> errorList = new ArrayList<String>();
     private Boolean errorStatus = false;
 
-    @Remove
     public Boolean validate (Object object){
         errorList.clear();
         errorStatus = false;

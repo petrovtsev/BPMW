@@ -5,13 +5,9 @@ import com.bpmw.services.UserService;
 import com.bpmw.services.ValidateService;
 import com.bpmw.web.model.group.TaskGroupModel;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.*;
 
 /**
@@ -21,16 +17,16 @@ import java.util.*;
  */
 
 @Named
-@Stateless
+@RequestScoped
 public class RegisterModel {
 
-    @EJB
+    @Inject
     private UserService userService;
 
-    @EJB
+    @Inject
     private TaskGroupModel taskGroupModel;
 
-    @EJB
+    @Inject
     private ValidateService validateService;
 
     User user;
@@ -60,7 +56,6 @@ public class RegisterModel {
         }
         return message;
     }
-
 
     String errorMessage = "true";
 
