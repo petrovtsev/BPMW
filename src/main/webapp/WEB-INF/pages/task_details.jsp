@@ -22,33 +22,33 @@
         <form action="taskDetails" method="post">
             <table class="data-table">
                 <tr>
-                    <td class="col-right">Text:</td>
-                    <td>${taskDetailsModel.selectedTask.textTask}</td>
+                    <td class="col1">Text:</td>
+                    <td class="col2">${taskDetailsModel.selectedTask.textTask}</td>
                 </tr>
                 <tr>
-                    <td class="col-right">Date in:</td>
-                    <td>${taskDetailsModel.selectedTask.dateIn}</td>
+                    <td class="col1">Date in:</td>
+                    <td class="col2">${taskDetailsModel.selectedTask.dateIn}</td>
                 </tr>
 
                 <c:if test="${taskDetailsModel.selectedTask.userComplet.login != null}">
                     <tr>
-                        <td class="col-right">Date complete:</td>
-                        <td>${taskDetailsModel.selectedTask.dateComplet}</td>
+                        <td class="col1">Date complete:</td>
+                        <td class="col2">${taskDetailsModel.selectedTask.dateComplet}</td>
                     </tr>
                     <tr>
-                        <td class="col-right">User complete:</td>
-                        <td>${taskDetailsModel.selectedTask.userComplet.login}</td>
+                        <td class="col1">User complete:</td>
+                        <td class="col2">${taskDetailsModel.selectedTask.userComplet.login}</td>
                     </tr>
                     <tr>
-                        <td class="col-right">Comment:</td>
-                        <td>${taskDetailsModel.selectedTask.comment}</td>
+                        <td class="col1">Comment:</td>
+                        <td class="col2">${taskDetailsModel.selectedTask.comment}</td>
                     </tr>
                 </c:if>
 
                 <c:if test="${taskDetailsModel.selectedTask.userComplet.login == null}">
                     <tr>
-                        <td class="col-right">Comment</td>
-                        <td><input type="text" name="comment" class="input_text"></td>
+                        <td class="col1">Comment</td>
+                        <td class="col2"><input type="text" name="comment" class="input_text"></td>
                     </tr>
                 </c:if>
 

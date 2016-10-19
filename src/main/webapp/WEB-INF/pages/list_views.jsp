@@ -10,6 +10,7 @@
     <title>List views</title>
     <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
     <link href="${uri}/resources/css/components.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 <jsp:include page="templates/header.jsp"/>
@@ -23,23 +24,27 @@
         <table class="table">
             <tr>
                 <td class="col-center" width="40">id</td>
-                <td width="150">Name</td>
-                <td width="300">Date start</td>
+                <td width="400">Name</td>
+                <td width="100">Date start</td>
                 <td width="100">Date end</td>
-                <td width="100">Status complete</td>
+                <td width="300">Status complete</td>
+                <td width="50"> </td>
             </tr>
             <c:forEach var="view" items="#{listViewsModel.viewsActiveUser}">
                 <tr>
                     <td class="col-center">${view.id}</td>
                     <td><a class="list_ref" href="viewDetails?view_id=${view.id}">${view.name}</a></td>
-                    <td>${view.dateStart}</td>
-                    <td>${view.dateEnd}</td>
+                    <td>${view.strDateStart()}</td>
+                    <td>${view.strDateEnd()}</td>
                     <td>${view.statusComplete}</td>
                     <td><a href="listViews?action=del&idView=${view.id}"><img class="small_icon" src="${uri}/resources/icons/ic_delete_forever_black_24dp_2x.png"></a></td>
                 </tr>
             </c:forEach>
         </table>
     </div>
+</div>
+<div class="add_button_box">
+    <a href="viewDetails?view_id=new"><img class="add_button" src="${uri}/resources/icons/ic_add_black.png"></a>
 </div>
 </body>
 </html>

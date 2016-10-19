@@ -1,32 +1,36 @@
 body {background:lightgray}
 
-
 label {
     display: inline-block;
     width: 140px;
     text-align: right;
     margin-bottom: 10px;
 }
+
 span {
     display: inline-block;
     width: 130px;
     text-align: left;
     margin-bottom: 10px;
 }
+
 .header {
     width: 100%;
     height: 80px;
     background: black;
     box-shadow: 4px 7px 17px 1px #999999;
 }
+
 .pages {
 }
+
 .data-table{
     border: 0px;
     text-align: right;
     margin-left: 10%;
     color: black;
 }
+
 .content {
     margin-left:10px;
     width: 80%;
@@ -36,6 +40,7 @@ span {
     float:left;
     box-shadow: 4px 7px 17px 1px #000000;
 }
+
 .login {
     text-align: center;
     padding: 20px;
@@ -44,6 +49,7 @@ span {
     font-weight: bold;
     color: rgb(68,68,68);
 }
+
 .authorization {
     width:500px;
     margin: 0 auto;
@@ -65,6 +71,7 @@ span {
     box-shadow: 1px 1px 14px 2px #ff1213;
     border-radius: 3px;
 }
+
 .inputRed{
     width: 100%;
     padding: 5px 10px;
@@ -72,6 +79,7 @@ span {
     border: none;
     border-bottom: 2px solid red;
 }
+
 .inputGreen{
     width: 100%;
     padding: 5px 10px;
@@ -79,6 +87,7 @@ span {
     border: none;
     border-bottom: 2px solid green;
 }
+
 .select-box {
     background-color: white;
     border: none;
@@ -96,6 +105,7 @@ span {
     font-size: 13px;
     cursor: pointer;
 }
+
 .select-box:hover{
     border-bottom: 2px solid deeppink;
 }

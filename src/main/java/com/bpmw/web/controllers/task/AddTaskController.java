@@ -47,6 +47,7 @@ public class AddTaskController extends HttpServlet{
             addTaskModel.getTask().setTaskGroup(taskGroup);
 
             if (addTaskModel.validate()){
+                messageService.addMessage("Error. Try again.");
                 RequestDispatcher Dispatcher = getServletContext().getRequestDispatcher("/add_task.jsp");
                 Dispatcher.forward(request, response);
             } else {

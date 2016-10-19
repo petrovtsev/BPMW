@@ -23,7 +23,7 @@
             <hr>
             <table class="data-table-account">
                 <tr>
-                    <td class="col-right" width="150">Login: </td>
+                    <td class="col-right" width=90">Login: </td>
                     <td width="250"><input class="input_text" value="${userModel.activeUser.login}"/></td>
                     <td><img class="small_icon" src="${uri}/resources/icons/ic_account_black.png"></td>
                 </tr>
@@ -65,6 +65,7 @@
         </form>
         <br><br>
         <div class="side-button">
+            <jsp:include page="templates/error_message.jsp"/>
             <button type="button" class="button" name="back" onclick="history.back()">Back</button>
             <button id="myBtn" class="button">Delete</button>
 
@@ -75,13 +76,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <span class="close">x</span>
-                        <h2>Authorization</h2>
+                        <h3>Enter your password</h3>
                     </div>
                     <div class="modal-body">
                         <form action="userController" method="post">
-                        <p>Input password</p><br>
-                        <input style="text-align: center" class="input_text" type="password" id="password" name="password"><br><br>
+                            <br>
                         <div class="side-button">
+                            <input style="text-align: center" class="input_text" type="password" id="password" name="password"><br><br>
                             <button class="button" type="submit">Delete</button>
                             <button type="button" class="button" name="back" onclick="history.back()">Back</button>
                         </div>

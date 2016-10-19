@@ -10,7 +10,7 @@
     </c:if>
     <c:if test="${req.userPrincipal.name != null}">
         <a href="tasksList"><img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; width: 17%"/></a>
-        <a style="margin-left: 47%; margin-top: 12px" href="userController?name=${req.userPrincipal.name}">
+        <a style="margin-left: 50%; margin-top: 12px" href="userController?name=${req.userPrincipal.name}">
         <img src="${uri}/resources/icons/ic_account_white.png" style="width: 3%; margin-top: 2px">
     </a>
     </c:if>

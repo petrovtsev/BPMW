@@ -5,10 +5,12 @@
 <!DOCTYPE HTML>
 
 <div class="menu">
-    <form action="tasksList" method="post">
-        <a href="userController" class="list_ref" style="margin-left: 15%;
-        display: inline-block; margin-top: 8px; width: 15%">User name: ${req.userPrincipal.name}</a>
-        <input class="input_text" placeholder="input task name" style="margin-top: 8px; margin-left: 8.5%; width: 24%; text-align: center"  value="">
-        <a href="loginController?action=logout" style="margin-left: 10.3%; width: 7%; height: 12px; margin-top: 8px" class="button">Exit</a>
-    </form>
+    <div class="menu-nav">
+        <ul>
+            <li><a href="userController">Account</a></li>
+            <li><a href="tasksList">Task List</a></li>
+            <li><a href="statisticTask?day=15">Statistic</a></li>
+            <li style="float:right"><a href="loginController?action=logout">Exit</a></li>
+        </ul>
+    </div>
 </div>

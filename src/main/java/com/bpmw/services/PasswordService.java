@@ -3,13 +3,17 @@ package com.bpmw.services;
 import javax.enterprise.context.RequestScoped;
 import java.security.MessageDigest;
 
+/**
+ * Class is used to create a password hash.
+ */
 @RequestScoped
 public class PasswordService {
 
     /**
-     * The method generates a hash of the password (SHA256)
-     * @param pass - password
-     * @return - password hash (SHA-256)
+     * The method generates a hash of the password (SHA256).
+     * It takes a parameter of type String and returns a hash.
+     * @param pass - password (type String).
+     * @return - password hash (SHA-256).
      */
     public String passwordHash (String pass) {
         try{

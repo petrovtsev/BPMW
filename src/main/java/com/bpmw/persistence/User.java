@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -116,8 +117,9 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getDateBirth() {
-        return dateBirth;
+    public String getDateBirth() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(dateBirth);
     }
 
     public void setDateBirth(Date dateBirth) {

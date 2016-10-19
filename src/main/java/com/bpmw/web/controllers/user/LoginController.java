@@ -37,9 +37,15 @@ public class LoginController extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        request.logout();
-        messageService.addMessage("Session successfully closed");
-        request.getRequestDispatcher("login.jsp").forward(request,response);
+        try{
+            request.logout();
+            messageService.addMessage("Session successfully closed");
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+        } catch (ServletException ex) {
+            logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
+        }
     }
 
     @Override
@@ -61,8 +67,10 @@ public class LoginController extends HttpServlet{
                 messageService.addMessage("Welcome " + login + "!");
                 request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
             }
-        } catch (ServletException ex){
+        } catch (ServletException ex) {
             logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
         }
     }
 }

@@ -17,7 +17,7 @@ import java.util.Set;
         @NamedQuery(name = "Task.findTaskUser", query = "SELECT t FROM Task t WHERE t.taskGroup.id = :idGroup"),
         @NamedQuery(name = "Task.findTaskUserQuery", query = "SELECT t FROM Task t WHERE t.taskGroup.id = :idGroup AND " +
                 "(t.dateIn > :dateStart AND t.dateIn < :dateEnd)"),
-        @NamedQuery(name = "Task.findStatisticData", query = "SELECT t.dateComplet, COUNT(t.userComplet), t.id FROM Task t " +
+        @NamedQuery(name = "Task.findStatisticData", query = "SELECT t.dateComplet, COUNT(t.userComplet) FROM Task t " +
                 "WHERE t.userComplet.login = :login AND t.dateComplet > :dateComplete GROUP BY t.dateComplet ORDER BY t.dateComplet")
 })
 public class Task {

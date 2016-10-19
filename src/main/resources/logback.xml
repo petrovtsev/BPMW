@@ -2,6 +2,8 @@
 <configuration>
     <!--Аппендеры -->
     <!--Файловый аппендер -->
+    <property name="DEV_HOME" value="C:/LOG" />
+
     <appender name="file" class="ch.qos.logback.core.FileAppender">
         <file>log.log</file>
         <layout class="ch.qos.logback.classic.PatternLayout">

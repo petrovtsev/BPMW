@@ -2,6 +2,20 @@ textarea:focus, input:focus{
     outline: none;
 }
 
+.add_button_box {
+    position: absolute;
+    right:12%;
+    bottom: 10%;
+}
+
+.add_button {
+    width: 40%;
+}
+
+.add_button:hover{
+    display: block;
+}
+
 .message_box{
     position: absolute;
     right:8px;

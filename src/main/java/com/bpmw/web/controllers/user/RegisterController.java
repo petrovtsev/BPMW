@@ -3,8 +3,11 @@ package com.bpmw.web.controllers.user;
 import com.bpmw.services.MessageService;
 import com.bpmw.services.PasswordService;
 import com.bpmw.services.ValidateService;
+import com.bpmw.web.controllers.task.TaskListRequestContriller;
 import com.bpmw.web.model.group.TaskGroupModel;
 import com.bpmw.web.model.user.RegisterModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -17,6 +20,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class RegisterController extends HttpServlet{
+
+    private static  final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 
     @Inject
     private RegisterModel registerModel;
@@ -69,12 +74,14 @@ public class RegisterController extends HttpServlet{
                 messageService.addMessage("Registration completed.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-        } catch (ServletException ex){
-
-            request.getRequestDispatcher("error_login.jsp");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         request.getRequestDispatcher("error_login.jsp");
+
+        } catch (ServletException ex) {
+            logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
+        } catch (ParseException e) {
+            logger.error("Parse error", e);
+        }
     }
 }

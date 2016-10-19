@@ -43,18 +43,27 @@
                 <tr>
                     <td class="col-right">Date: </td>
                     <td>
-                        <input name="dateStart" class="input_text" type="date" value="${viewDetailsModel.selectedView.dateStart}"/>
-                        <input name="dateEnd"  class="input_text" type="date" value="${viewDetailsModel.selectedView.dateEnd}"/>
+                        <input name="dateStart" class="input_text" type="date" value="${viewDetailsModel.selectedView.strDateStart()}"/>
+                        <input name="dateEnd"  class="input_text" type="date" value="${viewDetailsModel.selectedView.strDateStart()}"/>
                     </td>
                 </tr>
             </table>
             <br>
             <div class="side-button">
+
+                <jsp:include page="templates/error_message.jsp"/>
+
                 <button type="button" class="button" name="back" onclick="history.back()">Back</button>
-                <button type="submit" class="button" >Save</button>
+
                 <c:if test="${viewDetailsModel.selectedView.id != null}">
-                    <a href="listViews?action=del&idView=${viewDetailsModel.selectedView.id}" class="button">Delete</a>
+                    <a href="listViews?action=del&idView=${viewDetailsModel.selectedView.id}" class="button-fix">Delete</a>
                 </c:if>
+
+                <c:if test="${viewDetailsModel.selectedView.id == null}">
+                    <button type="reset" class="button" >Reset</button>
+                </c:if>
+
+                <button type="submit" class="button" >Save</button>
             </div>
         </form>
     </div>

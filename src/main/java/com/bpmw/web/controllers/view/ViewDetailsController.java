@@ -2,10 +2,13 @@ package com.bpmw.web.controllers.view;
 
 import com.bpmw.persistence.User;
 import com.bpmw.services.MessageService;
+import com.bpmw.web.controllers.user.UserController;
 import com.bpmw.web.model.task.TaskListModel;
 import com.bpmw.web.model.user.UserModel;
 import com.bpmw.web.model.view.ListViewsModel;
 import com.bpmw.web.model.view.ViewDetailsModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -17,6 +20,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class ViewDetailsController extends HttpServlet{
+
+    private static  final Logger logger = LoggerFactory.getLogger(ViewDetailsController.class);
 
     @Inject
     private TaskListModel taskModel;
@@ -79,11 +84,12 @@ public class ViewDetailsController extends HttpServlet{
                 taskModel.returnUserTasks(login);
                 request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
             }
-        } catch (ServletException ex){
-            request.getRequestDispatcher("error_login.jsp");
+        } catch (ServletException ex) {
+            logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error("Parse error", e);
         }
-        request.getRequestDispatcher("error_login.jsp");
     }
 }

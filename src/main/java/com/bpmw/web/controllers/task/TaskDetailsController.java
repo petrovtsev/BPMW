@@ -1,6 +1,7 @@
 package com.bpmw.web.controllers.task;
 
 import com.bpmw.persistence.User;
+import com.bpmw.services.MessageService;
 import com.bpmw.web.controllers.user.LoginController;
 import com.bpmw.web.model.task.TaskDetailsModel;
 import com.bpmw.web.model.task.TaskListModel;
@@ -18,7 +19,7 @@ import java.io.IOException;
 
 public class TaskDetailsController extends HttpServlet{
 
-    private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static  final Logger logger = LoggerFactory.getLogger(TaskDetailsController.class);
 
     @Inject
     private TaskListModel taskModel;
@@ -31,6 +32,9 @@ public class TaskDetailsController extends HttpServlet{
 
     @Inject
     private UserModel userModel;
+
+    @Inject
+    private MessageService messageService;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +70,7 @@ public class TaskDetailsController extends HttpServlet{
 
             listViewModel.returnViewsActiveUser(login);
             taskModel.returnUserTasks(login);
+            messageService.addMessage("Task №" + taskId + " is closed.");
             request.getRequestDispatcher("WEB-INF/pages/inbox.jsp").forward(request, response);
         } catch (ServletException ex) {
             logger.error("Servlet error", ex);

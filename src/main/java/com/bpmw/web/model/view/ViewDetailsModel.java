@@ -8,6 +8,8 @@ import com.bpmw.web.model.user.UserModel;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author ppetr
@@ -30,6 +32,9 @@ public class ViewDetailsModel {
 
     public void init(){
         selectedView = new View();
+        Date date = new Date();
+        selectedView.setDateStart(date);
+        selectedView.setDateEnd(date);
     }
 
     public Boolean validate(){

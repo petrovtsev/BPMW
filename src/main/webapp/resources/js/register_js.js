@@ -1,12 +1,12 @@
 $(function() {
-var login,
-    email,
-    password,
-    password2,
-    loginStat,
-    emailStat,
-    passwordStat,
-    password2Stat;
+  var login,
+      email,
+      password,
+      password2,
+      loginStat,
+      emailStat,
+      passwordStat,
+      password2Stat;
 
 $(function() {
   // Checking login

@@ -1,6 +1,5 @@
 package com.bpmw.web.controllers.task;
 
-import com.bpmw.web.controllers.user.LoginController;
 import com.bpmw.web.model.task.StaticticTaskModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,7 @@ import java.io.IOException;
 
 public class StaticticTaskController extends HttpServlet{
 
-    private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static  final Logger logger = LoggerFactory.getLogger(StaticticTaskController.class);
 
     @Inject
     private StaticticTaskModel staticticTaskModel;
@@ -28,7 +27,7 @@ public class StaticticTaskController extends HttpServlet{
             throws ServletException, IOException {
         try {
             Integer day = Integer.valueOf(request.getParameter("day"));
-            staticticTaskModel.getDataGraph(request.getUserPrincipal().getName(), day);
+            staticticTaskModel.fillDataGraph(request.getUserPrincipal().getName(), day);
             request.getRequestDispatcher("WEB-INF/pages/statistic.jsp").forward(request, response);
         } catch (ServletException ex){
             logger.error("Servlet error", ex);

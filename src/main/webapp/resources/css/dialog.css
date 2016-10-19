@@ -3,7 +3,7 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 25%; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -20,9 +20,8 @@
     background-color: #fefefe;
     margin: auto;
     padding: 0;
-    border: 1px solid #888;
-    width: 500px;
-    box-shadow: 1px 1px 17px 1px white;
+    width: 30%;
+    box-shadow: 4px 7px 17px 1px #999999;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -31,12 +30,12 @@
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
+    from {top:-30%; opacity:0}
     to {top:0; opacity:1}
 }
 
 @keyframes animatetop {
-    from {top:-300px; opacity:0}
+    from {top:-30%; opacity:0}
     to {top:0; opacity:1}
 }
 
@@ -49,7 +48,7 @@
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: deeppink;
     text-decoration: none;
     cursor: pointer;
 }

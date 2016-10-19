@@ -59,29 +59,6 @@ public class RegisterModel {
 
     String errorMessage = "true";
 
-    public String userDataCheck(User user) {
-        StringBuffer message = new StringBuffer();
-        Boolean check = false;
-        if (checkingLogin(user.getLogin()) == "false") {
-            check = true;
-            message.append("Username is not available.\n");
-        }
-        if (taskGroupModel.getTaskGroup(user.getTaskGroup().getId()) == null) {
-            check = true;
-            message.append("Groups do not exist.\n");
-        }
-        Date date = new Date();
-        if (date.before(user.getDateBirth())) {
-            check = true;
-            message.append("Date of birth is incorrect.\n");
-        }
-        if (check) {
-            errorMessage = message.toString();
-            return message.toString();
-        } else
-            return "true";
-    }
-
     public String getErrorMessage() {
         return errorMessage;
     }

@@ -5,6 +5,8 @@ import com.bpmw.services.MessageService;
 import com.bpmw.services.PasswordService;
 import com.bpmw.web.model.task.TaskListModel;
 import com.bpmw.web.model.user.UserModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import java.io.IOException;
 
 public class UserController extends HttpServlet {
 
+    private static  final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Inject
     private UserModel userModel;
@@ -31,15 +34,22 @@ public class UserController extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
         taskModel.returnUserTasks(request.getUserPrincipal().getName());
         userModel.getUser(request.getUserPrincipal().getName());
         request.getRequestDispatcher("WEB-INF/pages/personal_area.jsp").forward(request, response);
+        } catch (ServletException ex) {
+            logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
+        }
     }
 
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
         String login = request.getUserPrincipal().getName();
         String password = passwordService.passwordHash(request.getParameter("password"));
         User user = userModel.getUser(login);
@@ -50,6 +60,11 @@ public class UserController extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             request.getRequestDispatcher("WEB-INF/pages/personal_area.jsp").forward(request, response);
+        }
+        } catch (ServletException ex) {
+            logger.error("Servlet error", ex);
+        } catch (IOException ex) {
+            logger.error("Input text error", ex);
         }
     }
 }

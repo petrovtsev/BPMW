@@ -11,16 +11,33 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by ppetr on 16.10.2016.
+ * The class is used to check the data obtained in accordance with the job requirements
+ * and displays the information in the case to inadequate.
  */
-
 @RequestScoped
 @Named
 public class ValidateService {
 
+    /**
+     * @param errorList - it contains a list of messages.
+     */
     private List<String> errorList = new ArrayList<String>();
+
+    /**
+     * @param errorStatus - the parameter is used for information
+     *                  about the presence of messages to the user.
+     */
     private Boolean errorStatus = false;
 
+    /**
+     * The method used to check the data obtained in accordance with the requirements specification.
+     * It receives as a parameter an object (entity). In the case of detected errors
+     * makes any appropriate entry in the error list.
+     * Returns A Boolean value of the test result. (False if no errors).
+     * As well as changing the value of a parameter error Status.
+     * @param object - object (entity)
+     * @return - A Boolean value (true if there were errors or false if no errors)
+     */
     public Boolean validate (Object object){
         errorList.clear();
         errorStatus = false;
