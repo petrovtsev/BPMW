@@ -47,7 +47,7 @@ public class TaskService {
      * As the parameters takes TaskGroup object and object request.
      * @param taskGroup - object (Task Group).
      * @param view - object (View). The object contains the parameters necessary for the database query.
-     * @return
+     * @return - list task.
      */
     public List<Task> returTasksQuery(TaskGroup taskGroup, View view){
         Query query = em.createNamedQuery("Task.findTaskUserQuery", Task.class);

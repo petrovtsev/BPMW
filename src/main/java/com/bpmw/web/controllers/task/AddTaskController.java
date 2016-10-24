@@ -1,6 +1,9 @@
 package com.bpmw.web.controllers.task;
 
+import com.bpmw.persistence.Task;
 import com.bpmw.persistence.TaskGroup;
+import com.bpmw.persistence.User;
+import com.bpmw.services.InitializationObjectService;
 import com.bpmw.services.MessageService;
 import com.bpmw.web.controllers.user.LoginController;
 import com.bpmw.web.model.group.TaskGroupModel;
@@ -15,7 +18,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Map;
 
+/**
+ * The servlet is used to add new tasks
+ */
 public class AddTaskController extends HttpServlet{
 
     private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -27,24 +35,31 @@ public class AddTaskController extends HttpServlet{
     private TaskGroupModel groupModel;
 
     @Inject
+    private InitializationObjectService initializationObjectService;
+
+    @Inject
     MessageService messageService;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-    }
-
+    /**
+     * Method receives the necessary data, verifies the data.
+     * If the data is entered correctly creates a new task, otherwise displays
+     * a message to the user with information about the existing error.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             addTaskModel.init();
 
-            addTaskModel.getTask().setName(request.getParameter("name"));
-            addTaskModel.getTask().setTextTask(request.getParameter("text"));
-            Integer groupId = Integer.valueOf(request.getParameter("groupId"));
-            TaskGroup taskGroup = groupModel.getTaskGroup(groupId);
-            addTaskModel.getTask().setTaskGroup(taskGroup);
+            Task task = new Task();
+            Map<String, String[]> parameters = request.getParameterMap();
+            task = (Task) initializationObjectService.createObject(parameters, task);
+
+            addTaskModel.setTask(task);
 
             if (addTaskModel.validate()){
                 messageService.addMessage("Error. Try again.");
@@ -61,6 +76,12 @@ public class AddTaskController extends HttpServlet{
             logger.error("Servlet error", ex);
         } catch (IOException ex){
             logger.error("Input text error", ex);
+        } catch (IllegalAccessException e) {
+            logger.error("Access error", e);
+        } catch (ParseException e) {
+            logger.error("Parse error", e);
+        } catch (NoSuchFieldException e) {
+            logger.error("No such field", e);
         }
     }
 }

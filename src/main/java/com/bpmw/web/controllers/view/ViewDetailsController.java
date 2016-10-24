@@ -1,8 +1,9 @@
 package com.bpmw.web.controllers.view;
 
 import com.bpmw.persistence.User;
+import com.bpmw.persistence.View;
+import com.bpmw.services.InitializationObjectService;
 import com.bpmw.services.MessageService;
-import com.bpmw.web.controllers.user.UserController;
 import com.bpmw.web.model.task.TaskListModel;
 import com.bpmw.web.model.user.UserModel;
 import com.bpmw.web.model.view.ListViewsModel;
@@ -18,7 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
+/**
+ * The class is used to work with the selected user to view.
+ */
 public class ViewDetailsController extends HttpServlet{
 
     private static  final Logger logger = LoggerFactory.getLogger(ViewDetailsController.class);
@@ -38,6 +43,18 @@ public class ViewDetailsController extends HttpServlet{
     @Inject
     private MessageService messageService;
 
+    @Inject
+    private InitializationObjectService initializationObjectService;
+
+    /**
+     * The method takes a parameter task_id,
+     * if the parameter is equal to the value of 'new' open view detail page to create a new view.
+     * In the case of a specified viewing rooms, receives the necessary data and opens the page view.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
@@ -53,21 +70,26 @@ public class ViewDetailsController extends HttpServlet{
         }
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             String login = request.getUserPrincipal().getName();
-            User user = userModel.getUser(login);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
+            userModel.getUser(login);
             viewDetailsModel.init();
 
-            viewDetailsModel.getSelectedView().setName(request.getParameter("name"));
-            viewDetailsModel.getSelectedView().setDateStart(dateFormat.parse(request.getParameter("dateStart")));
-            viewDetailsModel.getSelectedView().setDateEnd(dateFormat.parse(request.getParameter("dateEnd")));
-            viewDetailsModel.getSelectedView().setStatusComplete(request.getParameter("statusComplete"));
-            viewDetailsModel.getSelectedView().setUser(user);
+            View view = new View();
+            Map<String, String[]> parameters = request.getParameterMap();
+            view = (View) initializationObjectService.createObject(parameters, view);
+
+            viewDetailsModel.setSelectedView(view);
 
             if(viewDetailsModel.validate()){
                 messageService.addMessage("Error. Try again.");
@@ -90,6 +112,10 @@ public class ViewDetailsController extends HttpServlet{
             logger.error("Input text error", ex);
         } catch (ParseException e) {
             logger.error("Parse error", e);
+        } catch (NoSuchFieldException e) {
+            logger.error("No such field", e);
+        } catch (IllegalAccessException e) {
+            logger.error("Illegal access", e);
         }
     }
 }

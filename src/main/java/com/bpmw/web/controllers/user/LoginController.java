@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The class is used for user authentication.
+ */
 public class LoginController extends HttpServlet{
 
     private static  final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -34,6 +37,14 @@ public class LoginController extends HttpServlet{
     @Inject
     private MessageService messageService;
 
+    /**
+     * The method is for the user to log off and close of the session.
+     * After finalizing sends a 'login' page.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
@@ -48,6 +59,16 @@ public class LoginController extends HttpServlet{
         }
     }
 
+    /**
+     * The method is used for user authentication.
+     * Gets the parameters username and password with the password hash of the password service receives,
+     * checks the validity of entered data and if the data is correct directs to a page view tasks.
+     * Otherwise, it displays a message with the error data.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

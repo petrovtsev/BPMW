@@ -60,12 +60,13 @@ public class User {
             "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
             "+(?:[a-zA-Z]){2,}\\.?)$",
             message = "Invalid email format")
-    private String mail;
+    private String email;
 
     public User() {
     }
 
-    public User(String login, String password, String firstName, String lastName, Date dateBirth, String city, TaskGroup taskGroup, String phone, String mail) {
+    public User(String login, String password, String firstName, String lastName,
+                Date dateBirth, String city, TaskGroup taskGroup, String phone, String email) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
@@ -74,7 +75,7 @@ public class User {
         this.city = city;
         this.taskGroup = taskGroup;
         this.phone = phone;
-        this.mail = mail;
+        this.email = email;
     }
 
     public String getLogin() {
@@ -119,7 +120,9 @@ public class User {
 
     public String getDateBirth() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(dateBirth);
+        if (dateBirth != null) {
+            return dateFormat.format(dateBirth);
+        } else return null;
     }
 
     public void setDateBirth(Date dateBirth) {
@@ -142,11 +145,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

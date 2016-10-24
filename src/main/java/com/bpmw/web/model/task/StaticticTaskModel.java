@@ -1,6 +1,5 @@
 package com.bpmw.web.model.task;
 
-import com.bpmw.persistence.User;
 import com.bpmw.services.TaskService;
 import com.bpmw.services.UserService;
 
@@ -10,6 +9,9 @@ import javax.inject.Named;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * The class used to obtain statistics on the implementation of tasks.
+ */
 @Named
 @RequestScoped
 public class StaticticTaskModel {
@@ -20,21 +22,19 @@ public class StaticticTaskModel {
     @Inject
     private UserService userService;
 
-//    public void ssss(Integer day){
-//        List<User> userList = userService.returnAllUsers();
-//        String[] usersArr = new String[userList.size()+1];
-//        usersArr[0] = "Date";
-//        for (int i = 0; i < userList.size(); i++){
-//            usersArr[i+0] = userList.get(0).getLogin();
-//        }
-//        String[][] statisticData = new String[day][userList.size()];
-//        for (int i = 0; i < day; i++){
-//            fillDataGraph(usersArr[i+1], day);
-//        }
-//    }
-
+    /**
+     * A collection that contains the values of the user statistics.
+     * The key is the date, the value of the number of completed tasks.
+     */
     private Map dataGraph = new LinkedHashMap<String, Integer>();
 
+    /**
+     * The method of assigning her to fill the collection as a key date on the right kolichstvo days.
+     * The values of leaves blank.
+     * The parameter accepts:
+     * @param day - the number of days required.
+     * @return - the collection is filled with keys.
+     */
     public Map fillCalendar(Integer day) {
         Map graph = new  LinkedHashMap<Date, Integer>();
         Date date = new Date();
@@ -52,6 +52,14 @@ public class StaticticTaskModel {
         return graph;
     }
 
+    /**
+     * Takes method:
+     * @param login - user login.
+     * @param day - the number of days required.
+     *
+     * And sends the data to the service received
+     * from the completed statistical data collection and assigns it dataGraf.
+     */
     public void fillDataGraph (String login, Integer day){
         Date date = new Date();
         Calendar c = Calendar.getInstance();

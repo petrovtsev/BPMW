@@ -9,6 +9,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
 
+/**
+ * The class is used to add new tasks.
+ */
 @Named
 @RequestScoped
 public class AddTaskModel {
@@ -19,24 +22,34 @@ public class AddTaskModel {
     @Inject
     private ValidateService validateService;
 
+    /**
+     * The new task
+     */
     private Task task;
 
-    private Boolean messageStatus = false;
-
+    /**
+     * The method initializes the object.
+     */
     public void init(){
         task = new Task();
     }
 
+    /**
+     * Method to check the data and returns a Boolean value (true, in case of an error)
+     * @return - Boolean value.
+     */
     public Boolean validate(){
         return validateService.validate(task);
     }
 
 
+    /**
+     * The method fills the 'date of receipt' and create a new task.
+     */
     public void addTask(){
         Date date = new Date();
         task.setDateIn(date);
         taskService.addTask(task);
-        messageStatus = true;
         init();
     }
 
@@ -46,13 +59,5 @@ public class AddTaskModel {
 
     public void setTask(Task task) {
         this.task = task;
-    }
-
-    public Boolean getMessageStatus() {
-        return messageStatus;
-    }
-
-    public void setMessageStatus(Boolean messageStatus) {
-        this.messageStatus = messageStatus;
     }
 }

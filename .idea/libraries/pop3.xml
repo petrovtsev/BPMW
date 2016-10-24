@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pop3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../TEMP/javamail-1.4.5/lib/pop3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

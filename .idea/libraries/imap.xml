@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="imap">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../TEMP/javamail-1.4.5/lib/imap.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

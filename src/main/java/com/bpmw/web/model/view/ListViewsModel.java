@@ -9,9 +9,8 @@ import javax.inject.Named;
 import java.util.List;
 
 /**
- * @author ppetr
+ * The class is used to work with a list of views.
  */
-
 @Named
 @RequestScoped
 public class ListViewsModel {
@@ -19,12 +18,25 @@ public class ListViewsModel {
     @Inject
     private ViewService viewService;
 
+    /**
+     * List active user views.
+     */
     private List<View> viewsActiveUser;
 
+    /**
+     * The method used to remove the view.
+     * The parameter accepts:
+     * @param idView - id view.
+     */
     public void delView(Integer idView){
         viewService.delView(idView);
     }
 
+    /**
+     * The method takes all user views.
+     * The parameter accepts:
+     * @param login - username.
+     */
     public void returnViewsActiveUser(String login){
         viewsActiveUser = viewService.returnViewUser(login);
     }

@@ -2,6 +2,21 @@ textarea:focus, input:focus{
     outline: none;
 }
 
+input, textarea, select {
+    font-size: 14px;
+    font-family: serif;
+}
+
+button{
+    font-family: serif;
+    font-size: 13px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
 .add_button_box {
     position: absolute;
     right:12%;
@@ -37,7 +52,22 @@ textarea:focus, input:focus{
 
 .button {
     background-color: #555555;
-    width: 15%;
+    width: 275px;
+    height: 24px;
+    margin: 2px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.little_button{
+    background-color: #555555;
+    width: 150px;
     height: 26px;
     border: none;
     color: white;
@@ -48,6 +78,10 @@ textarea:focus, input:focus{
     display: inline-block;
     font-size: 13px;
     cursor: pointer;
+}
+
+.little_button:hover{
+    background-color: deeppink;
 }
 
 .button:hover {
@@ -64,7 +98,7 @@ textarea:focus, input:focus{
 
 .button-fix {
     background-color: #555555;
-    width: 100px;
+    width: 106px;
     height: 12px;
     border: none;
     color: white;
@@ -82,8 +116,18 @@ textarea:focus, input:focus{
 }
 
 .side-button{
-    margin-bottom: 10px;
-    text-align: center
+    margin: 10px;
+    text-align: center;
+}
+
+.error_bar{
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.error_bar li {
+    color: red;
+    font-size: 16px;
 }
 
 .input_text {
@@ -93,6 +137,7 @@ textarea:focus, input:focus{
     border: none;
     border-bottom: 2px solid #555555;
 }
+
 .input_text:hover {
     border-bottom: 2px solid deeppink;
 }
@@ -107,12 +152,12 @@ textarea:focus, input:focus{
     color: deeppink;
 }
 
-
 .small_icon{
     margin-left: 2%;
     margin-right: 5%;
     width: 18px;
 }
+
 .litel_icon{
     margin-right: 5%;
     width: 13px;
@@ -132,6 +177,7 @@ textarea:focus, input:focus{
 .selector li {
     float: right;
 }
+
 .selector li a {
     display: block;
     color: white;
@@ -142,4 +188,159 @@ textarea:focus, input:focus{
 
 .selector li a:hover {
     background-color: deeppink;
+}
+
+.authorization {
+    margin-top: 16%;
+    width:500px;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 210px;
+    font-size: 13px;
+    background: white;
+    box-shadow: 4px 7px 17px 1px #999999;
+    border-radius: 3px;
+}
+
+.authorization_data {
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+}
+
+.input_text_auth {
+    width: 275px;
+    text-align: center;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #555555;
+}
+.input_text_auth:hover {
+    border-bottom: 2px solid deeppink;
+}
+
+.add_task{
+    width:500px;
+    height-min: 210px;
+    margin-top: 12%;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 210px;
+    font-size: 13px;
+    background: white;
+    box-shadow: 4px 7px 17px 1px #999999;
+    border-radius: 3px;
+}
+
+.add_task_data {
+    text-align: center;
+    padding: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+}
+
+.input_text_add {
+    width: 265px;
+    text-align: left;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #555555;
+}
+
+.input_text_add:hover {
+    border-bottom: 2px solid deeppink;
+}
+
+.register {
+    margin-top: 8%;
+    width:500px;
+    padding-top: 10px;
+    padding-bottom: 4px;
+    min-height: 210px;
+    height-min: 440px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 13px;
+    text-align:center;
+    background: white;
+    box-shadow: 4px 7px 17px 1px #999999;
+    border-radius: 3px;
+}
+
+.button_reg {
+    background-color: #555555;
+    width: 130px;
+    height: 24px;
+    margin: 1px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+}
+.button_reg:hover {
+    background-color: deeppink;
+}
+
+.button_reg:disabled{
+    background: grey;
+}
+
+.button:disabled:hover{
+    background: grey;
+}
+
+.button-fix_reg {
+    background-color: #555555;
+    width: 260px;
+    height: 18px;
+    margin: 2px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.button-fix_reg:hover {
+    background-color: deeppink;
+}
+
+.register_data {
+    text-align: left;
+    width:480px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left: 1px;
+    padding-bottom: 5px;
+
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+}
+
+.input_text_reg {
+    width: 170px;
+    text-align: left;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #555555;
+}
+.input_text_reg:hover {
+    border-bottom: 2px solid deeppink;
 }

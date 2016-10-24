@@ -6,10 +6,10 @@
 
 <c:if test="${validateService.errorStatus}">
     <hr>
-    <h3>Error</h3>
-    <c:forEach var="error" items="#{validateService.errorList}">
-        <br>
-        <li style="color: red">${error}<br><br></li>
-    </c:forEach>
-    <hr>
+    <div class="error_bar">
+        <h3>Error</h3>
+        <c:forEach var="error" items="#{validateService.errorList}">
+            <li>${error}<br></li>
+        </c:forEach>
+    </div>
 </c:if>

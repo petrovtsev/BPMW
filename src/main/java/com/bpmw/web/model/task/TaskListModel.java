@@ -11,6 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
 
+/**
+ * The class is used to work with a task list.
+ */
 @Named
 @RequestScoped
 public class TaskListModel {
@@ -27,31 +30,52 @@ public class TaskListModel {
     @Inject
     private ViewDetailsModel viewModel;
 
+    /**
+     * The selected task
+     */
     private Task selectedTask;
+
+    /**
+     * User tasks.
+     */
     private List<Task> userTasks;
+
+    /**
+     * Group of the user
+     */
     private TaskGroup taskGroup;
 
+    /**
+     * Method returns a list of all tasks of the base.
+     * @return - list all tasks of the base.
+     */
     public List<Task> returnAllTasks(){
         return taskService.returnAllTasks();
     }
 
+    /**
+     * Method returns a list of all tasks of the selected user.
+     * @param login - user login.
+     */
     public void returnUserTasks(String login){
         taskGroup = userModel.getUser(login).getTaskGroup();
         userTasks = taskService.returnUserTasks(taskGroup);
     }
 
-    public Task getTask(Integer id){
-        return taskService.getTask(id);
-    }
-
-    public void delTask(Integer id){
-        taskService.delTask(id);
-    }
-
+    /**
+     * The method receives a list of the tasks requested by the user.
+     * As the parameters takes:
+     * @param login - user login.
+     * @param viewId - id view.
+     */
     public void returTasksQuery(String login, Integer viewId){
         View view = viewModel.getView(viewId);
         taskGroup = userModel.getUser(login).getTaskGroup();
         userTasks = taskService.returTasksQuery(taskGroup, view);
+    }
+
+    public Task getTask(Integer id){
+        return taskService.getTask(id);
     }
 
     public Task getSelectedTask() {

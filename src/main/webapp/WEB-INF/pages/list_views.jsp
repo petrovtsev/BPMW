@@ -6,22 +6,29 @@
 <!DOCTYPE HTML>
 
 <html>
+
 <head>
     <title>List views</title>
     <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
     <link href="${uri}/resources/css/components.css" rel="stylesheet" type="text/css" />
 
 </head>
+
 <body>
+
 <jsp:include page="templates/header.jsp"/>
 <jsp:include page="templates/menu.jsp"/>
 <div class="pages">
+
     <jsp:include page="templates/sidebar-nav.jsp"/>
     <jsp:include page="templates/message.jsp"/>
     <div class="content">
+
         <h3>All views user ${req.userPrincipal.name}</h3>
         <hr>
+
         <table class="table">
+
             <tr>
                 <td class="col-center" width="40">id</td>
                 <td width="400">Name</td>
@@ -30,6 +37,7 @@
                 <td width="300">Status complete</td>
                 <td width="50"> </td>
             </tr>
+
             <c:forEach var="view" items="#{listViewsModel.viewsActiveUser}">
                 <tr>
                     <td class="col-center">${view.id}</td>
@@ -40,11 +48,17 @@
                     <td><a href="listViews?action=del&idView=${view.id}"><img class="small_icon" src="${uri}/resources/icons/ic_delete_forever_black_24dp_2x.png"></a></td>
                 </tr>
             </c:forEach>
+
         </table>
+
     </div>
+
 </div>
+
 <div class="add_button_box">
     <a href="viewDetails?view_id=new"><img class="add_button" src="${uri}/resources/icons/ic_add_black.png"></a>
 </div>
+
 </body>
+
 </html>

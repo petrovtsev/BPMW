@@ -26,6 +26,11 @@
                     <td class="col2">${taskDetailsModel.selectedTask.textTask}</td>
                 </tr>
                 <tr>
+                    <td class="col1">Email:</td>
+                    <td class="col2">${taskDetailsModel.selectedTask.email}</td>
+                </tr>
+
+                <tr>
                     <td class="col1">Date in:</td>
                     <td class="col2">${taskDetailsModel.selectedTask.dateIn}</td>
                 </tr>
@@ -56,9 +61,9 @@
             <br>
             <input type="hidden" name="taskId" value="${taskDetailsModel.selectedTask.id}">
             <div class="side-button">
-                <button type="button" class="button" name="back" onclick="history.back()">Back</button>
+                <button type="button" class="little_button" name="back" onclick="history.back()">Back</button>
                 <c:if test="${taskDetailsModel.selectedTask.userComplet.login == null}">
-                    <button type="submit" class="button">Close Task</button>
+                    <button type="submit" class="little_button">Close Task</button>
                 </c:if>
             </div>
         </form>

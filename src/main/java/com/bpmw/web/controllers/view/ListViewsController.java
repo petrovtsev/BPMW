@@ -1,7 +1,6 @@
 package com.bpmw.web.controllers.view;
 
 import com.bpmw.services.MessageService;
-import com.bpmw.web.controllers.user.UserController;
 import com.bpmw.web.model.task.TaskListModel;
 import com.bpmw.web.model.user.UserModel;
 import com.bpmw.web.model.view.ListViewsModel;
@@ -15,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The class is used to work with a list of user views.
+ */
 public class ListViewsController extends HttpServlet{
 
     private static  final Logger logger = LoggerFactory.getLogger(ListViewsController.class);
@@ -31,6 +33,14 @@ public class ListViewsController extends HttpServlet{
     @Inject
     private MessageService messageService;
 
+    /**
+     * The method takes a parameter the action depending on the data removes the selected task
+     * or displays the list of all the views of the active user.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -50,11 +60,5 @@ public class ListViewsController extends HttpServlet{
         } catch (IOException ex) {
             logger.error("Input text error", ex);
         }
-    }
-
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-
     }
 }

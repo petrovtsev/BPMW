@@ -15,15 +15,15 @@
     </div>
 
     <div class="pages">
-        <div class="authorization" style="margin-top: 10%; height: 220px">
+        <div class="authorization">
             <div class="login">
                 <h3>Error</h3>
                 <hr>
                 <output>ERROR</output><br>
                 <output>Try again</output><br>
                 <c:out value="${messageError}"/><br>
-                <a href="login.jsp" class="button" style="width: 170px">Back</a>                
-                <a href="register.jsp" class="button" style="width: 170px; margin-top: 3px">Register</a><br>
+                <a href="login.jsp" class="button">Back</a>
+                <a href="register.jsp" class="button">Register</a><br>
             </div>
         </div>
     </div>

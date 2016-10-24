@@ -9,9 +9,18 @@ label {
 
 span {
     display: inline-block;
-    width: 130px;
+    width: 160px;
     text-align: left;
     margin-bottom: 10px;
+}
+
+input {
+    width: 170px;
+    text-align: left;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #555555;
 }
 
 .header {
@@ -26,54 +35,28 @@ span {
 
 .data-table{
     border: 0px;
+    margin-left:20px;
     text-align: right;
-    margin-left: 10%;
     color: black;
 }
 
-.content {
-    margin-left:10px;
-    width: 80%;
-    height:auto;
-    border:1px solid #000000;
-    background:white;
-    float:left;
-    box-shadow: 4px 7px 17px 1px #000000;
-}
-
-.login {
-    text-align: center;
-    padding: 20px;
-    font-family: arial,sans-serif;
-    font-size: 13px;
-    font-weight: bold;
-    color: rgb(68,68,68);
-}
-
-.authorization {
-    width:500px;
-    margin: 0 auto;
-    padding:10px;
-    height: 210px;
-    font-size: 12px;
-    background: white;
-    box-shadow: 4px 7px 17px 1px #999999;
-    border-radius: 3px;
-}
-
 .errorMessage{
-    width:500px;
-    margin: 0 auto;
+    width: 480px;
+    height: auto;
+    height-min: 140px;
+    margin: 1%;
+    margin-left: auto;
+    margin-right: auto;
     padding:10px;
-    height: 210px;
     font-size: 12px;
+    text-align: center;
     background: white;
     box-shadow: 1px 1px 14px 2px #ff1213;
     border-radius: 3px;
 }
 
 .inputRed{
-    width: 100%;
+    width: 170px;
     padding: 5px 10px;
     box-sizing: border-box;
     border: none;
@@ -81,7 +64,7 @@ span {
 }
 
 .inputGreen{
-    width: 100%;
+    width: 170px;
     padding: 5px 10px;
     box-sizing: border-box;
     border: none;
@@ -98,7 +81,7 @@ span {
     border-bottom: 2px solid #555555;
     color: black;
     height: 26px;
-    width: 100%;
+    width: 170px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -106,6 +89,28 @@ span {
     cursor: pointer;
 }
 
-.select-box:hover{
+.select-box:hover {
+    border-bottom: 2px solid deeppink;
+}
+
+.select-box_add {
+    background-color: white;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #555555;
+    color: black;
+    height: 26px;
+    width: 265px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.select-box_add:hover{
     border-bottom: 2px solid deeppink;
 }

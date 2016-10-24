@@ -7,8 +7,8 @@
 <div class="menu">
     <div class="menu-nav">
         <ul>
-            <li><a href="userController">Account</a></li>
             <li><a href="tasksList">Task List</a></li>
+            <li><a href="userController">Account</a></li>
             <li><a href="statisticTask?day=15">Statistic</a></li>
             <li style="float:right"><a href="loginController?action=logout">Exit</a></li>
         </ul>

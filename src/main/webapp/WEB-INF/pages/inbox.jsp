@@ -5,26 +5,22 @@
 <!DOCTYPE HTML>
 
 <html>
+
 <head>
     <title>Tasks list</title>
     <link href="${uri}/resources/css/inbox.css" rel="stylesheet" type="text/css" />
     <link href="${uri}/resources/css/components.css" rel="stylesheet" type="text/css" />
-    <script src="${uri}/resources/js/jquery-latest.js"></script>
-    <script src="${uri}/resources/js/jquery.tablesorter.js"></script>
-    <script>
-        $(document).ready(function()
-                {
-                    $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} );
-                }
-        );
-    </script>
 </head>
+
 <body>
+
     <jsp:include page="templates/preloader.jsp"/>
     <jsp:include page="templates/header.jsp"/>
     <jsp:include page="templates/menu.jsp"/>
     <jsp:include page="templates/message.jsp"/>
+
     <div class="pages">
+
         <div class="sidebar">
             <a href="listViews?action=allViews" class="list_ref"><h3>Views</h3></a>
             <hr>
@@ -40,10 +36,14 @@
                 <a href="viewDetails?view_id=new" class="button-fix">Add new query</a>
             </div>
         </div>
+
         <div class="content">
+
             <h3>Tasks group №-${taskListModel.taskGroup.id} (${taskListModel.taskGroup.name}) </h3>
             <hr>
+
             <table class="table">
+
                     <tr>
                         <th class="col-center" width="40">id</th>
                         <th width="150">Name</th>
@@ -52,6 +52,7 @@
                         <th width="100">Date in</th>
                         <th width="100">Date complete</th>
                     </tr>
+
                 <c:forEach var="task" items="#{taskListModel.userTasks}">
                         <tr>
                             <td class="col-center">${task.id}</td>
@@ -63,8 +64,13 @@
                             <td>${task.dateComplet}</td>
                         </tr>
                 </c:forEach>
+
             </table>
+
         </div>
+
     </div>
+
 </body>
+
 </html>

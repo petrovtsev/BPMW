@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by ppetr on 15.10.2016.
+ * The class is used to work with statistical data users.
  */
-
 public class StaticticTaskController extends HttpServlet{
 
     private static  final Logger logger = LoggerFactory.getLogger(StaticticTaskController.class);
@@ -22,6 +21,13 @@ public class StaticticTaskController extends HttpServlet{
     @Inject
     private StaticticTaskModel staticticTaskModel;
 
+    /**
+     * The method is used to pass parameters to obtain statistics for the appropriate time period.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

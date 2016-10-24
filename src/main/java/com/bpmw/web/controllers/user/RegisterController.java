@@ -1,9 +1,8 @@
 package com.bpmw.web.controllers.user;
 
+import com.bpmw.persistence.User;
+import com.bpmw.services.InitializationObjectService;
 import com.bpmw.services.MessageService;
-import com.bpmw.services.PasswordService;
-import com.bpmw.services.ValidateService;
-import com.bpmw.web.controllers.task.TaskListRequestContriller;
 import com.bpmw.web.model.group.TaskGroupModel;
 import com.bpmw.web.model.user.RegisterModel;
 import org.slf4j.Logger;
@@ -17,8 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Map;
 
+/**
+ * The class is for new user registration.
+ */
 public class RegisterController extends HttpServlet{
 
     private static  final Logger logger = LoggerFactory.getLogger(RegisterController.class);
@@ -30,14 +32,18 @@ public class RegisterController extends HttpServlet{
     private TaskGroupModel taskGroupModel;
 
     @Inject
-    private ValidateService validateService;
-
-    @Inject
-    private PasswordService passwordService;
-
-    @Inject
     private MessageService messageService;
 
+    @Inject
+    private InitializationObjectService initializationObjectService;
+
+    /**
+     * The method checks the entered user login in order to avoid duplication of IDs.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
@@ -48,25 +54,32 @@ public class RegisterController extends HttpServlet{
         }
     }
 
+    /**
+     * The method takes a collection of parameters required to create a new user.
+     * It sends the data from initializationObjectService which gets initialized object,
+     * check the parameters of the user object on the respective requirements by validating service.
+     * In the absence of errors it creates a new user and sends to the login page.
+     * Otherwise, it displays a message with a list of errors.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+
             registerModel.init();
 
-            registerModel.getUser().setLogin(request.getParameter("login"));
-            String hashPassword = passwordService.passwordHash(request.getParameter("password"));
-            registerModel.getUser().setPassword(hashPassword);
-            registerModel.getUser().setFirstName(request.getParameter("firstName"));
-            registerModel.getUser().setLastName(request.getParameter("lastName"));
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            registerModel.getUser().setDateBirth(dateFormat.parse(request.getParameter("dateBirth")));
-            registerModel.getUser().setCity(request.getParameter("city"));
-            registerModel.getUser().setPhone(request.getParameter("phone"));
-            registerModel.getUser().setTaskGroup(taskGroupModel.getTaskGroup(Integer.valueOf(request.getParameter("taskGroupId"))));
-            registerModel.getUser().setMail(request.getParameter("email"));
+            User user = new User();
+            Map<String, String[]> parameters = request.getParameterMap();
+            user = (User) initializationObjectService.createObject(parameters, user);
+
+            registerModel.setUser(user);
 
             if (registerModel.validate()) {
+                messageService.addMessage("Error. Try again.");
                 RequestDispatcher Dispatcher = getServletContext().getRequestDispatcher("/register.jsp");
                 Dispatcher.forward(request, response);
             } else {
@@ -74,7 +87,6 @@ public class RegisterController extends HttpServlet{
                 messageService.addMessage("Registration completed.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-        request.getRequestDispatcher("error_login.jsp");
 
         } catch (ServletException ex) {
             logger.error("Servlet error", ex);
@@ -82,6 +94,11 @@ public class RegisterController extends HttpServlet{
             logger.error("Input text error", ex);
         } catch (ParseException e) {
             logger.error("Parse error", e);
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        } catch (NoSuchFieldException e) {
+            logger.error("No such field", e);
+        } catch (IllegalAccessException e) {
+            logger.error("Illegal access", e);
         }
     }
 }

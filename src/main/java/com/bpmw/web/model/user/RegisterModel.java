@@ -11,8 +11,6 @@ import javax.inject.Named;
 import java.util.*;
 
 /**
- * @author ppetr
- * @version 1.0
  * This class is used for user registration.
  */
 
@@ -29,23 +27,35 @@ public class RegisterModel {
     @Inject
     private ValidateService validateService;
 
+    /**
+     * The new user
+     */
     User user;
 
+    /**
+     * The method initializes the object.
+     */
     public void init(){
         user = new User();
     }
 
+    /**
+     * Method to check the data and returns a Boolean value (true, in case of an error)
+     * @return - Boolean value.
+     */
     public Boolean validate(){
         return validateService.validate(user);
     }
 
+    /**
+     * The method create a new user.
+     */
     public void addUser() {
         userService.addUser(user);
     }
 
     /**
-     * The method receives a user login and returns false if the username is busy.
-     *
+     * The method used to check the user's login employment     *
      * @param login - login to check
      * @return - message (false if the username is not available, an empty string if the login is free)
      */
@@ -55,16 +65,6 @@ public class RegisterModel {
             message = "false";
         }
         return message;
-    }
-
-    String errorMessage = "true";
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
     }
 
     public User getUser() {

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="bpmw:EJB exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/bpmw_EJB_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="bpmw/ejb/EJB" />
+      <element id="module-output" name="bpmw" />
+    </root>
+  </artifact>
+</component>

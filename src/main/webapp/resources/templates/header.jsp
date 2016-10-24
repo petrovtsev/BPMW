@@ -5,10 +5,10 @@
 <!DOCTYPE HTML>
 
 <div class="header">
-    <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; width: 17%"/>
+    <img src="${uri}/resources/images/logo.png" style="margin-left: 15%; margin-top: 15px; width: 300px"/>
     <c:if test="${req.userPrincipal.name != null}">
-    <a style="margin-left: 47%; margin-top: 12px" href="userController?name=${req.userPrincipal.name}">
-        <img src="${uri}/resources/icons/ic_account_white.png" style="width: 3%; margin-top: 2px">
-    </a>
+        <a style="margin-left: 47%; margin-top: 12px" href="userController?name=${req.userPrincipal.name}">
+            <img src="${uri}/resources/icons/ic_account_white.png" style="width: 3%; margin-top: 2px">
+        </a>
     </c:if>
 </div>

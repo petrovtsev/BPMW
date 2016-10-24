@@ -4,6 +4,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ * The class is used for user authentication.
+ */
 @Named
 @RequestScoped
 public class LoginModel {
@@ -11,9 +14,25 @@ public class LoginModel {
     @Inject
     private UserModel userModel;
 
+    /**
+     * Error message
+     */
     private String errorMessage;
+
+    /**
+     * Error status.
+     */
     private Boolean errorStatus = false;
 
+    /**
+     * The method used to check the entered data (username and password).
+     * In the case of errors in the data it
+     * returns a boolean value of "true" and sends a list of errors.
+     * As the parameters takes:
+     * @param login - user login.
+     * @param password - user password.
+     * @return
+     */
     public Boolean validateLogin(String login, String password){
         errorMessage = "";
         errorStatus = false;
