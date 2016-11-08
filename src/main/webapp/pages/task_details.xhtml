@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:af="http://java.sun.com/jsp/jstl/core">
+<f:view>
+
+    <h:head>
+        <title>Task details</title>
+    </h:head>
+
+    <h:body>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="/inbox.css" />
+        </f:facet>
+
+        <p:layout fullPage="true">
+
+            <ui:include src="/tempates/header.xhtml" />
+
+            <p:layoutUnit styleClass="sidebar_left" resizable="true" position="west" size="200" >
+                <h:form id="menu">
+                    <p:panelMenu toggleable="true" style="width: auto">
+
+                        <p:submenu label="Active Task" >
+                            <af:forEach items="#{tasksListController.userActiveTask}" var="tasks">
+                                <p:menuitem value="(#{tasks.id}) #{tasks.name}" action="#{taskDetailsController.returnSelectedTask(tasks.id)}" update=":taskDetailsForm" />
+                            </af:forEach>
+                        </p:submenu>
+
+                    </p:panelMenu>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" styleClass="center_lay">
+                <p:layout >
+
+                    <p:layoutUnit position="west" resizable="true" size="900">
+                        <p:panel id="taskDetailsForm" header="Task details">
+                            <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8"
+                                         layout="grid" styleClass="ui-panelgrid-blank">
+                                <h:outputText value="ID: " />
+                                <h:outputText value="#{taskDetailsController.task.id}" />
+
+                                <h:outputText value="Name: " />
+                                <h:outputText value="#{taskDetailsController.task.name}" />
+
+                                <h:outputText value="Text: " />
+                                <h:outputText value="#{taskDetailsController.task.textTask}" />
+
+                                <h:outputText value="Date: " />
+                                <h:outputText value="#{taskDetailsController.task.dateIn}" converter="javax.faces.DateTime"/>
+
+                                <h:outputText value="Priority: " />
+                                <h:outputText value="#{taskDetailsController.task.priorityTask.name}" converter="javax.faces.DateTime"/>
+
+                                <h:outputText value="Email: " />
+                                <p:commandLink onclick="PF('dlg_mail').show();">
+                                    <h:outputText value="#{taskDetailsController.task.email}" />
+                                </p:commandLink>
+
+                                <h:outputText value="Status: " />
+                                <h:outputText value="#{taskDetailsController.task.statusTask.name}" converter="javax.faces.DateTime"/>
+
+                                <h:outputText value="Date complete: " />
+                                <h:outputText value="#{taskDetailsController.task.dateComplet}" converter="javax.faces.DateTime"/>
+
+                                <h:outputText value="User: " />
+                                <h:outputText value="#{taskDetailsController.task.userComplet.firstName} #{taskDetailsController.task.userComplet.lastName}" />
+
+                                <h:outputText value="Comment: " />
+                                <h:outputText value="#{taskDetailsController.task.comment}" />
+
+                            </p:panelGrid>
+
+                            <div class="side_btn">
+
+                                <hr/>
+
+                                <p:inputTextarea rendered="#{taskDetailsController.task.statusTask.id == 2}"
+                                                 styleClass="text-area-big"
+                                                 value="#{taskDetailsController.textComment}" />
+                                <br/>
+
+                                <p:commandButton value="Open task"
+                                                 rendered="#{taskDetailsController.task.statusTask.id == 1}"
+                                                 styleClass="btn_sm"
+                                                 action="#{taskDetailsController.openTask()}"
+                                                 update=":taskDetailsForm" />
+
+                                <p:commandButton value="Close task"
+                                                 rendered="#{taskDetailsController.task.statusTask.id == 2}"
+                                                 styleClass="btn_sm"
+                                                 action="#{taskDetailsController.closeTask()}"
+                                                 update=":taskDetailsForm" />
+                            </div>
+                        </p:panel>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <p:panel header="Panel" footer="Movie Details">
+                            <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank">
+                                <h:outputText value="Login: " />
+                                <h:outputText value="#{userController.returnUser(request.userPrincipal.name).login}" />
+
+                                <h:outputText value="First name: " />
+                                <h:outputText value="#{userController.returnUser(request.userPrincipal.name).firstName}" />
+
+                                <h:outputText value="Last name: " />
+                                <h:outputText value="#{userController.returnUser(request.userPrincipal.name).lastName}" />
+
+                                <h:outputText value="Date birth: " />
+                                <h:outputText value="#{userController.returnUser(request.userPrincipal.name).dateBirth}" />
+
+                                <h:outputText value="E-mail: " />
+                                <h:outputText value="#{userController.returnUser(request.userPrincipal.name).email}" />
+
+                                <h:outputText value="Phone" />
+                                <h:outputText value="#{userController.returnUser(request.userPrincipal.name).phone}" />
+                            </p:panelGrid>
+                        </p:panel>
+                    </p:layoutUnit>
+
+                </p:layout>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+        <h:form id="mailBox">
+            <p:dialog header="To send a letter"
+                      widgetVar="dlg_mail"
+                      minimizable="true"
+                      maximizable="true"
+                      modal="false"
+                      minWidth="400"
+                      minHeight="300"
+                      width="600">
+
+                <h:panelGrid columns="1" cellpadding="5" styleClass="input_txt_big">
+
+                    <h:outputText value="Subject: "/>
+                    <p:inputText id="username" styleClass="input_txt_big" value="#{taskDetailsController.subjectMail}"/>
+
+                    <h:outputText value="Message: "/>
+                    <p:inputTextarea styleClass="input_txt_big" value="#{taskDetailsController.textComment}" />
+
+                </h:panelGrid>
+
+                <div class="side_btn">
+                    <p:commandButton value="Send"
+                                     styleClass="btn_sm"
+                                     icon="ui-icon-check"
+                                     onclick="close()"
+                                     action="#{taskDetailsController.sendMail()}"/>
+                </div>
+            </p:dialog>
+        </h:form>
+    </h:body>
+
+</f:view>
+</html>

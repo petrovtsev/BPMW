@@ -34,18 +34,24 @@ public class View {
     @Column(name = "DATE_END")
     private Date dateEnd;
 
-    @Column(name = "STATUS_COMPLETE")
-    private String statusComplete;
+    @ManyToOne
+    @JoinColumn(name = "PRIORITY_TASK")
+    private PriorityTask priorityTask;
+
+    @ManyToOne
+    @JoinColumn(name = "STATUS_TASK")
+    private StatusTask statusTask;
 
     public View() {
     }
 
-    public View(String name, User user, Date dateStart, Date dateEnd, String statusComplete) {
+    public View(String name, User user, Date dateStart, Date dateEnd, PriorityTask priorityTask, StatusTask statusTask) {
         this.name = name;
         this.user = user;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
-        this.statusComplete = statusComplete;
+        this.priorityTask = priorityTask;
+        this.statusTask = statusTask;
     }
 
     public Integer getId() {
@@ -88,21 +94,19 @@ public class View {
         this.dateEnd = dateEnd;
     }
 
-    public String getStatusComplete() {
-        return statusComplete;
+    public PriorityTask getPriorityTask() {
+        return priorityTask;
     }
 
-    public void setStatusComplete(String statusComplete) {
-        this.statusComplete = statusComplete;
+    public void setPriorityTask(PriorityTask priorityTask) {
+        this.priorityTask = priorityTask;
     }
 
-    public String strDateStart(){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(dateStart);
+    public StatusTask getStatusTask() {
+        return statusTask;
     }
 
-    public String strDateEnd(){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(dateEnd);
+    public void setStatusTask(StatusTask statusTask) {
+        this.statusTask = statusTask;
     }
 }

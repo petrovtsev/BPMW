@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:af="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Add task</title>
+</h:head>
+
+<h:body>
+
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="/inbox.css" />
+    </f:facet>
+
+    <ui:include src="/tempates/header_sm.xhtml" />
+
+    <h:form styleClass="add_task_form">
+
+        <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8"
+                      layout="grid" styleClass="ui-panelgrid-blank">
+
+            <f:facet name="header">
+                <h1>Describe the problem</h1>
+            </f:facet>
+
+            <h:outputText value="Name: " />
+            <p:inputText styleClass="input_txt_big" value="#{viewDetailsController.view.name}" />
+
+            <h:outputText value="Date start: " />
+            <p:calendar styleClass="input_txt_big" value="#{viewDetailsController.view.dateStart}" pattern="dd-MM-yyyy" placeholder="01-01-2015" mask="true" />
+
+            <h:outputText value="Date end: " />
+            <p:calendar styleClass="input_txt_big" value="#{viewDetailsController.view.dateEnd}" pattern="dd-MM-yyyy" placeholder="01-01-2016" mask="true" />
+
+            <h:outputText value="Priority task: "/>
+            <p:selectOneMenu styleClass="selector_sm" value="#{viewDetailsController.idPriorityTask}">
+                <af:forEach items="#{priorityTaskController.priorityTasksList}" var="priority">
+                    <f:selectItem itemLabel="#{priority.name}" itemValue="#{priority.id}" />
+                </af:forEach>
+            </p:selectOneMenu>
+
+            <h:outputText value="Status task: "/>
+            <p:selectOneMenu styleClass="selector_sm" value="#{viewDetailsController.idStatusTask}">
+                <af:forEach items="#{statusTaskController.statusTasksList}" var="status">
+                    <f:selectItem itemLabel="#{status.name}" itemValue="#{status.id}" />
+                </af:forEach>
+            </p:selectOneMenu>
+
+        </p:panelGrid>
+
+        <div class="side_btn">
+            <p:button value="Login" styleClass="btn_sm" href="/index.xhtml"/>
+            <p:commandButton value="Save" styleClass="btn_sm" action="#{viewDetailsController.addView}"/>
+        </div>
+
+
+    </h:form>
+    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+</h:body>
+</html>

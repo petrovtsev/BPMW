@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:af="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Register</title>
+    </h:head>
+
+    <h:body>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="/inbox.css" />
+        </f:facet>
+
+        <ui:include src="/tempates/header_sm.xhtml" />
+
+        <h:form styleClass="register_form">
+
+            <h:panelGrid columns="3" cellpadding="5">
+                <f:facet name="header">
+                    <h1>Register</h1>
+                </f:facet>
+
+                <h:outputText value="Login: "/>
+                <p:inputText id="username" styleClass="input_txt" value="#{registerController.user.login}"
+                             title="The login can be used only Latin letters, numbers. Field length can be 3 to 30 characters."/>
+                <p:tooltip for="username" showEvent="focus" hideEvent="blur" />
+
+                <h:outputText value="Password: "/>
+                <p:password id="pwd1" value="#{registerController.user.password}" styleClass="input_txt" match="pwd2" label="Password 1" required="true" feedback="true" />
+                <p:tooltip showEvent="pwd1" hideEvent="blur" />
+
+                <h:outputText value="Confirm password: "/>
+                <p:password id="pwd2" value="#{registerController.user.password}" styleClass="input_txt" label="Password 2" required="true" />
+                <p:tooltip showEvent="pwd2" hideEvent="blur" />
+
+                <h:outputText value="First name: "/>
+                <p:inputText id="firstName" styleClass="input_txt" value="#{registerController.user.firstName}"/>
+                <p:tooltip showEvent="firstName" hideEvent="blur" />
+
+                <h:outputText value="Last name: "/>
+                <p:inputText id="lastName" styleClass="input_txt" value="#{registerController.user.lastName}"/>
+                <p:tooltip showEvent="lastName" hideEvent="blur" />
+
+                <h:outputText value="Date birth: "/>
+                <p:calendar styleClass="input_txt" id="maskDate" value="#{registerController.user.dateBirth}" pattern="dd-MM-yyyy" placeholder="01-01-1980" mask="true" />
+                <p:tooltip showEvent="maskDate" hideEvent="blur" />
+
+                <h:outputText value="City: "/>
+                <p:inputText id="city" styleClass="input_txt" value="#{registerController.user.city}"/>
+                <p:tooltip showEvent="city" hideEvent="blur" />
+
+                <h:outputText value="Phone: "/>
+                <p:inputMask id="phone" styleClass="input_txt" value="#{registerController.user.phone}" mask="+7(999) 999-9999" placeholder="+7(___) ___-____"/>
+                <p:tooltip showEvent="phone" hideEvent="blur" />
+
+                <h:outputText value="Email: "/>
+                <p:inputText id="email" styleClass="input_txt" value="#{registerController.user.email}" />
+                <p:tooltip showEvent="email" hideEvent="blur" />
+
+                <h:outputText value="Task group: "/>
+                <p:selectOneMenu styleClass="selector_sm" id="task_group" value="#{registerController.idTaskGroup}">
+                    <af:forEach items="#{groupController.listTaskGroup}" var="taskGroup">
+                        <f:selectItem itemLabel="#{taskGroup.name}" itemValue="#{taskGroup.id}" />
+                    </af:forEach>
+                </p:selectOneMenu>
+                <p:tooltip showEvent="task_group" hideEvent="blur" />
+
+                </h:panelGrid>
+
+            <div class="side_btn">
+                <p:button value="Login" styleClass="btn_sm" href="/index.xhtml"/>
+                <p:commandButton value="Next" styleClass="btn_sm" action="#{registerController.addUser}"/>
+            </div>
+
+
+        </h:form>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+    </h:body>
+</html>

@@ -13,6 +13,9 @@ import java.util.Map;
 
 /**
  * The class will perform a function to create objects from the collection of string values.
+ * @author ppetr
+ * @version 1.0
+ *
  */
 @RequestScoped
 public class InitializationObjectService {
