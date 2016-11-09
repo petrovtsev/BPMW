@@ -59,7 +59,7 @@
                                 <h:outputText value="#{taskDetailsController.task.priorityTask.name}" converter="javax.faces.DateTime"/>
 
                                 <h:outputText value="Email: " />
-                                <p:commandLink onclick="PF('dlg_mail').show();">
+                                <p:commandLink update="mailBox" oncomplete="PF('dlg_mail').show();">
                                     <h:outputText value="#{taskDetailsController.task.email}" />
                                 </p:commandLink>
 
