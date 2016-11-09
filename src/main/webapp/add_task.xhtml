@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:af="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Add task</title>
+    </h:head>
+
+    <h:body>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="/inbox.css" />
+        </f:facet>
+
+        <ui:include src="/tempates/header_sm.xhtml" />
+
+        <h:form styleClass="add_task_form">
+
+            <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8"
+                          layout="grid" styleClass="ui-panelgrid-blank">
+
+                <f:facet name="header">
+                    <h1>Describe the problem</h1>
+                </f:facet>
+
+                <h:outputText value="Name: " />
+                <p:inputText styleClass="text-area-big" value="#{addTaskController.task.name}" />
+
+                <h:outputText value="Text: " />
+                <p:inputTextarea styleClass="text-area-big" value="#{addTaskController.task.textTask}" />
+
+                <h:outputText value="Priority: "/>
+                <p:selectOneMenu styleClass="selector_sm" value="#{addTaskController.idPriorityTask}" >
+                    <af:forEach items="#{priorityTaskController.priorityTasksList}" var="priority">
+                        <f:selectItem itemLabel="#{priority.name}" itemValue="#{priority.id}" />
+                    </af:forEach>
+                </p:selectOneMenu>
+
+                <h:outputText value="Task group: "/>
+                <p:selectOneMenu styleClass="selector_sm" id="task_group" value="#{addTaskController.idTaskGroup}">
+                    <af:forEach items="#{groupController.listTaskGroup}" var="taskGroup">
+                        <f:selectItem itemLabel="#{taskGroup.name}" itemValue="#{taskGroup.id}" />
+                    </af:forEach>
+                </p:selectOneMenu>
+
+                <h:outputText value="Email: " />
+                <p:inputText styleClass="text-area-big" value="#{addTaskController.task.email}" />
+
+            </p:panelGrid>
+
+            <div class="side_btn">
+                <p:button value="Login" styleClass="btn_sm" href="/index.xhtml"/>
+                <p:commandButton value="Save" styleClass="btn_sm" action="#{addTaskController.addTask}"/>
+            </div>
+
+
+        </h:form>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+    </h:body>
+</html>

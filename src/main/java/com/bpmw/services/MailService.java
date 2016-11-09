@@ -9,6 +9,8 @@ import java.util.Properties;
 
 /**
  * The class is used to send and receive e-mail.
+ * @author ppetr
+ * @version 1.0
  */
 @RequestScoped
 public class MailService {

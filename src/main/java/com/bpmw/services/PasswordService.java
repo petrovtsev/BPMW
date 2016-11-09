@@ -5,6 +5,8 @@ import java.security.MessageDigest;
 
 /**
  * Class is used to create a password hash.
+ * @author ppetr
+ * @version 1.0
  */
 @RequestScoped
 public class PasswordService {

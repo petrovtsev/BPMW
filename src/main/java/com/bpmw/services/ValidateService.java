@@ -1,7 +1,6 @@
 package com.bpmw.services;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -13,9 +12,10 @@ import java.util.Set;
 /**
  * The class is used to check the data obtained in accordance with the job requirements
  * and displays the information in the case to inadequate.
+ * @author ppetr
+ * @version 1.0
  */
 @RequestScoped
-@Named
 public class ValidateService {
 
     /**
@@ -34,7 +34,7 @@ public class ValidateService {
      * It receives as a parameter an object (entity). In the case of detected errors
      * makes any appropriate entry in the error list.
      * Returns A Boolean value of the test result. (False if no errors).
-     * As well as changing the value of a parameter error Status.
+     * As well as changing the value of a parameter error StatusTask.
      * @param object - object (entity)
      * @return - A Boolean value (true if there were errors or false if no errors)
      */

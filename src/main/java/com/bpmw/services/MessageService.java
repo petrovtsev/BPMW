@@ -7,9 +7,10 @@ import java.util.List;
 
 /**
  * This class is used to display summary information messages to the user.
+ * @author ppetr
+ * @version 1.0
  */
 @RequestScoped
-@Named
 public class MessageService {
 
     /**
@@ -32,6 +33,9 @@ public class MessageService {
         messages.add(message);
     }
 
+    /**
+     * Getters and setters
+     */
     public Boolean getMessageStatus() {
         return messageStatus;
     }

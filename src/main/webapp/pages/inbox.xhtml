@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:af="http://java.sun.com/jsp/jstl/core">
+<f:view>
+
+    <h:head>
+        <title>Inbox</title>
+    </h:head>
+
+    <h:body>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="/inbox.css" />
+        </f:facet>
+
+        <p:layout fullPage="true" >
+
+            <ui:include src="/tempates/header.xhtml" />
+
+            <ui:include src="/tempates/sidebar_left.xhtml" />
+
+            <p:layoutUnit position="center" >
+
+                <h:form id="taskList">
+
+                    <p:dataTable var="task"
+                                 value="#{tasksListController.lazyModel}" rows="20"
+                                 styleClass="table"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                                 {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}
+                                 {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,50,100"
+                                 scrollable="true"
+                                 rowKey="#{task.id}"
+                                 lazy="true"
+                                 selection="#{taskDetailsController.task}"
+                                 selectionMode="single">
+
+                        <p:column headerText="Id" width="10" sortBy="#{task.id}" filterBy="#{task.id}">
+                            <h:outputText value="#{task.id}" />
+                        </p:column>
+
+                        <p:column headerText="Name" width="80" sortBy="#{task.name}" filterBy="#{task.name}">
+                            <h:outputText value="#{task.name}" />
+                        </p:column>
+
+                        <p:column headerText="Date in" width="70" sortBy="#{task.dateIn}" filterBy="#{task.dateIn}">
+                            <h:outputText value="#{task.dateIn}" converter="javax.faces.DateTime" />
+                        </p:column>
+
+
+                        <p:column headerText="Status" width="80" sortBy="#{task.statusTask.name}" filterBy="#{task.statusTask.name}">
+                            <h:outputText value="#{task.statusTask.name}" />
+                        </p:column>
+
+                        <p:column headerText="Priority" width="80" sortBy="#{task.priorityTask.name}" filterBy="#{task.priorityTask.name}">
+                            <h:outputText value="#{task.priorityTask.name}" />
+                        </p:column>
+
+                        <p:column headerText="Date end" width="70" sortBy="#{task.dateComplet}" filterBy="#{task.dateComplet}">
+                            <h:outputText value="#{task.dateComplet}" converter="javax.faces.DateTime" />
+                        </p:column>
+
+                        <p:column headerText="Comment" width="70" sortBy="#{task.comment}" filterBy="#{task.comment}">
+                            <h:outputText value="#{task.comment}" />
+                        </p:column>
+
+                        <p:column headerText="User" width="70" sortBy="#{task.userComplet.lastName}" filterBy="#{task.userComplet.lastName}">
+                            <h:outputText value="#{task.userComplet.firstName} #{task.userComplet.lastName}" />
+                        </p:column>
+
+                        <p:column headerText="View" width="20">
+                            <p:commandButton action="#{taskDetailsController.returnSelectedTask(task.id)}"
+                                             icon="ui-icon-pencil" title="View"/>
+                        </p:column>
+                    </p:dataTable>
+
+                </h:form>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</f:view>
+
+</html>

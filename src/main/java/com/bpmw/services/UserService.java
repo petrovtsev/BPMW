@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * Class to work with a database model.
+ * @author ppetr
+ * @version 1.0
  */
 @Stateless
 public class UserService {
